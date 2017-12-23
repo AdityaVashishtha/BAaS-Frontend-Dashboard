@@ -18,3 +18,7 @@
   // loading progress bar
   @include ngx-pace-theme();
 };
+
+a {
+  outline:none;
+}

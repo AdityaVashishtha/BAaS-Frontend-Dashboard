@@ -6,6 +6,8 @@ Sructure of front-end part is modular, it uses core @nebular module and overide 
 * `src/app.module.ts` contains module initialisation.
 * **[IMP]** New services must be added to `data/data.module`.
 * Menu item such and styling is in `@theme/layout/sample` and there data is in `pages/pages-menu`.
+* Cosmic and default theme is in `@theme/styles`.
+* To change global styling change has to be made in `@theme/styles.scss`
 * Todo more ..
 
 ## Installation Instruction
