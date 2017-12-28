@@ -44,8 +44,8 @@ Thumbs.db
 CHANGELOG.md
 DEV_DOCS.md
 LICENSE
-package-lock.*
+#package-lock.*
 tslint.json
-protractor.conf.js
+#protractor.conf.js
 tsconfig.json
 /.vscode

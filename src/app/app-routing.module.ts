@@ -8,8 +8,12 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { Page404Component } from './page404/page404.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-const routes: Routes = [
+const routes: Routes = [  
+  { path: '404', component: Page404Component },
+  { path: 'dashboard', loadChildren: 'app/components/dashboard/dashboard.module#DashboardModule'},
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   {
     path: 'auth',
@@ -42,7 +46,7 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '**', redirectTo: '404' },
 ];
 
 const config: ExtraOptions = {
@@ -50,7 +54,7 @@ const config: ExtraOptions = {
 };
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, config)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

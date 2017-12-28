@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/.vscode": true,
+        "**/*.js": true, 
+        "**/node_modules": true  ,
+        "**/e2e": true,
+        "src/environments": true,
+        "CHANGELOG.md": true,
+        "DEV_DOCS.md":true,
+        "LICENSE": true,
+        "package-*":true,
+        "ts*.json": true,
+        "**/*spec*": true,
+    }
+}

@@ -8,6 +8,30 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'DATA',
+    group: true,
+  },
+  {
+    title: 'Schema',
+    icon: 'ion-ios-folder-outline',
+    link: '/tables'
+  },
+  {
+    title: 'Tables',
+    icon: 'nb-tables',
+    link: '/pages/ui-features',
+    children: [
+      {
+        title: 'User',
+        link: '/pages/ui-features/buttons',
+      },
+      {
+        title: 'Book',
+        link: '/pages/ui-features/grid',
+      },
+    ],
+  },
+  {
     title: 'FEATURES',
     group: true,
   },
