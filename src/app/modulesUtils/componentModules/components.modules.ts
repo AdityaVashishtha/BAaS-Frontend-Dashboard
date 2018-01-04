@@ -19,6 +19,7 @@ import {
 
 
 import { Page404Component } from '../../page404/page404.component';
+import { AuthGuard } from '../../guard/auth.guard';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -50,7 +51,7 @@ export class ComponentBundle {
     static forRoot(): ModuleWithProviders {
         return <ModuleWithProviders>{
           ngModule: ComponentBundle,
-          providers: [],
+          providers: [AuthGuard],
         };
       }
 }

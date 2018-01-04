@@ -10,10 +10,11 @@ import {
 } from '@nebular/auth';
 import { Page404Component } from './page404/page404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [  
   { path: '404', component: Page404Component },
-  { path: 'dashboard', loadChildren: 'app/components/dashboard/dashboard.module#DashboardModule'},
+  { path: 'dashboard', loadChildren: 'app/components/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard]},
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   {
     path: 'auth',
@@ -25,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: NbLoginComponent,
+        component: NbLoginComponent,        
       },
       {
         path: 'register',
