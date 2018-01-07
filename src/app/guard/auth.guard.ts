@@ -5,6 +5,7 @@ import { Router, CanActivate } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { ToastService } from '../services/util/toast.service';
 
+
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(

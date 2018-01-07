@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
-import { Http,Headers } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
-
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
   
   authenticateUser(user){
-    let headers= new Headers();
+    let headers= new HttpHeaders();
     let loginEndPoint = "http://localhost:4000/dashboard/authenticate";
-    headers.append('Content-Type','application/json');
-    return this.http.post(loginEndPoint,user,{headers: headers}).map(res => res.json());
+    headers.set('Content-Type','application/json');
+    return this.http.post<any>(loginEndPoint,user,{headers: headers}).map(res => res);
   }
 
   loadToken() {
