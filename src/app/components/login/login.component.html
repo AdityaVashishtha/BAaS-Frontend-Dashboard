@@ -1,0 +1,41 @@
+<div class="main-div">
+  <div class="header-form">
+    <h2>Sign In</h2>
+    <!-- <i class="fa fa-cogs fa-2x"></i> -->
+    <h3 class="text-hint">
+        <small class="text-hint">Hello!! Please login to enter</small>      
+    </h3>    
+  </div>  
+  <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope">    
+    <div class="form-group">
+      <label for="username" class="sr-only">Username</label>
+      <input type="text" name="username" id="username" class="form-control" [(ngModel)]="username" placeholder="Username" [class.form-control-warning]="inputUsername.errors && (inputUsername.dirty || inputUsername.touched)" autofocus required #inputUsername="ngModel">
+      <small class="form-text text-warning" *ngIf="inputUsername.errors && (inputUsername.dirty || inputUsername.touched) && inputUsername.errors.required">Username is required! </small>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="sr-only">Email address</label>
+      <input name="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Password" [class.form-control-warning]="inputPassword.errors && (inputPassword.dirty || inputPassword.touched)" required #inputPassword="ngModel">
+      <small class="form-text text-warning" *ngIf="inputPassword.errors && inputPassword.errors.required && (inputPassword.dirty || inputPassword.touched)">Password is required! </small>
+    </div>
+
+    <div class="form-group accept-group col-sm-12">
+      <nb-checkbox name="rememberMe">Remember me</nb-checkbox>
+      <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
+    </div>
+    <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted"> Sign In </button>
+  </form>  
+  <!-- <div class="links">
+        <small class="form-text">Or connect with:</small>
+        <div class="socials">
+          <a href="" target="_blank" class="socicon-github"></a>
+          <a href="" target="_blank" class="socicon-facebook"></a>
+          <a href="" target="_blank" class="socicon-twitter"></a>
+        </div>
+        <small class="form-text"> Don't have an account?
+          <a routerLink="../register">
+            <strong>Sign Up</strong>
+          </a>
+        </small>
+      </div> -->
+</div>

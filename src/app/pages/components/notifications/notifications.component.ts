@@ -34,7 +34,7 @@ export class NotificationsComponent {
   quotes = [
     { title: null, body: 'We rock at <i>Angular</i>' },
     { title: null, body: 'Titles are not always needed' },
-    { title: null, body: 'Toastr rock!' },
+    { title: null, body: 'Toastr d rock!' },
     { title: 'What about nice html?', body: '<b>Sure you <em>can!</em></b>' },
   ];
 
@@ -52,15 +52,15 @@ export class NotificationsComponent {
   }
 
   private showToast(type: string, title: string, body: string) {
-    this.config = new ToasterConfig({
-      positionClass: this.position,
-      timeout: this.timeout,
-      newestOnTop: this.isNewestOnTop,
-      tapToDismiss: this.isHideOnClick,
-      preventDuplicates: this.isDuplicatesPrevented,
-      animation: this.animationType,
-      limit: this.toastsLimit,
-    });
+    // this.config = new ToasterConfig({
+    //   positionClass: this.position,
+    //   timeout: this.timeout,
+    //   newestOnTop: this.isNewestOnTop,
+    //   tapToDismiss: this.isHideOnClick,
+    //   preventDuplicates: this.isDuplicatesPrevented,
+    //   animation: this.animationType,
+    //   limit: this.toastsLimit,
+    // });
     const toast: Toast = {
       type: type,
       title: title,

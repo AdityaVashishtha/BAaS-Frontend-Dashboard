@@ -17,10 +17,13 @@ import {
     NbCheckboxModule,
   } from '@nebular/theme';
 
-
+/* Custom Imports to use */
+import { ToasterService } from 'angular2-toaster';
 import { Page404Component } from '../../page404/page404.component';
 import { AuthGuard } from '../../guard/auth.guard';
-
+import { AuthService } from '../../services/auth/auth.service';
+import { ToastService } from '../../services/util/toast.service';
+import { ToasterModule } from 'angular2-toaster';
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
@@ -35,6 +38,7 @@ const NB_MODULES = [
     NbSidebarModule,
     NbCheckboxModule,
     NgbModule,
+    ToasterModule
   ];
 
 //After creating component for using it in the APP add component here
@@ -51,7 +55,7 @@ export class ComponentBundle {
     static forRoot(): ModuleWithProviders {
         return <ModuleWithProviders>{
           ngModule: ComponentBundle,
-          providers: [AuthGuard],
+          providers: [AuthGuard,AuthService,ToasterService,ToastService],
         };
       }
 }

@@ -17,16 +17,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
-import { ComponentBundle  } from './modulesUtils/componentModules/components.modules'
- 
+import { ComponentBundle  } from './modulesUtils/componentModules/components.modules';
+import { LoginComponent } from './components/login/login.component'
+
+import { ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import { ToasterModule } from 'angular2-toaster';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
-
+    ToasterModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),

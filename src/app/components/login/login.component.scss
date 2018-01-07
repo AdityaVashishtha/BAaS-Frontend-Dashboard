@@ -1,0 +1,89 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+
+@include nb-install-component() {
+
+  nb-card-footer {
+    padding-bottom: 0.25rem;
+
+    button {
+      margin: 0 1rem 1rem 0;
+    }
+  }
+
+  /* stylelint-disable */
+  toaster-container /deep/ {
+     #toast-container .toast-close-button {
+      right: 0;
+    }
+  }
+  /* stylelint-enable */
+
+  @include media-breakpoint-down(xs) {
+    .dropdown-toggle {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+  @media (max-width: 550px) {
+      .accept-group {
+          font-size: 12px;
+          padding: 0;
+      }
+  }
+  .main-div {      
+      padding-bottom: 50%;      
+  }
+  
+  form {
+      width: 100%;                  
+  }  
+  .header-form {
+      text-align: center;
+      padding: 1.5em;
+  }  
+  
+  .alert {
+      text-align: center;
+  }
+
+  .title {
+      margin-bottom: 0.75rem;
+      text-align: center;
+  }
+
+  .sub-title {
+      margin-bottom: 2rem;
+      text-align: center;
+  }
+
+  .checkbox {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: normal;
+  }
+
+  .form-group.accept-group {
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem 0;
+      .forgot-password {
+          line-height: 2;
+      }
+  }
+
+  .links {
+      text-align: center;
+      margin-top: 1.75rem;
+      .socials {
+          margin: 1.5rem 0 2.5rem;
+      }
+      .socials a {
+          font-size: 2rem;
+          margin: 0 1rem;
+          text-decoration: none;
+      }
+  }
