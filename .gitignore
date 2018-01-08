@@ -45,7 +45,7 @@ CHANGELOG.md
 DEV_DOCS.md
 LICENSE
 #package-lock.*
-tslint.json
+#tslint.json
 #protractor.conf.js
-tsconfig.json
+#tsconfig.json
 /.vscode
