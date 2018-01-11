@@ -2,9 +2,9 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Analytics',
     icon: 'nb-bar-chart',
-    link: '/',
+    link: '/dashboard/analytics',
     home: true,
   },
   {
@@ -23,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'User',
-        link: '/tables/user',
+        link: '/pages/tables/smart-table',
       },
       {
         title: 'Book',
