@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 import { ComponentBundle  } from './modulesUtils/componentModules/components.modules';

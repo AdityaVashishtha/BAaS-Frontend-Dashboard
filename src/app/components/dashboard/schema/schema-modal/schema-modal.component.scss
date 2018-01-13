@@ -1,0 +1,19 @@
+@import '../../../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+@include nb-install-component() {    
+    .modal-body {
+        .row {            
+            .header {                    
+                padding: 0.5rem;
+                font-size: 1.35rem;
+                font-family: Exo;
+            }
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        .dropdown-toggle {
+            font-size: 0.75rem;
+        }
+    }
+}

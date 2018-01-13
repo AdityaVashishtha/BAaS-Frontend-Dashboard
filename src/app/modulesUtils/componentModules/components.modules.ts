@@ -24,6 +24,8 @@ import { AuthGuard } from '../../guard/auth.guard';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastService } from '../../services/util/toast.service';
 import { ToasterModule } from 'angular2-toaster';
+import { SchemaService } from '../../services/dashboard/schema.service';
+
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
@@ -46,6 +48,15 @@ const COMPONENTS = [
     Page404Component,    
     // Add new Component here to add them into the app
 ]
+
+const SERVICES = [
+    AuthGuard,
+    AuthService,
+    ToasterService,
+    ToastService,
+    SchemaService,
+    //Add new Services here
+]
 @NgModule({
     imports: [...BASE_MODULES,...NB_MODULES],
     exports: [...BASE_MODULES, ...NB_MODULES,...COMPONENTS,],
@@ -55,7 +66,7 @@ export class ComponentBundle {
     static forRoot(): ModuleWithProviders {
         return <ModuleWithProviders>{
           ngModule: ComponentBundle,
-          providers: [AuthGuard,AuthService,ToasterService,ToastService],
+          providers: [...SERVICES],
         };
       }
 }

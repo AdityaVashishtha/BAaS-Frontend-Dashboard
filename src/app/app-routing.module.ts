@@ -9,7 +9,6 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import { Page404Component } from './page404/page404.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [  

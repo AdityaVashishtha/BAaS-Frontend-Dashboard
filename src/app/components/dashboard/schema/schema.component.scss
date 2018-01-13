@@ -1,0 +1,8 @@
+nb-card-body {
+    div:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+nb-card-header {
+  text-align: center;  
+}
