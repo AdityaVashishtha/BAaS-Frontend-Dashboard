@@ -5,6 +5,7 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
 import { SchemaComponent } from '../../components/dashboard/schema/schema.component';
 import { AnalyticsComponent } from '../../components/dashboard/analytics/analytics.component';
 import { LandingPageComponent } from '../../components/dashboard/landing-page/landing-page.component';
+import { TableComponent } from '../../components/dashboard/table/table.component';
 const routes : Routes = [{
     path: '',
     component: DashboardComponent,
@@ -17,6 +18,9 @@ const routes : Routes = [{
     },{
         path: '',
         component: LandingPageComponent
+    },{
+        path: 'table/:schemaName',
+        component: TableComponent
     }]
 }]
 

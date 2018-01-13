@@ -12,11 +12,12 @@ export class SchemaModalComponent implements OnInit {
   modalTitle: string;
   name: string;
   submitted: boolean;
+  newSchema: any;
 
   constructor(
     private activeModal: NgbActiveModal,
     private schemaService: SchemaService,
-    private toastService: ToastService
+    private toastService: ToastService    
   ) { }
 
   ngOnInit() {
@@ -31,17 +32,16 @@ export class SchemaModalComponent implements OnInit {
       this.submitted =true
       let schema = {
         name: this.name.toLowerCase()
-      }
+      }      
       this.schemaService.createSchema(schema).subscribe((res)=>{
         if(res.success) {
-          this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);
+          this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);                                                  
+          this.activeModal.close(schema);
         } else {
           this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
+          this.activeModal.close();
         }
-      });
-      this.submitted = false;
-      this.activeModal.close();
+      });            
     }    
-  }
-
+  }   
 }

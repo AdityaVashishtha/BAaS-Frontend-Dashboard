@@ -33,8 +33,8 @@ export class SchemaComponent implements OnInit {
       size: 'lg',
       // backdrop: 'static',
       container: 'nb-layout',
-    });
-    activeModal.componentInstance.modalTitle = "Edit Schema";    
+    });    
+    activeModal.componentInstance.modalTitle = "Edit Schema";        
   }
 
   showAddSchemaModal() {
@@ -42,6 +42,12 @@ export class SchemaComponent implements OnInit {
       size: 'sm',      
       container: 'nb-layout',
     });
-    activeModal.componentInstance.modalTitle = "Add new Schema";    
+    activeModal.result.then(
+      (result) => {
+        if(result)
+          this.schemas.push(result);
+      },
+      (reason) => {});
+    activeModal.componentInstance.modalTitle = "Add new Schema";     
   }
 }

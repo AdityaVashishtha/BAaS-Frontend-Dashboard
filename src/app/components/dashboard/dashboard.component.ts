@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
       for (let schema of res.schemas) {
         tempSchema.push({
           title: schema.name,
-          link: '/table/'+schema.name
+          link: ['table',schema.name]
         })
       }            
      });    

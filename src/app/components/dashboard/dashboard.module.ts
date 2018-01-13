@@ -8,6 +8,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SchemaModalComponent } from './schema/schema-modal/schema-modal.component';
 import { TableComponent } from './table/table.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 const PAGES_COMPONENTS = [
@@ -17,7 +18,8 @@ const PAGES_COMPONENTS = [
 @NgModule({
   imports: [        
     DashboardMainRouting,
-    ThemeModule
+    ThemeModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -25,7 +27,7 @@ const PAGES_COMPONENTS = [
     AnalyticsComponent,
     LandingPageComponent,
     SchemaModalComponent,
-    TableComponent,  
+    TableComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,
