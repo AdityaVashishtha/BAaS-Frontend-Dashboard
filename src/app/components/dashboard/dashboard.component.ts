@@ -18,14 +18,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     let tempSchema = [];
-    this.schemaService.getSchemas().subscribe((res)=>{            
-      for (let schema of res.schemas) {
-        tempSchema.push({
-          title: schema.name,
-          link: ['table',schema.name]
-        })
-      }            
-     });    
+    // this.schemaService.getSchemas().subscribe((res)=>{            
+    //   for (let schema of res.schemas) {
+    //     tempSchema.push({
+    //       title: schema.name,
+    //       link: ['table',schema.name]
+    //     })
+    //   }           
+    //  });         
      this.menu = this.getMenuItems(tempSchema);
   }
 
@@ -46,12 +46,12 @@ export class DashboardComponent implements OnInit {
         icon: 'nb-cloudy',
         link: '/dashboard/schema'
       },
-      {
-        title: 'Tables',
-        icon: 'nb-tables',
-        link: '/pages/ui-features',
-        children: schemas,
-      },
+      // {
+      //   title: 'Tables',
+      //   icon: 'nb-tables',
+      //   link: '/pages/ui-features',
+      //   children: schemas,
+      // },
       {
         title: 'CRUDs',
         group: true,

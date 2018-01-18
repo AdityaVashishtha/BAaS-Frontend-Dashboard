@@ -12,8 +12,8 @@ export class SchemaModalComponent implements OnInit {
   modalTitle: string;
   name: string;
   submitted: boolean;
-  newSchema: any;
-
+  newSchema: any;  
+  
   constructor(
     private activeModal: NgbActiveModal,
     private schemaService: SchemaService,

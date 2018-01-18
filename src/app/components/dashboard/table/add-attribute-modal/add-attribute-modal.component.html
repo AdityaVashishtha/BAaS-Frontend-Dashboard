@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{modalTitle}}</h4>
+  <button (click)="closeModal()" type="button" aria-label="Close" class="close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #form="ngForm">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="nb-tables"></i>
+        </span>
+        <input name="attributeName" id="attributeName" pattern="[A-Za-z]{2,12}" [(ngModel)]="attrName" placeholder="Attribute Name" class="form-control input-lg"
+          [class.form-control-warning]="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.required"
+          required autofocus #attributeName="ngModel">
+      </div>
+      <small class="form-text text-warning" *ngIf="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.required">Schema Name Required!!</small>
+      <small class="form-text text-warning" *ngIf="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.pattern">Only Alphabates with length between 0-12 allowed!!</small>
+      <br>
+      <div class="dropdown" ngbDropdown>
+        <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
+          {{ attrDataType }}
+        </button>
+        <ul ngbDropdownMenu class="dropdown-menu">
+          <li class="dropdown-item" *ngFor="let dataType of dataTypes" (click)="attrDataType = dataType">
+            {{ dataType }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button [disabled]="submitted || !form.valid" (click)="addAttribute()" type="button" class="btn btn-round btn-success">Create</button>
+</div>

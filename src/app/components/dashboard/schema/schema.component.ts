@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SchemaModalComponent } from './schema-modal/schema-modal.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { SchemaService } from '../../../services/dashboard/schema.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schema',
@@ -13,12 +14,12 @@ import { SchemaService } from '../../../services/dashboard/schema.service';
 })
 export class SchemaComponent implements OnInit {
   // for dummy data
-  schemas: any;
-
+  schemas: any;  
 
   constructor(
     private modalService: NgbModal,
-    private schemaService: SchemaService
+    private schemaService: SchemaService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,14 +28,16 @@ export class SchemaComponent implements OnInit {
     });
   }
   
-  showEditSchemaModal(event) {
-    console.log(event);
-    const activeModal = this.modalService.open(SchemaModalComponent, {
-      size: 'lg',
-      // backdrop: 'static',
-      container: 'nb-layout',
-    });    
-    activeModal.componentInstance.modalTitle = "Edit Schema";        
+  editSchema(event) {
+    //console.log(event);
+    this.router.navigateByUrl('dashboard/'+'table/'+event);
+    // console.log(event);
+    // const activeModal = this.modalService.open(SchemaModalComponent, {
+    //   size: 'lg',
+    //   // backdrop: 'static',
+    //   container: 'nb-layout',
+    // });    
+    // activeModal.componentInstance.modalTitle = "Edit Schema";        
   }
 
   showAddSchemaModal() {
@@ -48,6 +51,6 @@ export class SchemaComponent implements OnInit {
           this.schemas.push(result);
       },
       (reason) => {});
-    activeModal.componentInstance.modalTitle = "Add new Schema";     
+    activeModal.componentInstance.modalTitle = "Add new Schema";         
   }
 }

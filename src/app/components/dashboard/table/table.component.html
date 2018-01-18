@@ -1,9 +1,14 @@
 <nb-card>
   <nb-card-header>
     {{tableTitle.toUpperCase()}}
+    <button (click)="openAddColumnModal()" type="button" class="col-md-2 offset-md-9 btn btn-success btn-sm">
+      Add column
+    </button>  
   </nb-card-header>
   <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-        </ng2-smart-table>
+      <!-- <ng2-smart-table [settings]="settings" [source]="source"  (editConfirm)="onSaveConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table> -->
+        <ng2-smart-table class='form-control' [settings]="settings" [source]="source"  (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+        (createConfirm)="onCreateConfirm($event)"  ></ng2-smart-table>
   </nb-card-body>
 </nb-card>

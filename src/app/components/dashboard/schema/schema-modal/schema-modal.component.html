@@ -1,23 +1,25 @@
-<form #form="ngForm">
 <div class="modal-header">
-    <h4 class="modal-title">Create new Schema</h4>
+  <h4 class="modal-title">{{modalTitle}}</h4>
   <button (click)="closeModal()" type="button" aria-label="Close" class="close">
     <span aria-hidden="true">×</span>
-  </button>  
+  </button>
 </div>
-<div class="modal-body">
-  <div class="form-group">    
-        <div class="input-group">
+<div class="modal-body">  
+    <form #form="ngForm">
+        <div class="form-group">
+          <div class="input-group">
             <span class="input-group-addon">
-              <i class="fa fa-table"></i>
+              <i class="nb-tables"></i>
             </span>
-            <input name="schemaName" id="schemaName" pattern="[A-Za-z]{2,12}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg" [class.form-control-warning]="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required" required #schemaName="ngModel">
-          </div>                  
-          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required">Schema Name Required!!</small>          
-          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only Alphabates with length between 0-12 allowed!!</small>          
-  </div>  
+            <input name="schemaName" id="schemaName" pattern="[A-Za-z]{2,12}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg"
+              [class.form-control-warning]="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required"
+              required #schemaName="ngModel">
+          </div>
+          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required">Schema Name Required!!</small>
+          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only Alphabates with length between 0-12 allowed!!</small>
+        </div>
+      </form>
 </div>
 <div class="modal-footer">
-  <button [disabled]="submitted || !form.valid" (click)="createSchema()" type="button" class="btn btn-round btn-success">Create</button>  
+  <button [disabled]="submitted || !form.valid" (click)="createSchema()" type="button" class="btn btn-round btn-success">Create</button>
 </div>
-</form>
