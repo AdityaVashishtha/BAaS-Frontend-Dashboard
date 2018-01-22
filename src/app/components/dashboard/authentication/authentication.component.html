@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>
+        Authentication Configurations
+      </nb-card-header>
+      <nb-card-body>
+        <div class="container">
+          <div class="setting-choice-box">
+            <div class="title text-hint">Sign up options</div>
+            <ul class="option-list">
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Login via Username</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <div class="dropdown" ngbDropdown>
+                      <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
+                        {{configurations.signInOptions.loginVia}}
+                      </button>
+                      <ul ngbDropdownMenu class="dropdown-menu">
+                        <li class="dropdown-item" (click)="configurations.signInOptions.loginVia = opt" *ngFor="let opt of loginViaOptions">
+                          {{opt}}
+                        </li>                        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Weather to use email or username</div>
+              </li>
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Email Verification</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <label class="row">
+                      <div class="col-md-4 text-hint" *ngIf="!configurations.signInOptions.verifyWithEmail">Enable</div>
+                      <div class="col-md-4 text-hint" *ngIf="configurations.signInOptions.verifyWithEmail">Disable</div>
+                      <div class="col-md-4">
+                        <div class="switch">
+                          <input type="checkbox" name="verifyEmail" [(ngModel)]="configurations.signInOptions.verifyWithEmail" [checked]="configurations.signInOptions.verifyWithEmail">
+                          <span class="slider" [class.slider-disable]="!configurations.signInOptions.verifyWithEmail"></span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Varify Email in case of email usage</div>
+              </li>
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Gmail login</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <label class="row">
+                      <div class="col-md-4 text-hint" *ngIf="!configurations.signInOptions.loginWithGoogle">Enable</div>
+                      <div class="col-md-4 text-hint" *ngIf="configurations.signInOptions.loginWithGoogle">Disable</div>
+                      <div class="col-md-4">
+                        <div class="switch">
+                          <input type="checkbox" name="viaGoogle" [(ngModel)]="configurations.signInOptions.loginWithGoogle" [checked]="configurations.signInOptions.loginWithGoogle" #gmailCheck>
+                          <span class="slider" [class.slider-disable]="!configurations.signInOptions.loginWithGoogle"></span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Set sign up with Gmail</div>
+              </li>
+              <li class="option">
+                  <div class="option-body row">
+                    <div class="option-title col-md-8 col-sm-6">Gmail login</div>
+                    <div class="option-value col-md-4 col-sm-6">
+                      <label class="row">
+                        <div class="col-md-4 text-hint" *ngIf="!configurations.signInOptions.loginWithGoogle">Enable</div>
+                        <div class="col-md-4 text-hint" *ngIf="configurations.signInOptions.loginWithGoogle">Disable</div>
+                        <div class="col-md-4">
+                          <div class="switch">
+                            <input type="checkbox" name="viaGoogle" [(ngModel)]="configurations.signInOptions.loginWithGoogle" [checked]="configurations.signInOptions.loginWithGoogle" #gmailCheck>
+                            <span class="slider" [class.slider-disable]="!configurations.signInOptions.loginWithGoogle"></span>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="option-summary text-hint font-w-light">Set sign up with Gmail</div>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>        
+        <button (click)="saveConfigurations()" class="col-md-4 offset-md-8 btn btn-hero-info" type="button">
+          Save
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-lg-4 col-md-4">
+    <nb-card>
+      <nb-card-header>
+        Todo-Some Graphs Related to User
+      </nb-card-header>
+      <nb-card-body>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

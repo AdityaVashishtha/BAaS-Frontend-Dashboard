@@ -15,7 +15,7 @@
       <nb-card-body>
         <div class="schema-options">
           <button (click)="editSchema(schema.name)" type="button" class="btn btn-round btn-hero-info btn-block">Edit Schema</button>
-          <button type="button" class="btn btn-round btn-hero-success btn-block">Settings</button>
+          <button (click)="apiAccess(schema.name)" type="button" class="btn btn-round btn-hero-primary btn-block">API Access</button>
         </div>
       </nb-card-body>
     </nb-card>

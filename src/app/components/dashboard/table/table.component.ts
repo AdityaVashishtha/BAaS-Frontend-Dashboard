@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { LocalDataSource } from 'ng2-smart-table';
 import { SchemaService } from '../../../services/dashboard/schema.service';
 import { OnChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';

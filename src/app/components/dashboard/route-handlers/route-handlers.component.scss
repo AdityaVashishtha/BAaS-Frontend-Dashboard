@@ -1,0 +1,18 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {    
+    /deep/ .card {
+        border: none;    
+    }
+    
+    /deep/ .card-header {
+        margin-top: 0.75em !important;        
+        border: 1px solid nb-theme(color-bg-active);
+        border-radius: 0;
+        background-color: nb-theme(color-bg);        
+    }
+    
+    /deep/ .card-block {
+        text-align: left
+    }        
+}

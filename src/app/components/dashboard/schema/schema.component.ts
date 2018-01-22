@@ -53,4 +53,8 @@ export class SchemaComponent implements OnInit {
       (reason) => {});
     activeModal.componentInstance.modalTitle = "Add new Schema";         
   }
+
+  apiAccess(schemaName) {
+    this.router.navigate(['dashboard','api-access',schemaName]);
+  }
 }

@@ -10,6 +10,9 @@ import { SchemaModalComponent } from './schema/schema-modal/schema-modal.compone
 import { TableComponent } from './table/table.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AddAttributeModalComponent } from './table/add-attribute-modal/add-attribute-modal.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { RouteHandlersComponent } from './route-handlers/route-handlers.component';
+import { AddRouteModalComponent } from './route-handlers/add-route-modal/add-route-modal.component';
 
 
 const PAGES_COMPONENTS = [
@@ -29,11 +32,15 @@ const PAGES_COMPONENTS = [
     LandingPageComponent,
     SchemaModalComponent,
     TableComponent,
-    AddAttributeModalComponent,    
+    AddAttributeModalComponent,
+    AuthenticationComponent,
+    RouteHandlersComponent,
+    AddRouteModalComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
-    AddAttributeModalComponent
+    AddAttributeModalComponent,
+    //AddRouteModalComponent
   ]
 })
 export class DashboardModule {

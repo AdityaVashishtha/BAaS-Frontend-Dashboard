@@ -42,18 +42,31 @@ export class DashboardComponent implements OnInit {
         group: true,
       },
       {
-        title: 'Schema',
+        title: 'Database',
         icon: 'nb-cloudy',
-        link: '/dashboard/schema'
+        link: '/dashboard/table',
+        children: [{
+          title: 'Schema',
+          link: '/dashboard/schema'
+        }],
       },
       // {
       //   title: 'Tables',
       //   icon: 'nb-tables',
       //   link: '/pages/ui-features',
       //   children: schemas,
-      // },
+      // },      
       {
-        title: 'CRUDs',
+        title: 'Authentication',        
+        link: '/dashboard/authentication-settings',
+        icon: 'nb-locked',
+        children: [{
+          title: 'Configurations',
+          link: '/dashboard/authentication-settings'
+        }]
+      },
+      {
+        title: 'CRUD',
         group: true,
       },
       {

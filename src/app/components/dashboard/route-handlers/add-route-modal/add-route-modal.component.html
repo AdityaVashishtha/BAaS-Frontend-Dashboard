@@ -1,0 +1,199 @@
+<div class="row">
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>
+        Add Route Configurations
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm">
+        <div class="container">
+          <div class="setting-choice-box">
+            <div class="title text-hint">Route Parameters</div>
+            <ul class="option-list">
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Route Name</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <input name="routeName" type="text" placeholder="Route Name" [class.form-control-danger]="routeName.errors && (routeName.touched || routeName.dirty)" pattern="[A-Za-z_-]{2,12}" [(ngModel)]="routeModel.name" class="form-control form-control-info" required #routeName="ngModel">
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light" *ngIf="!routeName.errors || !(routeName.touched || routeName.dirty)">What do you want to call it??</div>
+                <div class="option-summary text-danger font-w-light" *ngIf="routeName.errors && (routeName.touched || routeName.dirty)" >Route Name required and only contain alphabates and (-,_)</div>
+              </li>
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Route For</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <div class="dropdown" ngbDropdown>
+                      <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
+                        {{routeModel.operationType}}
+                      </button>
+                      <ul ngbDropdownMenu class="dropdown-menu">
+                        <li class="dropdown-item" (click)="routeModel.operationType = opt" *ngFor="let opt of operations">
+                          {{opt}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Which type of operation to perform</div>
+              </li>
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Route Accessibility</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <div class="dropdown" ngbDropdown>
+                      <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
+                        {{routeModel.accessControl}}
+                      </button>
+                      <ul ngbDropdownMenu class="dropdown-menu">
+                        <li class="dropdown-item" (click)="routeModel.accessControl = opt" *ngFor="let opt of accessTypes">
+                          {{opt}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Accessibility of route.</div>
+              </li>
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Request Body</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <label class="row">
+                      <div class="col-md-4 text-hint" *ngIf="!hasRequestBody">Enable</div>
+                      <div class="col-md-4 text-hint" *ngIf="hasRequestBody">Disable</div>
+                      <div class="col-md-4">
+                        <div class="switch">
+                          <input type="checkbox" name="requestBody" [(ngModel)]="hasRequestBody" [checked]="hasRequestBody" #requestBody>
+                          <span class="slider" [class.slider-disable]="!hasRequestBody"></span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Route contain request body or not?</div>
+                <div class="container p-2" [class.d-md-none]="!hasRequestBody">
+                  <div class="row">
+                    <div class="col-md-8 row">
+                      <div class="p-3 item" *ngFor="let i of requestBodyAttributeList">
+                        {{i}}
+                        <button type="button" (click)="removeAttribute(i)" class="ml-1 close" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class=" col-md-2">
+                      <input type="text" placeholder="Attribute Name" class="form-control form-control-info" #attrName>
+                    </div>
+                    <div class="col-md-2">
+                      <button (click)="addInRequestBody(attrName)" class="btn btn-outline-primary" type="button">
+                        Add Attribute
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Matching constraint (for find update delete)</div>
+                  <div class="option-value col-md-4 col-sm-6">
+                    <label class="row">
+                      <div class="col-md-4 text-hint" *ngIf="!hasMatchingConstraint">Enable</div>
+                      <div class="col-md-4 text-hint" *ngIf="hasMatchingConstraint">Disable</div>
+                      <div class="col-md-4">
+                        <div class="switch">
+                          <input type="checkbox" name="machingConstraint" [(ngModel)]="hasMatchingConstraint" [checked]="hasMatchingConstraint" #machingConstraint>
+                          <span class="slider" [class.slider-disable]="!hasMatchingConstraint"></span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Route contain request body or not?</div>
+                <div class="container p-2" [class.d-md-none]="!hasMatchingConstraint">
+                  <div class="d-flex justify-content-center p-2 item" [class.d-md-none]="requestBodyAttributeList.length != 0">
+                    Add request body to match result
+                  </div>
+                  <div class="row" [class.d-md-none]="requestBodyAttributeList.length == 0">
+                    <div class="col-md-3">
+                      <div class="dropdown" ngbDropdown>
+                        <button class="btn btn-outline-info" type="button" ngbDropdownToggle >
+                          {{schemaAttribute}}
+                        </button>
+                        <ul ngbDropdownMenu class="dropdown-menu">
+                          <li class="dropdown-item" (click)="schemaAttribute = opt" *ngFor="let opt of schemaAttributeList">
+                            {{opt}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class=" col-md-3">
+                      <div class="dropdown" ngbDropdown>
+                        <button class="btn btn-outline-info" type="button" ngbDropdownToggle >
+                          {{constraintCondition}}
+                        </button>
+                        <ul ngbDropdownMenu class="dropdown-menu">
+                          <li class="dropdown-item" (click)="constraintCondition = opt" *ngFor="let opt of constraints">
+                            {{opt}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class=" col-md-3">
+                      <div class="dropdown" ngbDropdown>
+                        <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
+                          {{ requestBodyAttribute }}
+                        </button>
+                        <ul ngbDropdownMenu class="dropdown-menu">
+                          <li class="dropdown-item" (click)="requestBodyAttribute = opt" *ngFor="let opt of requestBodyAttributeList">
+                            {{opt}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button (click)="addMatchingConstraint()" class="btn btn-outline-primary" type="button">
+                        Add Attribute
+                      </button>
+                    </div>
+                    <div class="col-md-12 row">
+                      <div class="p-3 item" *ngFor="let i of matchingConstraintList">
+                        {{i}}
+                        <button type="button" (click)="removeMatchingConstraint(i)" class="ml-1 close" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </form>
+      </nb-card-body>
+      <nb-card-footer>
+        <button (click)="addRoute()" [disabled]="!form.valid" class="col-md-4 offset-md-8 btn btn-hero-info" type="button">
+          Save
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-lg-4 col-md-4">
+    <nb-card>
+      <nb-card-header>
+        Todo Schema Structure
+      </nb-card-header>
+      <nb-card-body>
+        {{schemaStructure}}
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
