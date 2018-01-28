@@ -15,7 +15,10 @@
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Route Name</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input name="routeName" type="text" placeholder="Route Name" [class.form-control-danger]="routeName.errors && (routeName.touched || routeName.dirty)" pattern="[A-Za-z_-]{2,12}" [(ngModel)]="routeModel.name" class="form-control form-control-info" required #routeName="ngModel">
+                    <input name="routeName" type="text" placeholder="Route Name" 
+                      [class.form-control-danger]="routeName.errors && (routeName.touched || routeName.dirty)" 
+                      pattern="[A-Za-z_-]{2,12}" [(ngModel)]="routeModel.name" class="form-control form-control-info" 
+                    required #routeName="ngModel">
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light" *ngIf="!routeName.errors || !(routeName.touched || routeName.dirty)">What do you want to call it??</div>
@@ -60,7 +63,7 @@
                 <div class="option-summary text-hint font-w-light">Accessibility of route.</div>
               </li>
 
-              <li class="option">
+              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert'">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Request Body</div>
                   <div class="option-value col-md-4 col-sm-6">
@@ -99,7 +102,7 @@
                 </div>
               </li>
 
-              <li class="option">
+              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert'">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Matching constraint (for find update delete)</div>
                   <div class="option-value col-md-4 col-sm-6">

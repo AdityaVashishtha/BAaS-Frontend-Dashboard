@@ -14,6 +14,17 @@ export class AddAttributeModalComponent implements OnInit {
   tableName: string;
   attrDataType: string;
   attrName: string;
+
+  private attribute = {
+    name: '',
+    type: 'string',
+    isRequired: false,
+    isUnique: false,
+    default: '',
+    encryptInHash: false,
+    schema: null,
+  }
+
   constructor(
     private activeModal: NgbActiveModal,
     private schemaService: SchemaService,
@@ -21,8 +32,21 @@ export class AddAttributeModalComponent implements OnInit {
   ) {
     this.dataTypes = [
       'string',
-      'number',
-      'decimal'
+      'number',            
+      'boolean',      
+      'json',
+      'enum-todo',
+      'date-iso',      
+      'timestamp',
+      'integer',
+      'decimal-only',      
+      'hexadecimal-number',      
+      'array',      
+      'alphanumeric-only',
+      'email',
+      'url',      
+      'mobile-phone',
+      'regex-validator-todo',
     ]
     this.attrDataType = this.dataTypes[0];
    }
@@ -33,13 +57,15 @@ export class AddAttributeModalComponent implements OnInit {
   closeModal() {
     this.activeModal.close();
   }
-  addAttribute() {
-    let attribute = {
-      type: this.attrDataType,
-      name: this.attrName,
-      schema: this.tableName
-    }
-    this.schemaService.addAttribute(attribute).subscribe(res=>{
+  addAttribute() {    
+    // let attribute = {
+    //   type: this.attrDataType,
+    //   name: this.attrName,
+    //   schema: this.tableName
+    // }
+    this.attribute.schema = this.tableName;
+    this.schemaService.addAttribute(this.attribute)
+    .subscribe(res=>{
       console.log(res);
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);
@@ -47,6 +73,6 @@ export class AddAttributeModalComponent implements OnInit {
         this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
       }
     });
-    this.activeModal.close(attribute);
+    this.activeModal.close(this.attribute);
   }
 }

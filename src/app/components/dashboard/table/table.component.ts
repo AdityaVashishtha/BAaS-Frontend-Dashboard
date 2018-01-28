@@ -39,13 +39,14 @@ export class TableComponent implements OnInit {
           if(res.data !== null && res.data.structure) {
           console.log(res)
           Object.keys(res.data.structure).forEach((i)=>{
-                  res.data.structure[i].title = i;                  
+                  res.data.structure[i].title = i;    
+                  res.data.structure[i].editable = false;
           });      
           this.settings = {
             add: {
               addButtonContent: '<i class="nb-plus"></i>',
               createButtonContent: '<i class="nb-checkmark"></i>',
-              cancelButtonContent: '<i class="nb-close"></i>',
+              cancelButtonContent: '<i class="nb-close"></i>',              
               confirmCreate: true
             },
             edit: {
@@ -95,7 +96,7 @@ export class TableComponent implements OnInit {
   
   openAddColumnModal() {
     let activeModal = this.modalService.open(AddAttributeModalComponent,{
-      size: 'sm',      
+      size: 'lg',      
       container: 'nb-layout',
     });
     activeModal.componentInstance.modalTitle = "Add Attribute";
@@ -119,9 +120,11 @@ export class TableComponent implements OnInit {
       data: event.newData
     };
     this.schemaService.insertData(row).subscribe(res=>{
+      console.log(res);
       if(res.success) {
         event.confirm.resolve();  
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);
+        //this.ngOnInit();
       } else {
         event.confirm.reject();  
         this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);

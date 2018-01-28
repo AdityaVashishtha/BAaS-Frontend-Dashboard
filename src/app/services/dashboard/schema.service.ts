@@ -34,6 +34,14 @@ export class SchemaService {
     return this.http.get('http://localhost:4000/dashboard/table/'+tableName,{headers: headers}).map(res => res.json());
   }
 
+  getSchemaStructure(tableName){
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:4000/dashboard/getSchemaDetail/'+tableName,{headers: headers}).map(res => res.json());
+  }
+
   addAttribute(attribute) {
     //console.log(attribute);
     let token = localStorage.getItem('id_token');        

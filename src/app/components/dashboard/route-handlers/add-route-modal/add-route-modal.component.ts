@@ -14,14 +14,14 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
   private routeModel = {
     name: '',
     schemaName: '',
-    operationType: 'create',
+    operationType: 'insert',
     requestBody: [],
     constraint: [],
     accessControl: 'public',
   };
-  private operations = [ 'insert', 'find', 'update', 'delete' ];
+  private operations = [ 'insert', 'find', 'update', 'delete', 'batch-insert' ];
   private accessTypes = ['public','session','admin','custom-TODO'];
-  private constraints = ['equal','greater-than','less-than','match','like'];
+  private constraints = ['equal','greater-than','less-than','regex','like'];
   private hasRequestBody: boolean;
   private schemaStructure: string;
   private requestBodyAttributeList: string[];
@@ -73,6 +73,7 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     this.routeHandlerSevice.addRoute(this.routeModel).subscribe(res=>{
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray !!",res.message);
+        this.router.navigate(["../"], {relativeTo: this.route});
       } else {
         this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
       }
