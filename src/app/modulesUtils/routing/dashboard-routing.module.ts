@@ -30,8 +30,16 @@ const routes : Routes = [{
         component: LandingPageComponent
     },
     {
+        path: 'table',
+        component: TableComponent        
+    },
+    {
         path: 'table/:schemaName',
-        component: TableComponent
+        component: TableComponent        
+    },
+    {
+        path: 'api-access',
+        component: RouteHandlersComponent
     },
     {
         path: 'api-access/:schemaName',

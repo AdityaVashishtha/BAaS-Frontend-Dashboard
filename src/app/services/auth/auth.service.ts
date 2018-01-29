@@ -28,6 +28,7 @@ export class AuthService {
   }
 
   loggedIn() {
+    //console.log('Check is it working');
     return tokenNotExpired('id_token');
   }
 

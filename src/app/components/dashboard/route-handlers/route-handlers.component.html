@@ -2,10 +2,20 @@
   <div class="col-lg-12">
     <nb-card>
       <nb-card-header>
-        Routes for {{schemaName}} Schema
-        <div class="offset-8 col-lg-4">
-          <button [routerLink]="['add-route']" routerLinkActive="active" type="button" class="offset-md-8 btn btn-success btn-sm">
-            Add Route
+        <div class="row">
+          <div class="col-md-2 col-sm-4">
+              <div class="dropdown" ngbDropdown>
+                  <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
+                    {{ schemaName }}
+                  </button>
+                  <ul ngbDropdownMenu class="dropdown-menu">
+                    <li class="dropdown-item" *ngFor="let item of schemaList" (click)="onSelectSchema(item.name)">
+                      {{ item.name }}
+                    </li>
+                  </ul>
+                </div>
+          </div>                    
+          <button [routerLink]="['add-route']" routerLinkActive="active" type="button" class="col-md-2 offset-md-7 mr-2 btn btn-success"> Add Route
             <i class="fa fa-plus"></i>
           </button>
         </div>
@@ -20,7 +30,7 @@
                   <div class="btn-group btn-group-full-width" role="group">
                     <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
                       <span>{{item.operationType}}</span>
-                    </button>                    
+                    </button>
                     <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
                       <span>{{item.accessControl}}</span>
                     </button>

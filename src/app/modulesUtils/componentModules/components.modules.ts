@@ -26,6 +26,7 @@ import { ToastService } from '../../services/util/toast.service';
 import { ToasterModule } from 'angular2-toaster';
 import { SchemaService } from '../../services/dashboard/schema.service';
 import { RouteHandlerService } from '../../services/dashboard/route-handler.service';
+import { ConfigurationService } from '../../services/dashboard/configuration.service';
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
@@ -56,6 +57,7 @@ const SERVICES = [
     ToastService,
     SchemaService,
     RouteHandlerService,
+    ConfigurationService
     //Add new Services here
 ]
 @NgModule({

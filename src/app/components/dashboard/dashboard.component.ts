@@ -10,11 +10,11 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DashboardComponent implements OnInit {
   private menu: any;
-  
+
   constructor(
     private schemaService: SchemaService
-  ) {    
-   }
+  ) {
+  }
 
   ngOnInit() {
     let tempSchema = [];
@@ -26,10 +26,10 @@ export class DashboardComponent implements OnInit {
     //     })
     //   }           
     //  });         
-     this.menu = this.getMenuItems(tempSchema);
+    this.menu = this.getMenuItems(tempSchema);
   }
 
-  getMenuItems(schemas) {            
+  getMenuItems(schemas) {
     let MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Analytics',
@@ -45,10 +45,20 @@ export class DashboardComponent implements OnInit {
         title: 'Database',
         icon: 'nb-cloudy',
         link: '/dashboard/table',
-        children: [{
-          title: 'Schema',
-          link: '/dashboard/schema'
-        }],
+        children: [
+          {
+            title: 'Schema',
+            link: '/dashboard/schema'
+          },
+          {
+            title: 'View Schema',
+            link: '/dashboard/table'
+          },
+          {
+            title: 'API Hit Points',
+            link: '/dashboard/api-access'
+          }
+        ],
       },
       // {
       //   title: 'Tables',
@@ -57,13 +67,23 @@ export class DashboardComponent implements OnInit {
       //   children: schemas,
       // },      
       {
-        title: 'Authentication',        
+        title: 'Authentication',
         link: '/dashboard/authentication-settings',
         icon: 'nb-locked',
-        children: [{
-          title: 'Configurations',
-          link: '/dashboard/authentication-settings'
-        }]
+        children: [
+          {
+            title: 'Configurations',
+            link: '/dashboard/authentication-settings'
+          }, 
+          {
+            title: 'User Schema',
+            link: '/dashboard/table/authuser'
+          },
+          {
+            title: 'Routes',
+            link: '/dashboard/api-access/authuser'
+          }
+      ]
       },
       {
         title: 'CRUD',
@@ -81,15 +101,15 @@ export class DashboardComponent implements OnInit {
       {
         title: 'General Config',
         icon: 'nb-gear',
-        link: '/pages/ui-features',    
-      },  
+        link: '/pages/ui-features',
+      },
       {
         title: 'ACL',
         icon: 'nb-locked',
-        link: '/pages/ui-features',    
+        link: '/pages/ui-features',
       },
     ];
-    
+
     return MENU_ITEMS;
   }
 

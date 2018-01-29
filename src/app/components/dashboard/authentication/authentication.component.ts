@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigurationService } from '../../../services/dashboard/configuration.service';
+import { ToastService } from '../../../services/util/toast.service';
+
+
 
 @Component({
   selector: 'app-authentication',
@@ -7,24 +11,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
   private configurations: any;  
-  private loginViaOptions = ['username','email'];
+  private primaryLoginOptions = ['email','username'];
 
-  constructor() { }
+  constructor(
+    private configurationService: ConfigurationService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.configurations = {
       signInOptions: {
-        loginVia: 'email',
-        verifyWithEmail: true,
-        loginWithGoogle: false,
-        loginWithFacebook: false,
-      },
-      
+        primaryLogin: 'email',
+        allowLoginAsGuest: false,
+        verifyWithEmail: false,
+        googleLoginOption: {
+          isEnabled: false,          
+          KEY: ''
+        },
+        facebookLoginOption: {
+          isEnabled: false,
+          KEY: ''
+        }        
+      },      
     }
+    this.configurationService.getAuthenticationConfig().subscribe(res=>{
+      console.log(res)
+        if(res.success) {          
+          this.configurations = res.data.config;
+        } else {
+          this.configurations = {signInOptions : {}}          
+        }
+    });
   }
 
+  
+
   saveConfigurations(){
-    console.log(this.configurations)
+    this.configurationService.setAuthenticationConfig(this.configurations).subscribe(res=>{
+      if(res.success) {
+        this.toastService.showToast(this.toastService.typeNum.success,"Hurray!",res.message);
+      } else {
+        this.toastService.showToast(this.toastService.typeNum.error,"Oops!",res.message);
+      }
+    });
   }
 
 }

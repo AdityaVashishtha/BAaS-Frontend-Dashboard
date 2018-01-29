@@ -3,6 +3,7 @@ import { AddRouteModalComponent } from './add-route-modal/add-route-modal.compon
 import { RouteHandlerService } from '../../../services/dashboard/route-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { SchemaService } from '../../../services/dashboard/schema.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-route-handlers',
@@ -14,24 +15,35 @@ export class RouteHandlersComponent implements OnInit {
   private schemaName: string;
   private routes: any[];
   private schemaStructure: {};
+  private schemaList: any[];
   constructor(
     private activatedRoutes: ActivatedRoute,
     private routeHandlerService: RouteHandlerService,
     private schemaService: SchemaService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.activatedRoutes.paramMap.subscribe(params => {
       this.schemaName = params.get('schemaName');
-      this.routeHandlerService.getRoutesOfSchema({ schemaName: this.schemaName })
+      this.schemaService.getSchemas().subscribe(response=>{
+        this.schemaList = response.schemas;
+        if (this.schemaName === null)
+          this.schemaName = response.schemas[0].name;
+        this.routeHandlerService.getRoutesOfSchema({ schemaName: this.schemaName })
         .subscribe(res => {
-          //console.log(res);
+          console.log(res);
           this.routes = res.data;
+          this.schemaService.getSchemaStructure(this.schemaName).subscribe(res=>{
+            this.schemaStructure = res.data.structure;
+          });
         });
-    });
-    this.schemaService.getSchemaStructure(this.schemaName).subscribe(res=>{
-      this.schemaStructure = res.data.structure;
-    });
+      });      
+    });    
+  }
+
+  onSelectSchema(schemaName) {
+    this.router.navigate(['dashboard', 'api-access', schemaName]);
   }
 
   getClassByOpertaionType(operation){
