@@ -6,6 +6,7 @@ import { SchemaModalComponent } from './schema-modal/schema-modal.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { SchemaService } from '../../../services/dashboard/schema.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/util/toast.service';
 
 @Component({
   selector: 'app-schema',
@@ -19,7 +20,8 @@ export class SchemaComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private schemaService: SchemaService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -56,5 +58,21 @@ export class SchemaComponent implements OnInit {
 
   apiAccess(schemaName) {
     this.router.navigate(['dashboard','api-access',schemaName]);
+  }
+
+
+  deleteSchema(schemaName) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      if (window.confirm('Data lost would not be recovered, are you sure that you want to delete schema?')) {
+        this.schemaService.deleteSchema(schemaName).subscribe(res=>{
+          if(res.success) {
+            this.toastService.showToast(this.toastService.typeNum.success,"Hurray!",res.message);
+            this.ngOnInit();
+          } else {
+            this.toastService.showToast(this.toastService.typeNum.error,"Oops!",res.message);
+          }
+        });
+      }      
+    }
   }
 }

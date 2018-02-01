@@ -37,6 +37,12 @@ export class AuthService {
     localStorage.setItem('user',JSON.stringify(user));
   }
 
+  getUserProfile() {
+    let user = localStorage.getItem('user');
+    user = JSON.parse(user);
+    return user;
+  }
+
   logout() {
     this.authToken = null;
     this.user = null;

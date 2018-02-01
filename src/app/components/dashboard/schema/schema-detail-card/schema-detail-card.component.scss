@@ -1,0 +1,15 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {    
+    pre {
+        outline: 1px solid nb-theme(color-primary);
+        padding: 5px;
+        margin: 5px;  
+        min-height: 5rem;              
+        @include nb-for-theme(cosmic) {
+            //background-color: nb-theme(color-fg);
+            // text-shadow: 0 3px 0 #665ebd,
+            // 0 4px 10px rgba(33, 7, 77, 0.5),
+            // 0 2px 10px #928dff;
+        }        
+    }
+}

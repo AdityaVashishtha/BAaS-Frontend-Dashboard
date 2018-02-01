@@ -129,12 +129,14 @@ export class TableComponent implements OnInit {
       schema: this.tableTitle,
       data: event.newData
     };
-    this.schemaService.insertData(row).subscribe(res => {
-      console.log(res);
+    this.schemaService.insertData(row).subscribe(res => {     
+      //console.log(event.newData); 
+      //event.newData = res.data;      
       if (res.success) {
+        //console.log(event.newData);
         event.confirm.resolve();
         this.toastService.showToast(this.toastService.typeNum.success, "Hurray!!", res.message);
-        //this.ngOnInit();
+        this.ngOnInit();
       } else {
         event.confirm.reject();
         this.toastService.showToast(this.toastService.typeNum.error, "Oops!!", res.message);
@@ -147,8 +149,22 @@ export class TableComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+    if (window.confirm('Are you sure you want to delete?')) {      
+      let row = {
+        schema: this.tableTitle,
+        data: event.data
+      };
+      this.schemaService.deleteData(row).subscribe(res => {
+        console.log(res);
+        if (res.success) {
+          event.confirm.resolve();
+          this.toastService.showToast(this.toastService.typeNum.success, "Hurray!!", res.message);
+          //this.ngOnInit();
+        } else {
+          event.confirm.reject();
+          this.toastService.showToast(this.toastService.typeNum.error, "Oops!!", res.message);
+        }
+      });      
     } else {
       event.confirm.reject();
     }

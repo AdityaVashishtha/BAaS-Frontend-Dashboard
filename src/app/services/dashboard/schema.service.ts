@@ -18,6 +18,20 @@ export class SchemaService {
     return this.http.post('http://localhost:4000/dashboard/createSchema',schema,{headers: headers}).map(res => res.json());
   }
 
+  deleteSchema(schemaName) {
+    let schema = { name: schemaName };
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:4000/dashboard/deleteSchema',schema,{headers: headers}).map(res => res.json());
+  }
+
+  archiveSchema(schemaName) {
+    console.log("TODO - Archive Schema Functionality");
+    console.log("Import Data Functionality");
+  }
+
   getSchemas(){
     let token = localStorage.getItem('id_token');        
     let headers = new Headers();
@@ -57,5 +71,13 @@ export class SchemaService {
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
     return this.http.post('http://localhost:4000/dashboard/insertData',row,{headers: headers}).map(res => res.json());
+  }
+
+  deleteData(row) {
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:4000/dashboard/deleteData',row,{headers: headers}).map(res => res.json());
   }
 }

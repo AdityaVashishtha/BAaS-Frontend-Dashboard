@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
 
   user: any;  
+  userProfile: any;
   userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
   /* Variable Declaration Mine - Aditya */
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.eva);
+    this.userProfile = this.authService.getUserProfile();    
   }
 
   toggleSidebar(): boolean {

@@ -29,15 +29,17 @@ export class RouteHandlersComponent implements OnInit {
       this.schemaService.getSchemas().subscribe(response=>{
         this.schemaList = response.schemas;
         if (this.schemaName === null)
-          this.schemaName = response.schemas[0].name;
-        this.routeHandlerService.getRoutesOfSchema({ schemaName: this.schemaName })
-        .subscribe(res => {
-          console.log(res);
-          this.routes = res.data;
-          this.schemaService.getSchemaStructure(this.schemaName).subscribe(res=>{
-            this.schemaStructure = res.data.structure;
+          this.router.navigate(["./",response.schemas[0].name], {relativeTo: this.activatedRoutes});
+        else {
+          this.routeHandlerService.getRoutesOfSchema({ schemaName: this.schemaName })
+          .subscribe(res => {
+            console.log(res);
+            this.routes = res.data;
+            this.schemaService.getSchemaStructure(this.schemaName).subscribe(resp=>{
+              this.schemaStructure = resp.data.structure;
+            });
           });
-        });
+        }        
       });      
     });    
   }

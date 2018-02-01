@@ -13,6 +13,7 @@ import { AddAttributeModalComponent } from './table/add-attribute-modal/add-attr
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RouteHandlersComponent } from './route-handlers/route-handlers.component';
 import { AddRouteModalComponent } from './route-handlers/add-route-modal/add-route-modal.component';
+import { SchemaDetailCardComponent } from './schema/schema-detail-card/schema-detail-card.component';
 
 
 const PAGES_COMPONENTS = [
@@ -35,7 +36,8 @@ const PAGES_COMPONENTS = [
     AddAttributeModalComponent,
     AuthenticationComponent,
     RouteHandlersComponent,
-    AddRouteModalComponent,    
+    AddRouteModalComponent,
+    SchemaDetailCardComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
