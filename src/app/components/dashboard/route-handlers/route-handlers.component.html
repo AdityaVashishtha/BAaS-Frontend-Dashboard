@@ -42,7 +42,16 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
-              <h6>Usage Info:</h6>
+              <div class="row">
+                <div class="col-md-4">
+                  Usage Info :
+                </div>
+                <div class="offset-md-4 col-md-2">
+                  <button (click)="deleteRoute(item.name)" type="button" class="btn btn-outline-danger btn-block">
+                    Delete Route
+                  </button>
+                </div>
+              </div>
               <hr>
               <div class="row" [class.d-md-none]="item.operationType != 'insert'">
                 <div class="col-md-8">
@@ -63,7 +72,13 @@
                     </pre>
                 </div>
                 <div class="col-md-4">
-                  <a href="http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}" target="blank">Link here (Test only)</a>
+                  Usage Guide: 
+                  <p>
+                    API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}} <br>
+                    Type of Request : POST <br>
+                    Request Content-Type: application/json <br>                    
+                  </p>                  
+                  To Learn More Click <a href="#">HERE(TODO)</a>
                 </div>
               </div>
             </ng-template>

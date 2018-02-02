@@ -4,6 +4,7 @@ import { RouteHandlerService } from '../../../services/dashboard/route-handler.s
 import { ActivatedRoute } from '@angular/router';
 import { SchemaService } from '../../../services/dashboard/schema.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/util/toast.service';
 
 @Component({
   selector: 'app-route-handlers',
@@ -20,7 +21,8 @@ export class RouteHandlersComponent implements OnInit {
     private activatedRoutes: ActivatedRoute,
     private routeHandlerService: RouteHandlerService,
     private schemaService: SchemaService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -57,10 +59,28 @@ export class RouteHandlersComponent implements OnInit {
       default: return 'warning';
     }
   }
+  
+  deleteRoute(routeName) {
+    let route = { 
+      name: routeName,
+      schemaName: this.schemaName
+    };
+    this.routeHandlerService.deleteRoute(route).subscribe(res=>{
+      console.log(res);
+      if(res.success) {        
+        this.toastService.showToast(this.toastService.typeNum.success,"Hurray !!",res.message);
+        this.ngOnInit();
+      } else {
+        this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
+      }
+    });
+  }
+
+
   convertToString(item) {
     return JSON.stringify(item,null,2);//.replace(/,/gi, ", \n\t").trim();
   }
-
+  
   syntaxHighlight(json) {
     if (typeof json != 'string') {
          json = JSON.stringify(json, undefined, 2);

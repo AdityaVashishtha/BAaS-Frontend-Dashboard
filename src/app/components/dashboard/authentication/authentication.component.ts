@@ -12,7 +12,7 @@ import { ToastService } from '../../../services/util/toast.service';
 export class AuthenticationComponent implements OnInit {
   private configurations: any;  
   private primaryLoginOptions = ['email','username'];
-
+  private unlockEdit:boolean = false;
   constructor(
     private configurationService: ConfigurationService,
     private toastService: ToastService
@@ -26,7 +26,8 @@ export class AuthenticationComponent implements OnInit {
         verifyWithEmail: false,
         googleLoginOption: {
           isEnabled: false,          
-          KEY: ''
+          clientID: '',
+          clientSecrete:'',          
         },
         facebookLoginOption: {
           isEnabled: false,

@@ -33,8 +33,8 @@
                 <div class="option-body row">
                   <div class="option-title col-md-6 col-sm-6">Email Verification</div>
                   <div class="col-md-2">
-                      <i class="fa-2x ion ion-email" [class.text-warning]="configurations.signInOptions.verifyWithEmail" ></i>
-                    </div>
+                    <i class="fa-2x ion ion-email" [class.text-warning]="configurations.signInOptions.verifyWithEmail"></i>
+                  </div>
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
                       <div class="col-md-4 text-hint" *ngIf="!configurations.signInOptions.verifyWithEmail">Enable</div>
@@ -55,8 +55,8 @@
                 <div class="option-body row">
                   <div class="option-title col-md-6 col-sm-6">Gmail login</div>
                   <div class="col-md-2">
-                      <i class="fa-2x ion ion-social-google-outline" [class.text-danger]="configurations.signInOptions.googleLoginOption.isEnabled"></i>
-                    </div>
+                    <i class="fa-2x ion ion-social-google-outline" [class.text-danger]="configurations.signInOptions.googleLoginOption.isEnabled"></i>
+                  </div>
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
                       <div class="col-md-4 text-hint" *ngIf="!configurations.signInOptions.googleLoginOption.isEnabled">Enable</div>
@@ -72,15 +72,29 @@
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">Set sign up with Gmail</div>
+                <div class="container p-2" [class.d-md-none]="!configurations.signInOptions.googleLoginOption.isEnabled">                                    
+                  <div class="row">
+                    <div class="input-group col-md-7">
+                      <input [(ngModel)]="configurations.signInOptions.googleLoginOption.clientID" [disabled]="!unlockEdit" class="form-control" name="googleClientID" type="text" placeholder="Paste your Google client ID">
+                    </div>
+                    <div class="input-group col-md-3">
+                      <input [(ngModel)]="configurations.signInOptions.googleLoginOption.clientSecrete" [disabled]="!unlockEdit" class="form-control" name="googleClientSecrete" type="text" placeholder="Paste your Google client Secrete">
+                    </div>
+                    <button (click)="unlockEdit = !unlockEdit" class="btn btn-outline-warning">Edit <i class="fa fa-edit"></i></button>
+                  </div>
+                  <br>
+                  <span class="text-danger">Once Parameters set for google login server need to be restart to set it in action.</span>
+                  <br>
+                </div>
               </li>
 
               <li class="option">
-                <div class="option-body row">                  
-                  <div class="option-title col-md-6 col-sm-6">                      
+                <div class="option-body row">
+                  <div class="option-title col-md-6 col-sm-6">
                     Facebook login
                   </div>
                   <div class="col-md-2">
-                    <i class="fa-2x ion ion-social-facebook" [class.text-primary]="configurations.signInOptions.facebookLoginOption.isEnabled" ></i>
+                    <i class="fa-2x ion ion-social-facebook" [class.text-primary]="configurations.signInOptions.facebookLoginOption.isEnabled"></i>
                   </div>
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
