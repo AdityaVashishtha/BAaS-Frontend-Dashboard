@@ -3,6 +3,24 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @include nb-install-component() {    
+    /* Chart Related Styling */
+    ngx-echarts-pie,
+    ngx-echarts-bar,
+    ngx-echarts-line,
+    ngx-echarts-multiple-xaxis,
+    ngx-echarts-area-stack,
+    ngx-echarts-bar-animation,
+    ngx-echarts-radar {
+        display: block;
+        height: nb-theme(card-height-medium);
+        width: 100%;
+    }
+
+    /deep/ .echart {
+        height: 100%;
+        width: 100%;
+    }
+
 
     .setting-choice-box {        
         padding: nb-theme(padding);

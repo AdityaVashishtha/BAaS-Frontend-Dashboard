@@ -19,7 +19,7 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     constraint: [],
     accessControl: 'public',
   };
-  private operations = [ 'insert', 'find', 'update', 'delete', 'batch-insert' ];
+  private operations = [ 'insert', 'find', 'update', 'delete', 'findById' ];
   private accessTypes = ['public','session','admin','custom'];
   private constraints = ['equal','greater-than','less-than','regex','like'];
   private hasRequestBody: boolean;

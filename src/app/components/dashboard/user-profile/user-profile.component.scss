@@ -1,0 +1,104 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+@include nb-install-component() {    
+
+    .item {
+        background-color: nb-theme(color-bg-active);
+        border-radius: 5px;
+        margin: 2px;
+    }    
+    .user-avatar {
+        padding: 1.5rem;
+        text-align: center;
+        margin: auto;
+        .title{            
+            font-size: 1.25rem;
+            padding: 1.25rem;
+            padding-bottom: nb-theme(padding);
+            color: nb-theme(color-fg);
+            @include nb-for-theme(cosmic) {
+                color: nb-theme(color-success);
+            }
+        }
+        img {
+            width: 100px;                
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid nb-theme(color-fg);
+            @include nb-for-theme(cosmic) {
+                border-color: nb-theme(color-success);
+            }
+        }            
+    } 
+    .setting-choice-box {        
+        padding: nb-theme(padding);                       
+        box-sizing: border-box;
+        .option-list{
+            list-style: none;
+            padding: 0;
+            .option {
+                border-bottom: 1px solid nb-theme(layout-bg);                
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                margin-bottom: 0.50rem;
+                .option-body{                                                
+                    font-size: 1.15em;                       
+                }
+                .option-summary{                
+                    font-size: 0.85em;
+                }
+            }
+        }
+    }
+    .switch {        
+        position: relative;
+        display: inline-block;
+        width: 4rem;
+        height: 1.75rem;
+        margin: 0;
+        cursor: pointer;
+        input {
+            display: none;
+            &:checked+.slider::before {
+                transform: translateX(2.25rem);
+            }
+        }
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1.75rem;
+            background-color: nb-theme(layout-bg);
+        }
+        .slider::before {
+            position: absolute;
+            content: '';
+            height: 1.75rem;
+            width: 1.75rem;
+            border-radius: 50%;
+            background-color: nb-theme(color-info);
+            transition: 0.2s;
+            box-shadow: 0 0 0.25rem 0 rgba(nb-theme(color-fg), 0.4);
+            @include nb-for-theme(cosmic) {
+                @include btn-hero-primary-gradient();                
+            }
+        }
+        .slider-disable::before {
+            background-color: #aaa;
+        }
+    }
+    @include media-breakpoint-down(is) {
+        .light,
+        .cosmic {
+            display: none;
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        align-items: flex-end;
+        padding: 0;
+    }
+}

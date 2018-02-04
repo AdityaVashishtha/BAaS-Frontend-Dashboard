@@ -1,0 +1,42 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    /deep/ .card {
+        background: transparent;
+        border: none;
+    }
+    /deep/ .card-header {
+        margin-top: 0.75em !important;
+        border: 1px solid nb-theme(color-bg-active);
+        border-radius: 0;
+        background-color: nb-theme(color-bg);
+    }
+    /deep/ .card-block {
+        text-align: left
+    }
+    pre {
+        outline: 1px solid nb-theme(color-primary);
+        padding: 5px;
+        margin: 5px;        
+        @include nb-for-theme(cosmic) {
+            //background-color: nb-theme(color-fg);
+            // text-shadow: 0 3px 0 #665ebd,
+            // 0 4px 10px rgba(33, 7, 77, 0.5),
+            // 0 2px 10px #928dff;
+        }
+        /deep/ .string {
+            color: green;
+        }
+        /deep/ .number {
+            color: darkorange;
+        }
+        /deep/ .boolean {
+            color: blue;
+        }
+        /deep/ .null {
+            color: magenta;
+        }
+        /deep/ .key {
+            color: red;
+        }
+    }
+}

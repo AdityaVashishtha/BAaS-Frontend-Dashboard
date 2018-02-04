@@ -3,13 +3,14 @@ import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-
+import { Headers } from '@angular/http';
+import { Http } from '@angular/http';
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpOld: Http) { }
   
   authenticateUser(user){
     let headers= new HttpHeaders();
@@ -41,6 +42,15 @@ export class AuthService {
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
     return user;
+  }
+
+  changePassword(updateQuery) {
+    //console.log(updateQuery);
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.httpOld.post('http://localhost:4000/dashboard/auth/changePassword',updateQuery,{headers: headers}).map(res => res.json());
   }
 
   logout() {

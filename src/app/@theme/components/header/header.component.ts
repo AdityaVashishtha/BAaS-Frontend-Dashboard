@@ -21,9 +21,8 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
-  user: any;  
-  userProfile: any;
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  user: any;    
+  userMenu = [{ title: 'Profile' }, { title: 'Logout' }];
 
   /* Variable Declaration Mine - Aditya */
   private app: any;
@@ -41,9 +40,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.eva);
-    this.userProfile = this.authService.getUserProfile();    
+    // this.userService.getUsers()
+    //   .subscribe((users: any) => this.user = users.eva);
+    this.user = this.authService.getUserProfile();    
+    this.user.avatar = "/assets/images/avatar/"+this.user.avatar+".png";
   }
 
   toggleSidebar(): boolean {
@@ -57,14 +57,16 @@ export class HeaderComponent implements OnInit {
   }
 
   goToHome() {
-    this.menuService.navigateHome();    
+    this.menuService.navigateHome();        
   }
   
   onMenuClick($event) {    
-    if($event.title === "Log out") {
+    if($event.title === "Logout") {
       this.authService.logout();
       this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Successfully logged out");
       this.router.navigate(['auth/login']);      
+    } else if ($event.title === "Profile") {
+      this.router.navigate(['dashboard/user-profile']);
     }
   }
   

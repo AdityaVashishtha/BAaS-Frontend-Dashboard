@@ -15,13 +15,13 @@
 
     <div class="form-group">
       <label for="password" class="sr-only">Email address</label>
-      <input name="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Password" [class.form-control-warning]="inputPassword.errors && (inputPassword.dirty || inputPassword.touched)" required #inputPassword="ngModel">
+      <input type="password" name="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Password" [class.form-control-warning]="inputPassword.errors && (inputPassword.dirty || inputPassword.touched)" required #inputPassword="ngModel">
       <small class="form-text text-warning" *ngIf="inputPassword.errors && inputPassword.errors.required && (inputPassword.dirty || inputPassword.touched)">Password is required! </small>
     </div>
 
     <div class="form-group accept-group col-sm-12">
-      <nb-checkbox name="rememberMe">Remember me</nb-checkbox>
-      <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
+      <!-- <nb-checkbox name="rememberMe">Remember me</nb-checkbox>
+      <a class="forgot-password" routerLink="../request-password">Forgot Password?</a> -->
     </div>
     <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted"> Sign In </button>
   </form>  

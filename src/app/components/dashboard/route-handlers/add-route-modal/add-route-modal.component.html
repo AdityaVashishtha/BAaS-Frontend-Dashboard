@@ -8,9 +8,9 @@
         <form #form="ngForm">
         <div class="container">
           <div class="setting-choice-box">
-            <div class="title text-hint">Route Parameters</div>
-            <ul class="option-list">
-
+            <div class="title text-hint">Route Parameters</div>            
+            <ul class="option-list">              
+        
               <li class="option">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Route Name</div>
@@ -63,7 +63,7 @@
                 <div class="option-summary text-hint font-w-light">Accessibility of route.</div>
               </li>
 
-              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert'">
+              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert' || routeModel.operationType == 'findById'">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Request Body</div>
                   <div class="option-value col-md-4 col-sm-6">
@@ -102,7 +102,7 @@
                 </div>
               </li>
 
-              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert'">
+              <li class="option" [class.d-md-none]="routeModel.operationType == 'insert' || routeModel.operationType == 'findById' ">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Matching constraint (for find update delete)</div>
                   <div class="option-value col-md-4 col-sm-6">

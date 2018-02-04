@@ -1,0 +1,12 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+    pre {
+        outline: 1px solid nb-theme(color-primary);
+        background-color: nb-theme(color-bg-active);
+        padding: 5px;
+        margin: 5px;
+        @include nb-for-theme(cosmic) {
+            background-color: nb-theme(color-fg);            
+        }
+    }
+}

@@ -9,6 +9,10 @@ import { TableComponent } from '../../components/dashboard/table/table.component
 import { AuthenticationComponent } from '../../components/dashboard/authentication/authentication.component';
 import { RouteHandlersComponent } from '../../components/dashboard/route-handlers/route-handlers.component';
 import { AddRouteModalComponent } from '../../components/dashboard/route-handlers/add-route-modal/add-route-modal.component';
+import { UsersComponent } from '../../components/dashboard/authentication/users/users.component';
+import { AuthRoutesComponent } from '../../components/dashboard/authentication/auth-routes/auth-routes.component';
+import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
+import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 
 const routes : Routes = [{
     path: '',
@@ -18,12 +22,28 @@ const routes : Routes = [{
         component: SchemaComponent
     },
     {
-        path: 'authentication-settings',
+        path: 'authentication/settings',
         component: AuthenticationComponent
+    },
+    {
+        path: 'authentication/users',
+        component: UsersComponent
+    },
+    {
+        path: 'authentication/routes',
+        component: AuthRoutesComponent
     },
     {
         path: 'analytics',
         component: AnalyticsComponent
+    },
+    {
+        path: 'logs',
+        component: ApplicationLogsComponent
+    },
+    {
+        path: 'user-profile',
+        component: UserProfileComponent
     },
     {
         path: '',

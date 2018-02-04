@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        Log
+        <hr>
+        <div class="container" *ngFor="let item of logs">
+          <pre [innerHTML]="item"></pre>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

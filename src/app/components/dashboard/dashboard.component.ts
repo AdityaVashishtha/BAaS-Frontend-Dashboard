@@ -32,13 +32,13 @@ export class DashboardComponent implements OnInit {
   getMenuItems(schemas) {
     let MENU_ITEMS: NbMenuItem[] = [
       {
-        title: 'Analytics',
+        title: 'Status',
         icon: 'nb-bar-chart',
         link: '/dashboard/analytics',
         home: true,
       },
       {
-        title: 'DATA',
+        title: 'End Points',
         group: true,
       },
       {
@@ -59,55 +59,40 @@ export class DashboardComponent implements OnInit {
             link: '/dashboard/api-access'
           }
         ],
-      },
-      // {
-      //   title: 'Tables',
-      //   icon: 'nb-tables',
-      //   link: '/pages/ui-features',
-      //   children: schemas,
-      // },      
+      },          
       {
         title: 'Authentication',
-        link: '/dashboard/authentication-settings',
+        link: '/dashboard/authentication/settings',
         icon: 'nb-locked',
         children: [
           {
             title: 'Configurations',
-            link: '/dashboard/authentication-settings'
+            link: '/dashboard/authentication/settings'
           }, 
           {
-            title: 'User Schema',
-            link: '/dashboard/table/authuser'
+            title: 'Users',
+            link: '/dashboard/authentication/users'
           },
           {
             title: 'Routes',
-            link: '/dashboard/api-access/authuser'
+            link: '/dashboard/authentication/routes'
           }
       ]
       },
       {
-        title: 'CRUD',
+        title: 'Settings',
         group: true,
       },
       {
-        title: 'API console',
-        icon: 'nb-paper-plane',
-        link: '/pages/ui-features'
-      },
+        title: 'Logs',
+        icon: 'nb-tables',
+        link: '/dashboard/logs'
+      },     
       {
-        title: 'SETTINGS',
-        group: true,
-      },
-      {
-        title: 'General Config',
-        icon: 'nb-gear',
-        link: '/pages/ui-features',
-      },
-      {
-        title: 'ACL',
-        icon: 'nb-locked',
-        link: '/pages/ui-features',
-      },
+        title: 'Account',
+        icon: 'nb-person',
+        link: '/dashboard/user-profile',
+      },      
     ];
 
     return MENU_ITEMS;

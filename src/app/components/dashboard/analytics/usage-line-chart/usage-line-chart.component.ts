@@ -1,20 +1,26 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit,  AfterViewInit, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-echarts-multiple-xaxis',
-  template: `
-    <div echarts [options]="options" class="echart"></div>
-  `,
+  selector: 'app-usage-line-chart',
+  template: `<div echarts [options]="options" class="echart"></div>`,
+  styleUrls: ['./usage-line-chart.component.scss']
 })
-export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
+export class UsageLineChartComponent implements OnInit ,AfterViewInit, OnDestroy {
+
   options: any = {};
   themeSubscription: any;
 
-  constructor(private theme: NbThemeService) {
+  constructor(
+    private theme: NbThemeService
+  ) { }
+
+  ngOnInit() {
+
   }
 
   ngAfterViewInit() {
+    // Chart View start
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
       const colors: any = config.variables;
@@ -30,7 +36,7 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
           },
         },
         legend: {
-          data: ['2015 Precipitation', '2016 Precipitation'],
+          data: ['User Count', 'Dummy'],
           textStyle: {
             color: echarts.textColor,
           },
@@ -60,24 +66,24 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               label: {
                 formatter: params => {
                   return (
-                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
+                    'Count  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
                   );
                 },
               },
             },
             data: [
-              '2016-1',
-              '2016-2',
-              '2016-3',
-              '2016-4',
-              '2016-5',
-              '2016-6',
-              '2016-7',
-              '2016-8',
-              '2016-9',
-              '2016-10',
-              '2016-11',
-              '2016-12',
+              '110',
+              '100',
+              '90',
+              '80',
+              '70',
+              '60',
+              '50',
+              '40',
+              '30',
+              '20',
+              '10',
+              '0',
             ],
           },
           {
@@ -100,24 +106,24 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               label: {
                 formatter: params => {
                   return (
-                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
+                    'Count  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
                   );
                 },
               },
             },
             data: [
-              '2015-1',
-              '2015-2',
-              '2015-3',
-              '2015-4',
-              '2015-5',
-              '2015-6',
-              '2015-7',
-              '2015-8',
-              '2015-9',
-              '2015-10',
-              '2015-11',
-              '2015-12',
+              '110',
+              '100',
+              '90',
+              '80',
+              '70',
+              '60',
+              '50',
+              '40',
+              '30',
+              '20',
+              '10',
+              '0',
             ],
           },
         ],
@@ -143,24 +149,26 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
         ],
         series: [
           {
-            name: '2015 Precipitation',
+            name: 'User Count',
             type: 'line',
             xAxisIndex: 1,
             smooth: false,
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+            data: [5, 9, 0, 26, 8, 77, 156, 18, 48, 18, 6, 23],
           },
           {
-            name: '2016 Precipitation',
+            name: 'Hit Count',
             type: 'line',
             smooth: false,
-            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7],
+            data: [39, 59, 111, 187, 83, 9, 21, 46, 55, 84, 103, 70],
           },
         ],
       };
     });
+    // Chart View End
   }
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
   }
+
 }

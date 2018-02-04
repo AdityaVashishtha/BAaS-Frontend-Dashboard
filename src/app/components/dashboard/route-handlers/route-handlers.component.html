@@ -4,18 +4,19 @@
       <nb-card-header>
         <div class="row">
           <div class="col-md-2 col-sm-4">
-              <div class="dropdown" ngbDropdown>
-                  <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
-                    {{ schemaName }}
-                  </button>
-                  <ul ngbDropdownMenu class="dropdown-menu">
-                    <li class="dropdown-item" *ngFor="let item of schemaList" (click)="onSelectSchema(item.name)">
-                      {{ item.name }}
-                    </li>
-                  </ul>
-                </div>
-          </div>                    
-          <button [routerLink]="['add-route']" routerLinkActive="active" type="button" class="col-md-2 offset-md-7 mr-2 btn btn-success"> Add Route
+            <div class="dropdown" ngbDropdown>
+              <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
+                {{ schemaName }}
+              </button>
+              <ul ngbDropdownMenu class="dropdown-menu">
+                <li class="dropdown-item" *ngFor="let item of schemaList" (click)="onSelectSchema(item.name)">
+                  {{ item.name }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button [routerLink]="['add-route']" routerLinkActive="active" type="button" class="col-md-2 offset-md-7 mr-2 btn btn-success">
+          Add Route
             <i class="fa fa-plus"></i>
           </button>
         </div>
@@ -59,8 +60,28 @@
                   <pre [innerHTML]="syntaxHighlight(schemaStructure)">
                   </pre>
                 </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li>API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: application/json</li>                    
+                  </ol>
+                  To Learn More Click
+                  <a href="#">HERE(TODO)</a>
+                </div>
               </div>
-              <div class="row" [class.d-md-none]="item.operationType == 'insert'">
+              <div class="row" [class.d-md-none]="item.requestByJSON">                
+                <div class="col-md-12">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: Simple Get Request</li>                    
+                  </ol>
+                </div>
+              </div>
+              <div class="row" [class.d-md-none]="item.operationType == 'insert' || !item.requestByJSON">
                 <div class="col-md-4">
                   Request Body
                   <pre [innerHTML]="syntaxHighlight(item.requestBody)">
@@ -72,13 +93,14 @@
                     </pre>
                 </div>
                 <div class="col-md-4">
-                  Usage Guide: 
-                  <p>
-                    API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}} <br>
-                    Type of Request : POST <br>
-                    Request Content-Type: application/json <br>                    
-                  </p>                  
-                  To Learn More Click <a href="#">HERE(TODO)</a>
+                  <strong>Usage Guide:</strong>
+                  <ol>
+                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: application/json</li>            
+                  </ol>
+                  To Learn More Click
+                  <a href="#">HERE(TODO)</a>
                 </div>
               </div>
             </ng-template>

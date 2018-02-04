@@ -1,0 +1,251 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-md-2 col-sm-4">
+            {{ schemaName }}
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <p class="text-hint">Defult Authentication Routes</p>
+        <hr>
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group btn-group-full-width" role="group">
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Register</span>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Public</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-block">
+                      /api/register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-4">
+                 <strong>Usage :</strong>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  Example Request json object ::
+                  <pre [innerHTML]="syntaxHighlight(exampleRequest.register.request)">                    
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  Example Response json object ::
+                  <pre [innerHTML]="syntaxHighlight(exampleRequest.register.response)">                    
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li>API End Point : <a href="http://localhost:4000/api/register">http://localhost:4000/api/register</a></li>
+                    <li> Method of Request : POST </li>
+                    <li> Request Content-Type: application/json</li>
+                  </ol>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group btn-group-full-width" role="group">
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Login</span>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Public</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-block">
+                      /api/auth
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-4">
+                 <strong>Usage :</strong>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  Example Request json object ::
+                  <pre [innerHTML]="syntaxHighlight(exampleRequest.login.request)">                    
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  Example Response json object ::
+                  <pre [innerHTML]="syntaxHighlight(exampleRequest.login.response)">                    
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li>API End Point : <a href="http://localhost:4000/api/auth">http://localhost:4000/api/auth</a></li>
+                    <li> Method of Request : POST </li>
+                    <li> Request Content-Type: application/json</li>
+                  </ol>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group btn-group-full-width" role="group">
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Google Login</span>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-fixed">
+                      <span>Public</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-block">
+                      /api/auth/google
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-4">
+                 <strong>Usage :</strong>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  Example Request json object ::
+                  <pre [innerHTML]="exampleRequest.googleLogin.request"></pre>
+                </div>
+                <div class="col-md-4">
+                  Example Response json object ::
+                  <pre [innerHTML]="syntaxHighlight(exampleRequest.googleLogin.response)">                    
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li>API End Point : <a href="http://localhost:4000/api/auth/google">http://localhost:4000/api/auth/google</a></li>
+                    <li> Method of Request : GET </li>
+                    <li> Request Content-Type: application/json</li>
+                  </ol>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+        </ngb-accordion>
+        <br>
+
+
+
+        <p class="text-hint">User Created Routes</p>
+        <hr>
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel *ngFor="let item of routes">
+            <ng-template ngbPanelTitle>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group btn-group-full-width" role="group">
+                    <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
+                      <span>{{item.operationType}}</span>
+                    </button>
+                    <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
+                      <span>{{item.accessControl}}</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-block">
+                      {{item.name}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-4">
+                  Usage Info :
+                </div>
+                <div class="offset-md-4 col-md-2">
+                  <button (click)="deleteRoute(item.name)" type="button" class="btn btn-outline-danger btn-block">
+                    Delete Route
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <div class="row" [class.d-md-none]="item.operationType != 'insert'">
+                <div class="col-md-8">
+                  Schema Structure of Insert
+                  <pre [innerHTML]="syntaxHighlight(schemaStructure)">
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li>API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: application/json</li>
+                  </ol>
+                  To Learn More Click
+                  <a href="#">HERE(TODO)</a>
+                </div>
+              </div>
+              <div class="row" [class.d-md-none]="item.requestByJSON">
+                <div class="col-md-12">
+                  <strong>Usage Guide</strong>
+                  <ol>
+                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: Simple Get Request</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="row" [class.d-md-none]="item.operationType == 'insert' || !item.requestByJSON">
+                <div class="col-md-4">
+                  Request Body
+                  <pre [innerHTML]="syntaxHighlight(item.requestBody)">
+                  </pre>
+                </div>
+                <div class="col-md-4">
+                  Constraints:
+                  <pre [innerHTML]="syntaxHighlight(item.constraints)">
+                    </pre>
+                </div>
+                <div class="col-md-4">
+                  <strong>Usage Guide:</strong>
+                  <ol>
+                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> Method of Request : {{item.requestMethod}}</li>
+                    <li> Request Content-Type: application/json</li>
+                  </ol>
+                  To Learn More Click
+                  <a href="#">HERE(TODO)</a>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
