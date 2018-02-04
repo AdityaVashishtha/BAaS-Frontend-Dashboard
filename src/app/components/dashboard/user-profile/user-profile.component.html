@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>
         <div class="user-avatar col-md-12">
-          <img src="/assets/images/avatar/{{user.avatar}}.png" alt="">
+          <img (click)="openAvatarSelectBox(content)" src="/assets/images/avatar/{{user.avatar}}.png" alt="">
           <div class="title">{{user.displayName}}</div>
         </div>
       </nb-card-header>
@@ -88,5 +88,26 @@
         </button>
       </nb-card-footer>
     </nb-card>
+
+    <!-- Avatar Select Modal -->
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="user-avatar-list col-md-2 p-2" *ngFor="let item of numbers">
+            <img (click)="c(item)" src="/assets/images/avatar/{{item}}.png" alt="Profile Avatar">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="c('Close click')">Save</button>
+      </div>
+    </ng-template>
+
   </div>
 </div>

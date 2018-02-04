@@ -9,6 +9,8 @@ import { AppDetailsService }  from '../../../@core/data/appDetails.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../services/util/toast.service';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { ToastService } from '../../../services/util/toast.service';
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
 
   @Input() position = 'normal';
@@ -26,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   /* Variable Declaration Mine - Aditya */
   private app: any;
-
+  private subcription: Subscription;
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
@@ -44,6 +46,10 @@ export class HeaderComponent implements OnInit {
     //   .subscribe((users: any) => this.user = users.eva);
     this.user = this.authService.getUserProfile();    
     this.user.avatar = "/assets/images/avatar/"+this.user.avatar+".png";
+    this.subcription = this.authService.userChangeEvent.subscribe(res=>{
+        this.user = res;
+        this.user.avatar = "/assets/images/avatar/"+this.user.avatar+".png";        
+      });    
   }
 
   toggleSidebar(): boolean {
@@ -68,6 +74,10 @@ export class HeaderComponent implements OnInit {
     } else if ($event.title === "Profile") {
       this.router.navigate(['dashboard/user-profile']);
     }
+  }
+
+  ngOnDestroy() {
+    this.subcription.unsubscribe();
   }
   
 }

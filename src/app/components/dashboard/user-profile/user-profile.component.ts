@@ -3,6 +3,8 @@ import { ToastService } from '../../../services/util/toast.service';
 import { ConfigurationService } from '../../../services/dashboard/configuration.service';
 import { AuthService } from '../../../services/auth/auth.service';
 
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,27 +17,47 @@ export class UserProfileComponent implements OnInit {
     oldPassword: '',
   };
   private error = false;
+  private numbers: any[];
 
   private changePasswordToggle = false;
   constructor(
     private toastService: ToastService,
     private applicationConfigService: ConfigurationService,
     private authService: AuthService,
-  ) { }
+    private modalService: NgbModal
+  ) { 
+    this.numbers = Array(36).fill(0,0,36).map((x,i)=>i); // Array(36).fill().map((x,i)=>i);
+    console.log(this.numbers);
+  }
 
   ngOnInit() {
-    this.user = this.authService.getUserProfile();
+    this.user = this.authService.getUserProfile();    
     let lastSignedInDate = new Date(this.user.lastSignedIn);
     this.user.lastSignedIn = lastSignedInDate.toTimeString().toString() + " " + lastSignedInDate.toDateString().toString() ;    
-    console.log(this.user);
+    //console.log(this.user);
+  }
+
+  setAvatar(avatar) {
+    this.user.avatar = avatar;
   }
 
   saveProfile() {
-    let updateQuery = {
-      username: this.user.username,
-      displayName: this.user.displayName      
+    let updateQuery = {      
+      displayName: this.user.displayName,
+      avatar: this.user.avatar
     }
-    console.log(updateQuery);
+    if(updateQuery.displayName.length > 0) {
+      this.authService.updateProfile(updateQuery).subscribe(res=>{
+        if(res.success) {
+          this.toastService.showToast(this.toastService.typeNum.info,"",res.message);          
+        } else {
+          this.toastService.showToast(this.toastService.typeNum.warning,"",res.message);
+        }
+      });
+    } else {
+      //TODO Add Proper message
+      this.toastService.showToast(this.toastService.typeNum.warning,"","Display name is required");
+    }
   }
 
   changePassword() {
@@ -59,5 +81,13 @@ export class UserProfileComponent implements OnInit {
     } else {
       this.error = true;
     }
+  }
+
+  openAvatarSelectBox(content) {
+    this.modalService.open(content,{size: 'lg'}).result.then((result) => {
+      this.user.avatar = parseInt(result) ? result : 0;
+    }, (reason) => {
+      let closeResult = `Dismissed ${reason}`;
+    });
   }
 }

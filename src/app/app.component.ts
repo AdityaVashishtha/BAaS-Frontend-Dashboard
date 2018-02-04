@@ -8,6 +8,7 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 import { ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { ToasterModule } from 'angular2-toaster';
 import 'style-loader!angular2-toaster/toaster.css';
+import { AuthService } from './services/auth/auth.service';
 
 
 @Component({
@@ -19,11 +20,16 @@ import 'style-loader!angular2-toaster/toaster.css';
 })
 export class AppComponent implements OnInit {
   private appName;
-  constructor(private analytics: AnalyticsService) {
+  private user: any;
+  constructor(
+    private analytics: AnalyticsService,
+    private authService: AuthService
+  ) {
   }
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
     this.appName = 'Bookies';
+    this.user = this.authService.getUserProfile();    
   }
 }

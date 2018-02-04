@@ -2,6 +2,17 @@
 @import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+.user-avatar-list {
+    img {
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid gray;
+    } img:hover {
+        border: 2px solid gray;
+    }    
+}
 @include nb-install-component() {    
 
     .item {
@@ -9,10 +20,11 @@
         border-radius: 5px;
         margin: 2px;
     }    
-    .user-avatar {
+   
+    /deep/ .user-avatar {
         padding: 1.5rem;
         text-align: center;
-        margin: auto;
+        margin: auto;        
         .title{            
             font-size: 1.25rem;
             padding: 1.25rem;
@@ -23,15 +35,22 @@
             }
         }
         img {
+            cursor: pointer;
             width: 100px;                
             height: 100px;
             border-radius: 50%;
-            border: 4px solid nb-theme(color-fg);
+            border: 1px solid nb-theme(color-fg);
             @include nb-for-theme(cosmic) {
                 border-color: nb-theme(color-success);
             }
-        }            
-    } 
+        }    
+        img:hover {            
+            border: 2px solid nb-theme(color-fg);
+            @include nb-for-theme(cosmic) {
+                border-color: nb-theme(color-success);
+            }
+        }         
+    }     
     .setting-choice-box {        
         padding: nb-theme(padding);                       
         box-sizing: border-box;
