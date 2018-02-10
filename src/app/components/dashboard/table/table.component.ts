@@ -169,5 +169,4 @@ export class TableComponent implements OnInit {
       event.confirm.reject();
     }
   }
-
 }
