@@ -20,6 +20,7 @@ import { UsersComponent } from './authentication/users/users.component';
 import { AuthRoutesComponent } from './authentication/auth-routes/auth-routes.component';
 import { ApplicationLogsComponent } from './application-logs/application-logs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AasComponent } from './aas/aas.component';
 
 
 const PAGES_COMPONENTS = [
@@ -49,7 +50,8 @@ const PAGES_COMPONENTS = [
     UsersComponent,
     AuthRoutesComponent,
     ApplicationLogsComponent,
-    UserProfileComponent,    
+    UserProfileComponent,
+    AasComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    

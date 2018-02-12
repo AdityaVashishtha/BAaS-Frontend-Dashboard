@@ -13,6 +13,7 @@ import { UsersComponent } from '../../components/dashboard/authentication/users/
 import { AuthRoutesComponent } from '../../components/dashboard/authentication/auth-routes/auth-routes.component';
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
+import { AasComponent } from '../../components/dashboard/aas/aas.component';
 
 const routes : Routes = [{
     path: '',
@@ -68,6 +69,10 @@ const routes : Routes = [{
     {
         path: 'api-access/:schemaName/add-route',
         component: AddRouteModalComponent
+    },
+    {
+        path: 'analytics-home',
+        component: AasComponent
     }]
 }]
 

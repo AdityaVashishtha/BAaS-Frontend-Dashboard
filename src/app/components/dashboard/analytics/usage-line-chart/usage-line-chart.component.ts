@@ -73,7 +73,7 @@ export class UsageLineChartComponent implements OnInit ,AfterViewInit, OnDestroy
             },
             data: [
               '110',
-              '100',
+              '1000',
               '90',
               '80',
               '70',

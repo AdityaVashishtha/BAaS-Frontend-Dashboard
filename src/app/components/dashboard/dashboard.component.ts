@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
             link: '/dashboard/api-access'
           }
         ],
-      },          
+      },
       {
         title: 'Authentication',
         link: '/dashboard/authentication/settings',
@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
           {
             title: 'Configurations',
             link: '/dashboard/authentication/settings'
-          }, 
+          },
           {
             title: 'Users',
             link: '/dashboard/authentication/users'
@@ -77,7 +77,16 @@ export class DashboardComponent implements OnInit {
             title: 'Routes',
             link: '/dashboard/authentication/routes'
           }
-      ]
+        ]
+      },
+      {
+        title: 'AaS',
+        link: '/dashboard/analytics-home',
+        icon: 'nb-lightbulb',
+        children: [{
+          title: 'Create Model',
+          link: '/dashboard/analytics-home'
+        }]
       },
       {
         title: 'Settings',
@@ -87,12 +96,12 @@ export class DashboardComponent implements OnInit {
         title: 'Logs',
         icon: 'nb-tables',
         link: '/dashboard/logs'
-      },     
+      },
       {
         title: 'Account',
         icon: 'nb-person',
         link: '/dashboard/user-profile',
-      },      
+      },
     ];
 
     return MENU_ITEMS;
