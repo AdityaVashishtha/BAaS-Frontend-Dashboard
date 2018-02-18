@@ -11,7 +11,6 @@ import { map } from 'rxjs/operators'
 export class AuthService {
 
   public userChangeEvent: EventEmitter<any> = new EventEmitter();
-
   authToken: any;
   user: any;
 
@@ -19,7 +18,7 @@ export class AuthService {
   
   authenticateUser(user){
     let headers= new HttpHeaders();
-    let loginEndPoint = "http://localhost:4000/dashboard/authenticate";
+    let loginEndPoint = "http://localhost:4000/dashboard/auth/login";
     headers.set('Content-Type','application/json');
     return this.http.post<any>(loginEndPoint,user,{headers: headers}).map(res => res);
   }

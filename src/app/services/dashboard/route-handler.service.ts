@@ -15,14 +15,14 @@ export class RouteHandlerService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/dashboard/addRoute',route,{headers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:4000/dashboard/routehandler/addRoute',route,{headers: headers}).map(res => res.json());
   }
   getRoutesOfSchema(schema) {    
     let token = localStorage.getItem('id_token');        
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/dashboard/getRoutes',schema,{headers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:4000/dashboard/routehandler/getRoutes',schema,{headers: headers}).map(res => res.json());
   }
   deleteRoute(route){
     console.log('Inside delete route');
@@ -30,6 +30,6 @@ export class RouteHandlerService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/dashboard/deleteRoute',route,{headers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:4000/dashboard/routehandler/deleteRoute',route,{headers: headers}).map(res => res.json());
   }
 }
