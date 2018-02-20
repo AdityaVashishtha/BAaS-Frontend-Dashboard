@@ -31,7 +31,8 @@ export class AuthenticationComponent implements OnInit {
         },
         facebookLoginOption: {
           isEnabled: false,
-          KEY: ''
+          clientID: '',
+          clientSecrete:'',          
         }        
       },      
     }

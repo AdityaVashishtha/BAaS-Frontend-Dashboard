@@ -83,18 +83,16 @@
                     <button (click)="unlockEdit = !unlockEdit" class="btn btn-outline-warning">Edit <i class="fa fa-edit"></i></button>
                   </div>
                   <br>
-                  <span class="text-danger">Once Parameters set for google login server need to be restart to set it in action.</span>
+                  <span class="text-danger">If Parameters for facebook login is changed, Server need to be restart to set it in action.</span>
                   <br>
                 </div>
               </li>
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-6 col-sm-6">
-                    Facebook login
-                  </div>
+                  <div class="option-title col-md-6 col-sm-6">Facebook login</div>
                   <div class="col-md-2">
-                    <i class="fa-2x ion ion-social-facebook" [class.text-primary]="configurations.signInOptions.facebookLoginOption.isEnabled"></i>
+                    <i class="fa-2x ion ion-social-facebook" [class.text-info]="configurations.signInOptions.facebookLoginOption.isEnabled"></i>
                   </div>
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
@@ -102,16 +100,30 @@
                       <div class="col-md-4 text-hint" *ngIf="configurations.signInOptions.facebookLoginOption.isEnabled">Disable</div>
                       <div class="col-md-4">
                         <div class="switch">
-                          <input type="checkbox" name="viaGoogle" [(ngModel)]="configurations.signInOptions.facebookLoginOption.isEnabled" [checked]="configurations.signInOptions.loginWithGoogle"
-                            #gmailCheck>
+                          <input type="checkbox" name="viaFacebook" [(ngModel)]="configurations.signInOptions.facebookLoginOption.isEnabled"  #facebookCheck>
                           <span class="slider" [class.slider-disable]="!configurations.signInOptions.facebookLoginOption.isEnabled"></span>
                         </div>
                       </div>
                     </label>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Set sign up with Gmail</div>
-              </li>
+                <div class="option-summary text-hint font-w-light">Set sign up with Facebook</div>
+                <div class="container p-2" [class.d-md-none]="!configurations.signInOptions.facebookLoginOption.isEnabled">                                    
+                  <div class="row">
+                    <div class="input-group col-md-7">
+                      <input [(ngModel)]="configurations.signInOptions.facebookLoginOption.clientID" [disabled]="!unlockEdit" class="form-control" name="facebookClientID" type="text" placeholder="Paste your Facebook client ID">
+                    </div>
+                    <div class="input-group col-md-3">
+                      <input [(ngModel)]="configurations.signInOptions.facebookLoginOption.clientSecrete" [disabled]="!unlockEdit" class="form-control" name="facebookClientSecrete" type="text" placeholder="Paste your Facebook client Secrete">
+                    </div>
+                    <button (click)="unlockEdit = !unlockEdit" class="btn btn-outline-warning">Edit <i class="fa fa-edit"></i></button>
+                  </div>
+                  <br>
+                  <span class="text-danger">If Parameters for facebook login is changed, Server need to be restart to set it in action.</span>
+                  <br>
+                </div>
+              </li>             
+
             </ul>
           </div>
         </div>
