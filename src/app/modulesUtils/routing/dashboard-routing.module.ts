@@ -14,6 +14,7 @@ import { AuthRoutesComponent } from '../../components/dashboard/authentication/a
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
+import { ExportDataComponent } from '../../components/dashboard/export-data/export-data.component';
 
 const routes : Routes = [{
     path: '',
@@ -73,6 +74,10 @@ const routes : Routes = [{
     {
         path: 'analytics-home',
         component: AasComponent
+    },
+    {
+        path: 'export-data',
+        component: ExportDataComponent
     }]
 }]
 

@@ -102,6 +102,11 @@ export class DashboardComponent implements OnInit {
         icon: 'nb-person',
         link: '/dashboard/user-profile',
       },
+      {
+        title: 'Export Data',
+        icon: 'ion-ios-download-outline',
+        link: '/dashboard/export-data',
+      }
     ];
 
     return MENU_ITEMS;
