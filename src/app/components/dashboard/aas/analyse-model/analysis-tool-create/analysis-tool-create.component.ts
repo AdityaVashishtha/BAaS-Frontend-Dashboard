@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from '../../../services/dashboard/analytics.service';
-import { SchemaService } from '../../../services/dashboard/schema.service';
-import { ToastService } from '../../../services/util/toast.service';
+import { AnalyticsService } from '../../../../../services/dashboard/analytics.service';
+import { SchemaService } from '../../../../../services/dashboard/schema.service';
+import { ToastService } from '../../../../../services/util/toast.service';
 
 
 @Component({
-  selector: 'app-aas',
-  templateUrl: './aas.component.html',
-  styleUrls: ['./aas.component.scss']
+  selector: 'app-analysis-tool-create',
+  templateUrl: './analysis-tool-create.component.html',
+  styleUrls: ['./analysis-tool-create.component.scss']
 })
-export class AasComponent implements OnInit {
+export class AnalysisToolCreateComponent implements OnInit {
   private classificationAlgorithms=['Logistic Regression','LDA','K-Nearest Neighbours','Naive Byaes','CART','SVM'];
   private regressionAlgorithms=['Linear','Ridge','LASSO Linear','Elastic Net','KNN','CART','SVM'];
  
@@ -117,4 +117,5 @@ export class AasComponent implements OnInit {
     this.ngOnInit();
    }
   
+
 }

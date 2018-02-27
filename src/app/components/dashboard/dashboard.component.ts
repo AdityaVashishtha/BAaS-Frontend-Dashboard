@@ -81,12 +81,37 @@ export class DashboardComponent implements OnInit {
       },
       {
         title: 'AaS',
-        link: '/dashboard/analytics-home',
         icon: 'nb-lightbulb',
-        children: [{
-          title: 'Create Model',
-          link: '/dashboard/analytics-home'
-        }]
+       children: [
+        {
+          title: 'Analysis Tool',
+          link: '/dashboard/analytics-tool',
+          children:[
+            {
+              title: 'Create Model',
+              link: '/dashboard/analytics-tool-create',
+            },
+            {
+              title: 'Confiure Pipeline',
+              link: '/dashboard/analytics-tool-configure',
+            }
+          ]
+        },
+        {
+          title: 'Build Models',
+         
+          children:[
+            {
+              title: 'Create Model',
+              link: '/dashboard/analytics-home-create',
+            },
+            {
+              title: 'Confiure Model',
+              link: '/dashboard/analytics-home-configure',
+            }
+          ]
+        }
+      ]
       },
       {
         title: 'Settings',

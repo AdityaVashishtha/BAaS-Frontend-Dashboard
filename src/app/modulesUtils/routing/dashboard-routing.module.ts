@@ -14,6 +14,12 @@ import { AuthRoutesComponent } from '../../components/dashboard/authentication/a
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
+import { ConfigureModelComponent } from '../../components/dashboard/aas/configure-model/configure-model.component';
+import { BuildModelConfigureComponent } from '../../components/dashboard/aas/build-models/build-model-configure/build-model-configure.component';
+import { BuildModelCreateComponent } from '../../components/dashboard/aas/build-models/build-model-create/build-model-create.component';
+import { AnalysisToolConfigureComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-configure/analysis-tool-configure.component';
+import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
+import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
 
 const routes : Routes = [{
     path: '',
@@ -70,10 +76,32 @@ const routes : Routes = [{
         path: 'api-access/:schemaName/add-route',
         component: AddRouteModalComponent
     },
+   
+    {
+        path: 'analytics-tool',
+        component: AnalyseModelComponent
+    },
+    {
+        path: 'analytics-tool-create',
+        component: AnalysisToolCreateComponent
+    },
+    {
+        path: 'analytics-tool-configure',
+        component: AnalysisToolConfigureComponent
+    },
     {
         path: 'analytics-home',
         component: AasComponent
-    }]
+    },
+    {
+        path: 'analytics-home-create',
+        component: BuildModelCreateComponent
+    },
+    {
+        path: 'analytics-home-configure',
+        component: BuildModelConfigureComponent
+    }
+    ]
 }]
 
 @NgModule({

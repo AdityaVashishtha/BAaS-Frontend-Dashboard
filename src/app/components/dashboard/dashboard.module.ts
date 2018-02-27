@@ -21,6 +21,15 @@ import { AuthRoutesComponent } from './authentication/auth-routes/auth-routes.co
 import { ApplicationLogsComponent } from './application-logs/application-logs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AasComponent } from './aas/aas.component';
+import { ConfigureModelComponent } from './aas/configure-model/configure-model.component';
+import { AnalyseModelComponent } from './aas/analyse-model/analyse-model.component';
+import { CreateModelComponent } from './aas/create-model/create-model.component';
+import { AnalysisToolCreateComponent } from './aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
+import { AnalysisToolConfigureComponent } from './aas/analyse-model/analysis-tool-configure/analysis-tool-configure.component';
+import { BuildModelsComponent } from './aas/build-models/build-models.component';
+import { BuildModelConfigureComponent } from './aas/build-models/build-model-configure/build-model-configure.component';
+import { BuildModelCreateComponent } from './aas/build-models/build-model-create/build-model-create.component';
+import { ConfigureRenderComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-render.component';
 
 
 const PAGES_COMPONENTS = [
@@ -51,11 +60,22 @@ const PAGES_COMPONENTS = [
     AuthRoutesComponent,
     ApplicationLogsComponent,
     UserProfileComponent,
-    AasComponent,    
+    AasComponent,
+    ConfigureModelComponent,
+    AnalyseModelComponent,
+    CreateModelComponent,
+    AnalysisToolCreateComponent,
+    AnalysisToolConfigureComponent,
+    BuildModelsComponent,
+    BuildModelConfigureComponent,
+    BuildModelCreateComponent,
+    ConfigureRenderComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
     AddAttributeModalComponent,
+    ConfigureRenderComponent,    
+    
     //AddRouteModalComponent
   ]
 })
