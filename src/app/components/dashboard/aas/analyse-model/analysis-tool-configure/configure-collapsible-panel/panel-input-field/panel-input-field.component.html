@@ -1,3 +1,11 @@
-<p>
-  panel-input-field works!
-</p>
+<div class="option-body row">
+    <div class="option-title col-md-8 col-sm-6">{{inputItem.name}}</div>
+    <div class="option-value col-md-4 col-sm-6">
+      <input *ngIf="inputBox" name="item" type="inputItem.htmlAttributes.type" required="inputItem.htmlAttributes.type" class="form-control form-control-info">
+      <select *ngIf="selectBox" name="item" [(ngModel)]="selectBoxValue" >
+        <option *ngFor="let v of inputItem.inputValues" [ngValue]="v">{{v.name}}</option>
+      </select>
+    </div>
+    <div class=" col-md-8 col-sm-6 option-summary text-hint font-w-light">{{inputItem.hint}}</div>
+    
+</div>
