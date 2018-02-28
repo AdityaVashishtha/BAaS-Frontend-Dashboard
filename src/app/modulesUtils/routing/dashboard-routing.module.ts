@@ -14,6 +14,7 @@ import { AuthRoutesComponent } from '../../components/dashboard/authentication/a
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
+import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
 
 const routes : Routes = [{
     path: '',
@@ -57,6 +58,10 @@ const routes : Routes = [{
     {
         path: 'table/:schemaName',
         component: TableComponent        
+    },
+    {
+        path: 'edit-schema/:schemaName',
+        component: EditSchemaComponent
     },
     {
         path: 'api-access',

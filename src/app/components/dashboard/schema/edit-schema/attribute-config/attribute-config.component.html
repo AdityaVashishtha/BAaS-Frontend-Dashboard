@@ -1,0 +1,27 @@
+<div class="element p-1 pb-2">
+  <div class="input-box col-md-8 mb-4">
+    <input class="attribute-name" disabled name="name" type="text" [(ngModel)]="attributeStructure.name">
+  </div>
+  <div (click)="removeAttribute()" class="delete-btn">
+    <i class="fa fa-trash"></i>
+  </div>
+  <div class="row pl-5" *ngIf="attributeStructure">
+    <div class="col-md-3 mb-2">
+      <select class="form-control" name="dataType" [(ngModel)]="attributeStructure.type">
+        <option value="{{item}}" *ngFor="let item of dataTypes">{{item}}</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-2">
+      <input class="form-control" name="default" type="text" [(ngModel)]="attributeStructure.default" placeholder="defulat value">
+    </div>
+    <div class="col-md-2">
+      <nb-checkbox name="attributeUnique" [(ngModel)]="attributeStructure.isUnique">Is Unique</nb-checkbox>
+    </div>
+    <div class="col-md-2">
+      <nb-checkbox name="attributeUnique" [(ngModel)]="attributeStructure.isRequired">Is Required</nb-checkbox>
+    </div>
+    <div class="col-md-2">
+      <nb-checkbox name="attributeUnique" [(ngModel)]="attributeStructure.encryptInHash">Hashed Data</nb-checkbox>
+    </div>
+  </div>
+</div>

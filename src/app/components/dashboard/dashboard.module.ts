@@ -21,6 +21,8 @@ import { AuthRoutesComponent } from './authentication/auth-routes/auth-routes.co
 import { ApplicationLogsComponent } from './application-logs/application-logs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AasComponent } from './aas/aas.component';
+import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component';
+import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
 
 
 const PAGES_COMPONENTS = [
@@ -51,7 +53,9 @@ const PAGES_COMPONENTS = [
     AuthRoutesComponent,
     ApplicationLogsComponent,
     UserProfileComponent,
-    AasComponent,    
+    AasComponent,
+    EditSchemaComponent,
+    AttributeConfigComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    

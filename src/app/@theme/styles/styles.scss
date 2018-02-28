@@ -22,3 +22,10 @@
 a {
   outline:none;
 }
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  -ms-progress-appearance: none;       
+} 
