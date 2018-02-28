@@ -108,88 +108,9 @@
           <nb-card-header>
             Add Model Configurations
           </nb-card-header>
-          <nb-card-body>
-              <ngb-accordion #acc="ngbAccordion">
-                  <ngb-panel>
-                    <ng-template ngbPanelTitle>
-                      <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-info btn-block">
-                                Preprocessing
-                         </button>
-                          
-                        </div>
-                      </div>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                     
-                      <hr>
-             
-                    </ng-template>
-                  </ngb-panel>
-        
-                
-        
-                </ngb-accordion>
-            <form #form="ngForm">
-              <div class="container">
-                <div class="setting-choice-box">
-                  <div class="title text-hint">Model Parameters</div>
-                  <ul class="option-list">
-    
-                    <li class="option">
-                      <div class="option-body row">
-                        <div class="option-title col-md-8 col-sm-6">Name</div>
-                        <div class="option-value col-md-4 col-sm-6">
-                          <input name="aasName"  type="text" required class="form-control form-control-info">
-                        </div>
-                      </div>
-                      <div class="option-summary text-hint font-w-light">What do you want to call it?</div>
-                    </li>
-    
-                    <li class="option">
-                      <div class="option-body row">
-                        <div class="option-title col-md-8 col-sm-6">Select your schema</div>
-                        <div class="option-value col-md-4 col-sm-6">
-                          <div class="dropdown" ngbDropdown>
-                            <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
-                            
-                            </button>
-                            <ul ngbDropdownMenu class="dropdown-menu">
-                              <li class="dropdown-item" >
-                                
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="option-summary text-hint font-w-light">Choose schema on which model is to be created</div>
-                    </li>
-    
-                    <li class="option">
-                      <div class="option-body row">
-                        <div class="option-title col-sm-12">Select Attributes</div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                              <div class="col-md-8 row">
-                                 
-                              </div>
-                              
-    
-                          </div>
-                            
-                            
-                        </div>
-                      </div>
-                      <div class="option-summary text-hint font-w-light">Choose required attributes</div>
-                    </li>
-    
-              
-             
-                  </ul>
-                </div>
-              </div>
-            </form>
+          <nb-card-body  *ngFor="let item of aasJSON;let in=index">
+            <app-configure-collapsible-panel [panelContents]='item' [attributesList]='modelMainConfig.configure.data.collectionAttributes'>  </app-configure-collapsible-panel>
+          
           </nb-card-body>
           <nb-card-footer>
           Footer

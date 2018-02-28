@@ -24,7 +24,13 @@ export class AnalyticsService {
     headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:4000/dashboard/aas/getAnalyticsSchemas',{headers: headers}).map(res => res.json());
   }
-
+  getAasJSON(){
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:4000/dashboard/aas/getAasJSON',{headers: headers}).map(res => res.json());
+  }
   
 
 }

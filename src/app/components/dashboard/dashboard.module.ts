@@ -30,6 +30,9 @@ import { BuildModelsComponent } from './aas/build-models/build-models.component'
 import { BuildModelConfigureComponent } from './aas/build-models/build-model-configure/build-model-configure.component';
 import { BuildModelCreateComponent } from './aas/build-models/build-model-create/build-model-create.component';
 import { ConfigureRenderComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-render.component';
+import { ConfigureCollapsiblePanelComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/configure-collapsible-panel.component';
+import { PanelInputFieldComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-input-field/panel-input-field.component';
+import { PanelSubsectionComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-subsection/panel-subsection.component';
 
 
 const PAGES_COMPONENTS = [
@@ -69,7 +72,10 @@ const PAGES_COMPONENTS = [
     BuildModelsComponent,
     BuildModelConfigureComponent,
     BuildModelCreateComponent,
-    ConfigureRenderComponent,    
+    ConfigureRenderComponent,
+    ConfigureCollapsiblePanelComponent,
+    PanelInputFieldComponent,
+    PanelSubsectionComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    

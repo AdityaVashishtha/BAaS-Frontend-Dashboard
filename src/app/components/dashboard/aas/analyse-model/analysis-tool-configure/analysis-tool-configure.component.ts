@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../../services/util/toast.service';
 import {ConfigureRenderComponent} from "./configure-render/configure-render.component";
-import data from './ml.json';
+import {ConfigureCollapsiblePanelComponent} from "./configure-collapsible-panel/configure-collapsible-panel.component"
 
 
 
@@ -32,6 +32,7 @@ export class AnalysisToolConfigureComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   private settings = {
   };
+  private aasJSON:any;
   
 
   
@@ -47,7 +48,7 @@ export class AnalysisToolConfigureComponent implements OnInit {
 
   ngOnInit() {
    
-  console.log(d);
+  
     this.analyticsService.getModels().subscribe(res=>{
       this.myModels=res.schemas;
       console.log(this.myModels);
@@ -78,65 +79,33 @@ export class AnalysisToolConfigureComponent implements OnInit {
         actions:false
       };
      let data=this.myModels.map(item=>{return { id:item._id,name: item.name,schema:item.data.collectionName,configure:item}})
-         // let data = res.data.rows;
-       this.source.load(data);
+     this.source.load(data);
     })
+
+    //Fetching the aasJSON object from the node backend
+    this.analyticsService.getAasJSON().subscribe(res=>{
+      
+      this.aasJSON=res;
+      
+    });
   }
 
   
-  onSelectSchema(schemaName) {
-    this.router.navigate(['dashboard', 'table', schemaName]);
-  }
+  
   onUserRowSelect(event){
     this.modelMainConfig=event.data;
     console.log(this.modelMainConfig);
     this.editEnabled=true;
   }
 
-  onCreateConfirm(event): void {
-    //console.log("Create confirm");
-    let row = {
-      schema: this.tableTitle,
-      data: event.newData
-    };
-    this.schemaService.insertData(row).subscribe(res => {     
-      //console.log(event.newData); 
-      //event.newData = res.data;      
-      if (res.success) {
-        //console.log(event.newData);
-        event.confirm.resolve();
-        this.toastService.showToast(this.toastService.typeNum.success, "Hurray!!", res.message);
-        this.ngOnInit();
-      } else {
-        event.confirm.reject();
-        this.toastService.showToast(this.toastService.typeNum.error, "Oops!!", res.message);
-      }
-    });
+  processAasJSON(){
+  this.aasJSON.array.forEach(element => {
+    //create accordion panel
+    // get its configuration items
+    //generate parameters table
+  });
   }
 
-  onSaveConfirm(event): void {
-    console.log("Save confirm");
-  }
+  
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {      
-      let row = {
-        schema: this.tableTitle,
-        data: event.data
-      };
-      this.schemaService.deleteData(row).subscribe(res => {
-        console.log(res);
-        if (res.success) {
-          event.confirm.resolve();
-          this.toastService.showToast(this.toastService.typeNum.success, "Hurray!!", res.message);
-          //this.ngOnInit();
-        } else {
-          event.confirm.reject();
-          this.toastService.showToast(this.toastService.typeNum.error, "Oops!!", res.message);
-        }
-      });      
-    } else {
-      event.confirm.reject();
-    }
-  }
 }

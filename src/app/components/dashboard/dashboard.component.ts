@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
               link: '/dashboard/analytics-tool-create',
             },
             {
-              title: 'Confiure Pipeline',
+              title: 'Configure Pipeline',
               link: '/dashboard/analytics-tool-configure',
             }
           ]
@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
               link: '/dashboard/analytics-home-create',
             },
             {
-              title: 'Confiure Model',
+              title: 'Configure Model',
               link: '/dashboard/analytics-home-configure',
             }
           ]
