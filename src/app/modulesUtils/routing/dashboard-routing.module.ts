@@ -20,6 +20,7 @@ import { BuildModelCreateComponent } from '../../components/dashboard/aas/build-
 import { AnalysisToolConfigureComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-configure/analysis-tool-configure.component';
 import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
 import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
+import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
 
 const routes : Routes = [{
     path: '',
@@ -63,6 +64,10 @@ const routes : Routes = [{
     {
         path: 'table/:schemaName',
         component: TableComponent        
+    },
+    {
+        path: 'edit-schema/:schemaName',
+        component: EditSchemaComponent
     },
     {
         path: 'api-access',

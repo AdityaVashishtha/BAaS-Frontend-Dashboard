@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../../services/util/toast.service';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ConfigurationService } from '../../../services/dashboard/configuration.service';
 
 
 @Component({
@@ -32,13 +33,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService,
-              private appDetailsService: AppDetailsService,
+              private analyticsService: AnalyticsService,              
+              private configurationService: ConfigurationService,
               private router: Router,
               private authService: AuthService,
               private toastService: ToastService
-            ) {
-                this.app = appDetailsService.getAppDetails();
+            ) {  
+              this.app = {};
   }
 
   ngOnInit() {
@@ -46,6 +47,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   .subscribe((users: any) => this.user = users.eva);
     this.user = this.authService.getUserProfile();    
     this.user.avatar = "/assets/images/avatar/"+this.user.avatar+".png";
+    this.configurationService.getApplicationDetails().subscribe(
+      res => {        
+        this.app = res.config;
+      }
+    );
     this.subcription = this.authService.userChangeEvent.subscribe(res=>{
         this.user = res;
         this.user.avatar = "/assets/images/avatar/"+this.user.avatar+".png";        

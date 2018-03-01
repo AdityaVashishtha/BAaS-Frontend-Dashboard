@@ -1,25 +1,30 @@
 <nb-card>
   <nb-card-header>
     <div class="row">
-      <div class="col-md-2 col-sm-4">
-          <div class="dropdown" ngbDropdown>
-              <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
-                {{ tableTitle }}
-              </button>
-              <ul ngbDropdownMenu class="dropdown-menu">
-                <li class="dropdown-item" *ngFor="let item of schemas" (click)="onSelectSchema(item.name)">
-                  {{ item.name }}
-                </li>
-              </ul>
-            </div>
-      </div>          
-      <button (click)="openAddColumnModal()" type="button" class="col-md-2 offset-md-7 mr-2 btn btn-outline-success btn-sm">
+      <div class="col-md-3 col-xs-4">
+        <div class="dropdown" ngbDropdown>
+          <button class="btn btn-outline-success" type="button" ngbDropdownToggle>
+            {{ tableTitle }}
+          </button>
+          <ul ngbDropdownMenu class="dropdown-menu">
+            <li class="dropdown-item" *ngFor="let item of schemas" (click)="onSelectSchema(item.name)">
+              {{ item.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button (click)="openAddColumnModal()" type="button" class="mr-2 m-xs-2 col-lg-2 col-md-3 offset-md-4 offset-lg-5 offset-xl-6 btn btn-outline-success btn-sm">
         Add Attribute
+      </button>
+      <button (click)="ngOnInit()" type="button" class="col-xs-1 btn btn-round btn-sm btn-outline-success">
+        <i class="fa fa-refresh"></i>
       </button>
     </div>
   </nb-card-header>
-  <nb-card-body>    
-    <ng2-smart-table class='foom-control-success' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-      (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+  <nb-card-body>
+    <div class="smart-table-container col-lg-12 container">
+      <ng2-smart-table class='form-control-success' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+    </div>
   </nb-card-body>
 </nb-card>

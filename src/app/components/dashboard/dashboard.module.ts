@@ -33,6 +33,8 @@ import { ConfigureRenderComponent } from './aas/analyse-model/analysis-tool-conf
 import { ConfigureCollapsiblePanelComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/configure-collapsible-panel.component';
 import { PanelInputFieldComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-input-field/panel-input-field.component';
 import { PanelSubsectionComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-subsection/panel-subsection.component';
+import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component';
+import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
 
 
 const PAGES_COMPONENTS = [
@@ -76,6 +78,8 @@ const PAGES_COMPONENTS = [
     ConfigureCollapsiblePanelComponent,
     PanelInputFieldComponent,
     PanelSubsectionComponent,    
+    EditSchemaComponent,
+    AttributeConfigComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    

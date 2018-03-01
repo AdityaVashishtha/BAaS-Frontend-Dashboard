@@ -30,7 +30,7 @@ export class SchemaComponent implements OnInit {
     });
   }
   
-  editSchema(event) {
+  viewSchema(event) {
     //console.log(event);
     this.router.navigateByUrl('dashboard/'+'table/'+event);
     // console.log(event);
@@ -40,6 +40,10 @@ export class SchemaComponent implements OnInit {
     //   container: 'nb-layout',
     // });    
     // activeModal.componentInstance.modalTitle = "Edit Schema";        
+  }
+
+  editSchema(schemaName) {    
+    this.router.navigateByUrl('dashboard/'+'edit-schema/'+schemaName);    
   }
 
   showAddSchemaModal() {

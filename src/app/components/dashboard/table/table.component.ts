@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SchemaService } from '../../../services/dashboard/schema.service';
-import { OnChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnChanges, OnDestroy, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { AddAttributeModalComponent } from './add-attribute-modal/add-attribute-modal.component';
@@ -41,8 +41,8 @@ export class TableComponent implements OnInit {
           this.tableTitle = res.schemas[0].name;
         this.schemaService.getSchemaData(this.tableTitle).subscribe(res => {
           if (res.data !== null && res.data.structure) {
-            if(res.success)
-              this.toastService.showToast(this.toastService.typeNum.info,"",res.message);
+            if (res.success)
+              this.toastService.showToast(this.toastService.typeNum.info, "", res.message);
             Object.keys(res.data.structure).forEach((i) => {
               res.data.structure[i].title = i;
               res.data.structure[i].editable = false;
@@ -129,7 +129,7 @@ export class TableComponent implements OnInit {
       schema: this.tableTitle,
       data: event.newData
     };
-    this.schemaService.insertData(row).subscribe(res => {     
+    this.schemaService.insertData(row).subscribe(res => {
       //console.log(event.newData); 
       //event.newData = res.data;      
       if (res.success) {
@@ -149,7 +149,7 @@ export class TableComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {      
+    if (window.confirm('Are you sure you want to delete?')) {
       let row = {
         schema: this.tableTitle,
         data: event.data
@@ -164,9 +164,10 @@ export class TableComponent implements OnInit {
           event.confirm.reject();
           this.toastService.showToast(this.toastService.typeNum.error, "Oops!!", res.message);
         }
-      });      
+      });
     } else {
       event.confirm.reject();
     }
   }
+
 }
