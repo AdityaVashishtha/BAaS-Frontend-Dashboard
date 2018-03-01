@@ -56,9 +56,9 @@
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Attribute Name</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input name="attributeName" id="attributeName" pattern="[A-Za-z-]{2,50}" [(ngModel)]="attribute.name" placeholder="Attribute Name" class="form-control form-control-info input-lg"
-                        [class.form-control-warning]="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.required"
-                        required autofocus #attributeName="ngModel">
+                    <input name="attributeName" id="attributeName" pattern="[A-Za-z-]{2,50}" [(ngModel)]="attribute.name" placeholder="Attribute Name"
+                      class="form-control form-control-info input-lg" [class.form-control-warning]="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.required"
+                      required autofocus #attributeName="ngModel">
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light" *ngIf="!attributeName.errors || !(attributeName.touched || attributeName.dirty)">What do you want to call it??</div>
@@ -69,28 +69,43 @@
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Data Type</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <div class="dropdown" ngbDropdown>
-                      <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
-                        {{ attribute.type }}
-                      </button>
-                      <ul ngbDropdownMenu class="dropdown-menu">
-                        <li class="dropdown-item" *ngFor="let dataType of dataTypes" (click)="attribute.type = dataType">
-                          {{ dataType }}
-                        </li>
-                      </ul>
-                    </div>
+                    <select name="attributeDataType" class="form-control form-control-info" [(ngModel)]="attribute.type">
+                      <option value="{{item}}" *ngFor="let item of dataTypes">{{item | uppercase}}</option>
+                    </select>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Data Type It will store??</div>                
+                <div class="option-summary text-hint font-w-light">Data Type It will store??</div>
+                <div class="col-md-12 p-2 pt-4" [class.d-none]="attribute.type != 'regex-validator' ">
+                  <input name="regexValidatorString" placeholder="Regex Pattern" [(ngModel)]="attribute.regexPattern" type="text" class="form-control form-control-info">
+                </div>
+
+                <div class="option-body row" [class.d-none]="attribute.type != 'enum' ">
+                  <div class="row option-title col-md-8 col-sm-6">
+                    <div class="p-3 item" *ngFor="let item of attribute.enumValues">
+                      {{item}}
+                      <button type="button" (click)="removeValueFromEnum(item)" class="ml-1 close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="option-value col-md-3 col-sm-4">
+                    <input class="input-sm form-control form-control-info" name="enumValue" placeholder="Enum Value" [(ngModel)]="enumValue"
+                      type="text">
+                  </div>
+                  <div class="col-md-1 col-sm-4 p-0">
+                    <button (click)="addValueInEnum()" class="btn btn-outline-info">Add</button>
+                  </div>
+                </div>
+
               </li>
 
               <li class="option">
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Default Value</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input name="defaultValue" id="defaultValue" pattern="[A-Za-z]{0,100}" [(ngModel)]="attribute.default" placeholder="Default Value" class="form-control form-control-info input-lg"
-                        [class.form-control-warning]="defaultValue.errors && (defaultValue.dirty || defaultValue.touched)"
-                        #defaultValue="ngModel">
+                    <input name="defaultValue" id="defaultValue" pattern="[A-Za-z]{0,100}" [(ngModel)]="attribute.default" placeholder="Default Value"
+                      class="form-control form-control-info input-lg" [class.form-control-warning]="defaultValue.errors && (defaultValue.dirty || defaultValue.touched)"
+                      #defaultValue="ngModel">
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light" *ngIf="!defaultValue.errors && !(defaultValue.touched || defaultValue.dirty)">What do you want to call it??</div>
@@ -113,7 +128,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Does this attribute is required?</div>                
+                <div class="option-summary text-hint font-w-light">Does this attribute is required?</div>
               </li>
 
               <li class="option">
@@ -132,7 +147,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Does the attribute only contains unique value?</div>                
+                <div class="option-summary text-hint font-w-light">Does the attribute only contains unique value?</div>
               </li>
 
               <li class="option">
@@ -151,7 +166,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Do you want your data to be hashed (String only One Way Encryption)?</div>                
+                <div class="option-summary text-hint font-w-light">Do you want your data to be hashed (String only One Way Encryption)?</div>
               </li>
 
 

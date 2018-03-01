@@ -6,8 +6,8 @@
     }
     .smart-table-container {
         overflow-x: scroll;
-        /deep/ .ng2-smart-action {
-            background-color: nb-theme(color-info);
+        /deep/ .ng2-smart-action:nth-child(1) {            
+            border: 0px;
         }
     }
 }

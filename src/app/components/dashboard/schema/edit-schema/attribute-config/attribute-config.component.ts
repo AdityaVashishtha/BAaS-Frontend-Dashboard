@@ -11,8 +11,8 @@ export class AttributeConfigComponent implements OnInit {
   @Input() schemaName: string;
   @Output() removeAttributeFinished = new EventEmitter<any>();
   private structure: any;
-  private dataTypes: any;
-
+  private dataTypes: any; 
+  private enumValue: string = '';
   constructor(
     private schemaService: SchemaService,      
   ) {
@@ -21,7 +21,7 @@ export class AttributeConfigComponent implements OnInit {
       'number',
       'boolean',
       'json',
-      'enum-todo',
+      'enum',
       'date-iso',
       'timestamp',
       'integer',
@@ -32,7 +32,7 @@ export class AttributeConfigComponent implements OnInit {
       'email',
       'url',
       'mobile-phone',
-      'regex-validator-todo',
+      'regex-validator',
     ]
   }
 
@@ -54,6 +54,24 @@ export class AttributeConfigComponent implements OnInit {
             });
         }
       }
+    }
+  }
+
+  addValueInEnum(){
+    let isPresent = this.attributeStructure['enumValues'].indexOf(this.enumValue);
+    //console.log(isPresent+'  '+e.value.toString().length+' '+e.value);
+    if(isPresent>=0 || this.enumValue.toString().length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.attributeStructure['enumValues'].push(this.enumValue);      
+    }        
+    this.enumValue = "";
+  }
+
+  removeValueFromEnum(e) {
+    let index =  this.attributeStructure['enumValues'].indexOf(e);
+    if(index>=0) {
+      this.attributeStructure['enumValues'].splice(index,1);
     }
   }
 

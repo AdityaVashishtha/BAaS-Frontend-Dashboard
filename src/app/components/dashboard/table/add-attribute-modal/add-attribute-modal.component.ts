@@ -13,8 +13,8 @@ export class AddAttributeModalComponent implements OnInit {
   dataTypes: string[];
   tableName: string;
   attrDataType: string;
-  attrName: string;
-
+  attrName: string;  
+  private enumValue: string = '';
   private attribute = {
     name: '',
     type: 'string',
@@ -23,6 +23,8 @@ export class AddAttributeModalComponent implements OnInit {
     default: '',
     encryptInHash: false,
     schema: null,
+    regexPattern: '',
+    enumValues: []
   }
 
   constructor(
@@ -35,7 +37,7 @@ export class AddAttributeModalComponent implements OnInit {
       'number',            
       'boolean',      
       'json',
-      'enum-todo',
+      'enum',
       'date-iso',      
       'timestamp',
       'integer',
@@ -46,7 +48,7 @@ export class AddAttributeModalComponent implements OnInit {
       'email',
       'url',      
       'mobile-phone',
-      'regex-validator-todo',
+      'regex-validator',
     ]
     this.attrDataType = this.dataTypes[0];
    }
@@ -57,6 +59,7 @@ export class AddAttributeModalComponent implements OnInit {
   closeModal() {
     this.activeModal.close();
   }
+
   addAttribute() {    
     // let attribute = {
     //   type: this.attrDataType,
@@ -75,4 +78,23 @@ export class AddAttributeModalComponent implements OnInit {
     });
     this.activeModal.close(this.attribute);
   }
+
+  addValueInEnum(){
+    let isPresent = this.attribute.enumValues.indexOf(this.enumValue);
+    //console.log(isPresent+'  '+e.value.toString().length+' '+e.value);
+    if(isPresent>=0 || this.enumValue.toString().length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.attribute.enumValues.push(this.enumValue);      
+    }        
+    this.enumValue = "";
+  }
+
+  removeValueFromEnum(e) {
+    let index =  this.attribute.enumValues.indexOf(e);
+    if(index>=0) {
+      this.attribute.enumValues.splice(index,1);
+    }
+  }
+
 }
