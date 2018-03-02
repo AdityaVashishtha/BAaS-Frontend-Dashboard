@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from '../../../services/dashboard/analytics.service';
-import { SchemaService } from '../../../services/dashboard/schema.service';
-import { ToastService } from '../../../services/util/toast.service';
+import { AnalyticsService } from '../../../../../services/dashboard/analytics.service';
+import { SchemaService } from '../../../../../services/dashboard/schema.service';
+import { ToastService } from '../../../../../services/util/toast.service';
 
 
 @Component({
-  selector: 'app-aas',
-  templateUrl: './aas.component.html',
-  styleUrls: ['./aas.component.scss']
+  selector: 'app-analysis-tool-create',
+  templateUrl: './analysis-tool-create.component.html',
+  styleUrls: ['./analysis-tool-create.component.scss']
 })
-export class AasComponent implements OnInit {
-  private classificationAlgorithms=['Logistic Regression','LDA','K-Nearest Neighbours','Naive Byaes','CART','SVM'];
-  private regressionAlgorithms=['Linear','Ridge','LASSO Linear','Elastic Net','KNN','CART','SVM'];
- 
+export class AnalysisToolCreateComponent implements OnInit {
+  
   private attributes=[];
   private schemaStructure;
-  private selectedAttribute='';
+  private selectedAttribute:string;
   
   private schemas:any;
   private aasSettings = {
@@ -44,6 +42,7 @@ export class AasComponent implements OnInit {
   onSchemaSelect(schemaname){
     this.schemaService.getSchemaStructure(schemaname).subscribe(res=>{
       //console.log(res.data.structure);
+      this.aasSettings.attributes=[];
       this.schemaStructure=res.data.structure;
       //console.log(this.schemaStructure);
       this.attributes=Object.keys(res.data.structure);
@@ -51,6 +50,8 @@ export class AasComponent implements OnInit {
       this.attributes.splice(this.attributes.indexOf("_id"),1);
       this.attributes.splice(this.attributes.indexOf("_insertAt"),1);
       this.attributes.splice(this.attributes.indexOf("_updated"),1);
+      console.log("Schema select time attributes ");
+      console.log(this.attributes);
       this.selectedAttribute=this.attributes[0];
     });
   }
@@ -96,16 +97,26 @@ export class AasComponent implements OnInit {
       this.attributes.push(i);
     }
   }
-
+  // addAttribute2(attr){
+  //     if(this.aasSettings.attributes.indexOf(attr)<0)
+  //       this.aasSettings.attributes.push(attr);
+  //     el
+  // }
   addAttribute(){
-    if(this.aasSettings.attributes.indexOf(this.selectedAttribute)<0)
-      this.aasSettings.attributes.push(this.selectedAttribute);
-    if(this.selectedAttribute=''){
+    if(this.selectedAttribute==undefined){
         return;
     }
+    console.log(this.selectedAttribute);
+    if(this.aasSettings.attributes.indexOf(this.selectedAttribute)<0)
+      this.aasSettings.attributes.push(this.selectedAttribute);
+    console.log("printing index of selected attribute");
+    console.log(this.attributes.indexOf(this.selectedAttribute));
     this.attributes.splice(this.attributes.indexOf(this.selectedAttribute),1);
     this.selectedAttribute=this.attributes[0];
     ////console.log(this.outputAttributes);
+
+    console.log(this.attributes);
+    console.log(this.aasSettings.attributes);
   }
   resetForm(){
     this.aasSettings = {
@@ -117,4 +128,5 @@ export class AasComponent implements OnInit {
     this.ngOnInit();
    }
   
+
 }

@@ -1,0 +1,9 @@
+<nb-card>
+  <nb-card-header>
+    Configure Parameters for {{parameterItem.name}}
+  </nb-card-header>
+  <nb-card-body>
+    <app-panel-input-field *ngFor="let item of parameters" [inputItem]="item"></app-panel-input-field>
+  </nb-card-body>
+
+</nb-card>

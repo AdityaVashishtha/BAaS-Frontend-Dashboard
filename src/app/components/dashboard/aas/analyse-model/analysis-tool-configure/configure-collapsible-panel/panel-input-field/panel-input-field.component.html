@@ -1,0 +1,26 @@
+<nb-card>
+  <nb-card-header>
+    <div class="option-body row">
+      <div class="col-md-8 col-sm-6">{{inputItem.name}}</div>
+      <div class="option-value col-md-4 col-sm-6">
+        <input *ngIf="inputBox" name="item" type="{{inputItem.htmlAttributes.type}}" required="{{inputItem.htmlAttributes.type}}" class="form-control form-control-info">
+        <select class="form-control" *ngIf="selectBox" name="item" [(ngModel)]="selectBoxValue" (ngModelChange)="onChange($event)">
+          <option class="select-option" *ngFor="let v of inputItem.inputValues" [ngValue]="v">{{v.name}}</option>
+        </select>
+      </div>
+    </div>
+  </nb-card-header>
+      <nb-card-body *ngIf="parameterBoxDisplay">
+        <app-parameter-configurer  *ngIf="parameterBoxDisplay" [parameterItem]='parameterItem'></app-parameter-configurer>
+    <!-- <ul class="option-list">
+
+      <li class="option" *ngFor="let item of parametersItems">
+        <app-panel-input-field [inputItem]='item'></app-panel-input-field>
+      </li>
+
+    </ul> -->
+  </nb-card-body>
+  <nb-card-footer>
+    <div class=" col-md-8 col-sm-6 option-summary text-hint font-w-light">{{inputItem.hint}}</div>
+  </nb-card-footer>
+</nb-card>
