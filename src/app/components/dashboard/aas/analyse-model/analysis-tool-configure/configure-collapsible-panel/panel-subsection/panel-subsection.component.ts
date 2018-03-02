@@ -24,11 +24,6 @@ export class PanelSubsectionComponent implements OnInit {
 
   prepareInputFields(){
     if(!this.subsectionContents.forEach){
-      // this.inputItem["name"]=this.subsectionContents.defaultDisplayName;
-      // this.inputItem["inputType"]
-      // this.inputItem["inputAttributes"]
-      // this.inputItem["inputValues"]
-      // this.inputItem["htmlAttributes"]
       /**
        * if not required for all attributes of data,just use default name and create input items with it.
        */

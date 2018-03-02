@@ -35,7 +35,7 @@ import { PanelInputFieldComponent } from './aas/analyse-model/analysis-tool-conf
 import { PanelSubsectionComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-subsection/panel-subsection.component';
 import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component';
 import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
-
+import { ParameterConfigurerComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/parameter-configurer/parameter-configurer.component';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -79,7 +79,8 @@ const PAGES_COMPONENTS = [
     PanelInputFieldComponent,
     PanelSubsectionComponent,    
     EditSchemaComponent,
-    AttributeConfigComponent,    
+    AttributeConfigComponent,
+    ParameterConfigurerComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
