@@ -21,6 +21,7 @@ import { AnalysisToolConfigureComponent } from '../../components/dashboard/aas/a
 import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
 import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
 import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
+import { StorageServiceComponent } from '../../components/dashboard/storage-service/storage-service.component';
 
 const routes : Routes = [{
     path: '',
@@ -105,6 +106,10 @@ const routes : Routes = [{
     {
         path: 'analytics-home-configure',
         component: BuildModelConfigureComponent
+    },
+    {
+        path: 'storage-configuration',
+        component: StorageServiceComponent
     }
     ]
 }]

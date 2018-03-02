@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
       },
       {
         title: 'AaS',
-        icon: 'nb-lightbulb',
+        icon: 'ion-ios-analytics-outline',
        children: [
         {
           title: 'Analysis Tool',
@@ -98,8 +98,7 @@ export class DashboardComponent implements OnInit {
           ]
         },
         {
-          title: 'Build Models',
-         
+          title: 'Build Models',         
           children:[
             {
               title: 'Create Model',
@@ -112,6 +111,17 @@ export class DashboardComponent implements OnInit {
           ]
         }
       ]
+      },
+      {
+        title: 'Storage Service',
+        link: '/dashboard/storage-configuration',
+        icon: 'ion-social-dropbox-outline',
+        children: [
+          {
+            title: 'Configurations',
+            link: '/dashboard/storage-configuration'
+          }          
+        ]
       },
       {
         title: 'Settings',
