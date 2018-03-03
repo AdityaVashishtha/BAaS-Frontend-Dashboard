@@ -4,6 +4,12 @@
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @include nb-install-component() {    
 
+    .item {
+        background-color: nb-theme(color-bg-active);
+        border-radius: 5px;
+        margin: 2px;
+    }
+
     .setting-choice-box {        
         padding: nb-theme(padding);
         .title{            

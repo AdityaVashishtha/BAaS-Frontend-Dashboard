@@ -7,7 +7,7 @@
       <nb-card-body>
         <div class="container">
           <div class="setting-choice-box">
-            <div class="title text-hint">File Options</div>
+            <div class="title text-hint">File Upload Options</div>
             <ul class="option-list">
 
               <li class="option">
@@ -22,7 +22,7 @@
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Enable Upload</div>                  
+                  <div class="option-title col-md-8 col-sm-6">Enable Upload</div>
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
                       <div class="col-md-4 text-hint" *ngIf="!storageConfiguration.enableUpload">Enable</div>
@@ -37,49 +37,85 @@
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">Do you want to enable or disable storageConfiguration routes?</div>
-              </li>   
-              
-              <li class="option">
+              </li>
+
+              <!-- <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Max number of files</div>                  
+                  <div class="option-title col-md-8 col-sm-6">Max number of files</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input type="number" [(ngModel)]="storageConfiguration.maxNumberOfFilesPerRequest" name="fileSizeLimit" class="form-control form-control-info" >
+                    <input type="number" [(ngModel)]="storageConfiguration.maxNumberOfFilesPerRequest" name="fileSizeLimit" class="form-control form-control-info">
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">What maximum number of files you want to allow?</div>
-              </li>   
+              </li> -->
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">File Size Limit (in MB)</div>                  
+                  <div class="option-title col-md-8 col-sm-6">File Size Limit (in MB)</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input type="number" [(ngModel)]="storageConfiguration.maxFileSizeLimit" name="fileSizeLimit" class="form-control form-control-info" >
+                    <input type="number" pattern="[a-z]" maxlength="50" [(ngModel)]="storageConfiguration.maxFileSizeLimit" name="fileSizeLimit"
+                      class="form-control form-control-info">
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">What maximum file size you want to allow?</div>
               </li>
-              <!-- TODO
-                Change below input such as to add new mime type
-                to allowed, excepted mimetype and remove from the same.
-              -->
+              
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Allowed Mime types</div>                                    
+                  <div class="option-title col-md-8 col-sm-6">Allowed Mime types</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input type="text" name="fileSizeLimit" class="form-control form-control-info" >
+                    <input type="text" placeholder="Mime Type Allowed" class="form-control form-control-info" #mimeTypeAllowed>
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">Which type of files are allowed to stored?</div>
+
+                <div class="container p-2">
+                  <div class="row">
+                    <div class="col-md-8 row">
+                      <div class="p-3 item" *ngFor="let item of storageConfiguration.allowedMimeTypes">
+                        {{item}}
+                        <button type="button" (click)="removeAllowedMimeTypeFromList(item)" class="ml-1 close" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>                    
+                    <div class="offset-md-1 col-md-3">
+                      <button (click)="addAllowedMimeTypeToList(mimeTypeAllowed)" class="btn btn-outline-primary" type="button">
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
               </li>
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Excepted Mime types</div>                                    
+                  <div class="option-title col-md-8 col-sm-6">Excepted Mime types</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input type="text" name="fileSizeLimit" class="form-control form-control-info" >
+                    <input type="text" placeholder="Mime Type Excepted" class="form-control form-control-info" #mimeTypeExcepted>
                   </div>
                 </div>
                 <div class="option-summary text-hint font-w-light">Which type of files are not allowed to be stored?</div>
+
+                <div class="container p-2">
+                  <div class="row">
+                    <div class="col-md-8 row">
+                      <div class="p-3 item" *ngFor="let item of storageConfiguration.exceptedMimeTypes">
+                        {{item}}
+                        <button type="button" (click)="removeExceptedMimeTypesFromList(item)" class="ml-1 close" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>                    
+                    <div class="offset-md-1 col-md-3">
+                      <button (click)="addExceptedMimeTypesToList(mimeTypeExcepted)" class="btn btn-outline-primary" type="button">
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
               </li>
 
             </ul>
@@ -88,10 +124,10 @@
       </nb-card-body>
 
       <nb-card-footer>
-        <button class="col-md-4 offset-md-8 btn btn-hero-info" type="button">
+        <button (click)="saveStorageConfig()" class="col-md-4 offset-md-8 btn btn-hero-info" type="button">
           Save
         </button>
       </nb-card-footer>
     </nb-card>
-  </div>  
+  </div>
 </div>

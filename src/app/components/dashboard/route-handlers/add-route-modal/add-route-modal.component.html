@@ -16,7 +16,7 @@
                     <div class="option-title col-md-8 col-sm-6">Route Name</div>
                     <div class="option-value col-md-4 col-sm-6">
                       <input name="routeName" type="text" placeholder="Route Name" [class.form-control-danger]="routeName.errors && (routeName.touched || routeName.dirty)"
-                        pattern="[A-Za-z_-]{2,12}" [(ngModel)]="routeModel.name" class="form-control form-control-info" required
+                        pattern="[A-Za-z_-]{2,100}" [(ngModel)]="routeModel.name" class="form-control form-control-info" required
                         #routeName="ngModel">
                     </div>
                   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../../services/dashboard/storage.service';
+import { ToastService } from '../../../services/util/toast.service';
 
 
 @Component({
@@ -9,28 +10,88 @@ import { StorageService } from '../../../services/dashboard/storage.service';
 })
 export class StorageServiceComponent implements OnInit {
 
-  private storageConfiguration: Object = {
+  private storageConfiguration = {
     uploadDirectory: 'uploads',
-    maxNumberOfFilesPerRequest: 1,
+    //maxNumberOfFilesPerRequest: 1,
     allowedMimeTypes: ['image/jpeg'],
     exceptedMimeTypes: ['application/json'],
     maxFileSizeLimit: 1,
     enableUpload: true
   };
+
   constructor(
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) { }
-  /********** TODO List
-  * 1. Create Input to take allowed mime types and excepted mime type. 
-  * 2. store allowed mime type in array as above storageConfiguration has variable.
-  *    In similar manner so as to user can add in array and delete from array.
-  * 3. Integrate front end to storage-service
-  * 4. write appropriate service funtion as to put service to the backend.
-  * 5. for service funtioning if need backend Route call Me
-  *********** TODO LIST END */
-
+ 
   ngOnInit() {
+    this.storageService.getStorageConfiguration()
+      .subscribe(res=>{
+        console.log(res);
+        this.storageConfiguration = res.data;
+      });
+  }
 
+  saveStorageConfig() {
+    console.log(this.storageConfiguration);    
+    var validateName = new RegExp("^[A-z]+$");    
+    if(validateName.test(this.storageConfiguration.uploadDirectory)) {
+      this.storageService.addStorageConfiguration(this.storageConfiguration)
+      .subscribe(res=>{        
+        if(res.success) {
+          this.toastService.showToast(this.toastService.typeNum.info,"",res.message);
+        } else {
+          this.toastService.showToast(this.toastService.typeNum.error,"",res.message);
+        }
+      });
+    } else {
+      alert('Upload directory should only contain alphabate and length less than 50');
+    }    
+  }
+
+
+  addAllowedMimeTypeToList(e) {    
+    let isPresent = this.storageConfiguration['allowedMimeTypes'].indexOf(e.value);            
+    if(isPresent>=0 || e.value.length === 0 )      
+      alert("Unique values only!!");
+    else {
+      var patt = new RegExp("^[A-z]{2,50}/[A-z]{2,50}$");
+      var res = patt.test(e.value);
+      if(res) {
+        this.storageConfiguration['allowedMimeTypes'].push(e.value);
+      } else {
+        alert('Invalid MIME type!!');
+      }
+    } 
+  }
+
+  removeAllowedMimeTypeFromList(item) {
+    let index = this.storageConfiguration['allowedMimeTypes'].indexOf(item);
+    if(index>=0) {
+      this.storageConfiguration['allowedMimeTypes'].splice(index,1);
+    }
+  }
+
+  addExceptedMimeTypesToList(e) {    
+    let isPresent = this.storageConfiguration['exceptedMimeTypes'].indexOf(e.value);            
+    if(isPresent>=0 || e.value.length === 0 )      
+      alert("Unique values only!!");
+    else {
+      var patt = new RegExp("^[A-z]{2,50}/[A-z]{2,50}$");
+      var res = patt.test(e.value);
+      if(res) {
+        this.storageConfiguration['exceptedMimeTypes'].push(e.value);      
+      } else {
+        alert('Invalid MIME type!!');
+      }
+    } 
+  }
+
+  removeExceptedMimeTypesFromList(item) {
+    let index = this.storageConfiguration['exceptedMimeTypes'].indexOf(item);
+    if(index>=0) {
+      this.storageConfiguration['exceptedMimeTypes'].splice(index,1);
+    }
   }
 
 }

@@ -56,7 +56,7 @@
                 <div class="option-body row">
                   <div class="option-title col-md-8 col-sm-6">Attribute Name</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input name="attributeName" id="attributeName" pattern="[A-Za-z-]{2,50}" [(ngModel)]="attribute.name" placeholder="Attribute Name"
+                    <input name="attributeName" id="attributeName" pattern="[A-Za-z_]{2,100}" [(ngModel)]="attribute.name" placeholder="Attribute Name"
                       class="form-control form-control-info input-lg" [class.form-control-warning]="attributeName.errors && (attributeName.dirty || attributeName.touched) && attributeName.errors.required"
                       required autofocus #attributeName="ngModel">
                   </div>
