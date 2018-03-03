@@ -15,7 +15,7 @@
 *.launch
 .settings/
 *.sublime-workspace
-
+npm-debug.log.*
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json

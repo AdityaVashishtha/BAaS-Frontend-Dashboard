@@ -28,7 +28,7 @@ import { SchemaService } from '../../services/dashboard/schema.service';
 import { RouteHandlerService } from '../../services/dashboard/route-handler.service';
 import { ConfigurationService } from '../../services/dashboard/configuration.service';
 import { AnalyticsService } from '../../services/dashboard/analytics.service';
-
+import { StorageService } from '../../services/dashboard/storage.service';
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
@@ -60,7 +60,8 @@ const SERVICES = [
     SchemaService,
     RouteHandlerService,
     ConfigurationService,
-    AnalyticsService
+    AnalyticsService,
+    StorageService
     //Add new Services here
 ]
 @NgModule({

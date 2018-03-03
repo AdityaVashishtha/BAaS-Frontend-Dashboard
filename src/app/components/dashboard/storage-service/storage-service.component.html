@@ -12,45 +12,75 @@
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Something</div>
+                  <div class="option-title col-md-8 col-sm-6">Upload Directory</div>
                   <div class="option-value col-md-4 col-sm-6">
-                    <input type="text" class="form-control">
+                    <input name="uploadDirectory" [(ngModel)]="storageConfiguration.uploadDirectory" type="text" class="form-control form-control-info">
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Hint here about setting.</div>
+                <div class="option-summary text-hint font-w-light">Where you want to store file??</div>
               </li>
 
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Enable or disable</div>                  
+                  <div class="option-title col-md-8 col-sm-6">Enable Upload</div>                  
                   <div class="option-value col-md-4 col-sm-6">
                     <label class="row">
-                      <div class="col-md-4 text-hint" *ngIf="!true">Enable</div>
-                      <div class="col-md-4 text-hint" *ngIf="true">Disable</div>
+                      <div class="col-md-4 text-hint" *ngIf="!storageConfiguration.enableUpload">Enable</div>
+                      <div class="col-md-4 text-hint" *ngIf="storageConfiguration.enableUpload">Disable</div>
                       <div class="col-md-4">
                         <div class="switch">
-                          <input type="checkbox" name="verifyEmail">
-                          <span class="slider" [class.slider-disable]="!true"></span>
+                          <input type="checkbox" [(ngModel)]="storageConfiguration.enableUpload" name="enableUpload">
+                          <span class="slider" [class.slider-disable]="!storageConfiguration.enableUpload"></span>
                         </div>
                       </div>
                     </label>
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Some hint here to show usage?</div>
+                <div class="option-summary text-hint font-w-light">Do you want to enable or disable storageConfiguration routes?</div>
               </li>   
               
               <li class="option">
                 <div class="option-body row">
-                  <div class="option-title col-md-8 col-sm-6">Select Box</div>                  
+                  <div class="option-title col-md-8 col-sm-6">Max number of files</div>                  
                   <div class="option-value col-md-4 col-sm-6">
-                    <select name="selectBox" class="form-control form-control-info">
-                      <option value="">Option One</option>
-                      <option value="">Option Two</option>
-                    </select>
+                    <input type="number" [(ngModel)]="storageConfiguration.maxNumberOfFilesPerRequest" name="fileSizeLimit" class="form-control form-control-info" >
                   </div>
                 </div>
-                <div class="option-summary text-hint font-w-light">Some hint here to show usage?</div>
+                <div class="option-summary text-hint font-w-light">What maximum number of files you want to allow?</div>
               </li>   
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">File Size Limit (in MB)</div>                  
+                  <div class="option-value col-md-4 col-sm-6">
+                    <input type="number" [(ngModel)]="storageConfiguration.maxFileSizeLimit" name="fileSizeLimit" class="form-control form-control-info" >
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">What maximum file size you want to allow?</div>
+              </li>
+              <!-- TODO
+                Change below input such as to add new mime type
+                to allowed, excepted mimetype and remove from the same.
+              -->
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Allowed Mime types</div>                                    
+                  <div class="option-value col-md-4 col-sm-6">
+                    <input type="text" name="fileSizeLimit" class="form-control form-control-info" >
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Which type of files are allowed to stored?</div>
+              </li>
+
+              <li class="option">
+                <div class="option-body row">
+                  <div class="option-title col-md-8 col-sm-6">Excepted Mime types</div>                                    
+                  <div class="option-value col-md-4 col-sm-6">
+                    <input type="text" name="fileSizeLimit" class="form-control form-control-info" >
+                  </div>
+                </div>
+                <div class="option-summary text-hint font-w-light">Which type of files are not allowed to be stored?</div>
+              </li>
 
             </ul>
           </div>
