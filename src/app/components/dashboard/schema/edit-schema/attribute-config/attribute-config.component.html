@@ -10,7 +10,7 @@
       <select class="form-control" name="dataType" [(ngModel)]="attributeStructure.type">
         <option value="{{item}}" *ngFor="let item of dataTypes">{{item}}</option>
       </select>
-    </div>
+    </div>    
     <div class="col-md-3 mb-2">
       <input class="form-control" name="default" type="text" [(ngModel)]="attributeStructure.default" placeholder="defulat value">
     </div>
@@ -24,4 +24,27 @@
       <nb-checkbox name="attributeUnique" [(ngModel)]="attributeStructure.encryptInHash">Hashed Data</nb-checkbox>
     </div>
   </div>
+
+  <div class="col-md-3 offset-md-1 mt-2 input-group input-sm" [class.d-none]="((attributeStructure.type != 'regex-validator') || !attributeStructure.regexPattern)">
+    <input name="regexValidatorString" placeholder="Regex Pattern" [(ngModel)]="attributeStructure.regexPattern" type="text" class="form-control">
+  </div>
+
+  <div class="row offset-md-1 mt-4" [class.d-none]="((attributeStructure.type != 'enum')||(!attributeStructure.enumValues)) ">
+      <div class="row col-md-8 col-sm-6">
+        <div class="p-2 item" *ngFor="let item of attributeStructure.enumValues">
+          {{item}}
+          <button type="button" (click)="removeValueFromEnum(item)" class="ml-1 close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <input class="form-control form-control-info" name="enumValue" placeholder="Enum Value" [(ngModel)]="enumValue"
+          type="text">
+      </div>
+      <div class="col-md-1 col-sm-4 p-0">
+        <button (click)="addValueInEnum()" class="pt-2 btn btn-outline-info">Add</button>
+      </div>
+    </div>
+
 </div>

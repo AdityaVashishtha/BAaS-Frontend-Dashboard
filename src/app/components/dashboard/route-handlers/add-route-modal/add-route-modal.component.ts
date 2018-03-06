@@ -18,11 +18,23 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     requestBody: [],
     constraint: [],
     accessControl: 'public',
-    userBasedSession: {}
+    userBasedSession: {},
+    select: {
+      isEnable: false,
+      attributes: []
+    },
+    limit: {
+      isEnable: false,
+      value: 100
+    },
+    sort: {
+      isEnable: false,
+      attributes: []
+    }
   };
   private operations = [ 'insert', 'find', 'update', 'delete', 'findById' ];
   private accessTypes = ['public','session','admin'];
-  private constraints = ['equal','greater-than','less-than','regex'];
+  private constraints = ['equal', 'not-equal','greater-than','greater-than-equal','less-than','less-than-equal','in-array', 'not-in-array','regex'];
   private postOperations = ['limit','sort','max','select'];
   private isUserBasedSession: boolean;  
   private hasRequestBody: boolean;
@@ -34,10 +46,12 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
   private userBasedSessionList: string[];
   private userAttributeList: string[];
 
+
   // temp variables 
   private requestBodyAttribute: string ;
   private constraintCondition: string = this.constraints[0];
   private schemaAttribute: string ;
+
 
   /* Constructor here */
   constructor(  
@@ -151,6 +165,39 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     if(index != -1) {
       this.matchingConstraintList.splice(index,1);
       console.log(this.matchingConstraintList);
+    }
+  }
+
+  addAttributeFromSelectConstraint(e) {
+    let isPresent = this.routeModel.select.attributes.indexOf(e.value);    
+    if(isPresent>=0 || e.value.toString().length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.routeModel.select.attributes.push(e.value);      
+    } 
+  }
+
+  removeAttributeFromSelectConstraint(item) {
+    let index = this.routeModel.select.attributes.indexOf(item);
+    if(index>=0) {
+      this.routeModel.select.attributes.splice(index,1);
+    }
+  }
+
+  addAttributeToSort(sortSchemaAttribute,sortOrder) {
+    let e = [sortSchemaAttribute.value,sortOrder.value];
+    let isPresent = this.routeModel.sort.attributes.indexOf(e);    
+    if(isPresent>=0 || e.length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.routeModel.sort.attributes.push(e);      
+    } 
+  }
+
+  removeAttributeToSort(item) {
+    let index = this.routeModel.sort.attributes.indexOf(item);
+    if(index>=0) {
+      this.routeModel.sort.attributes.splice(index,1);
     }
   }
 
