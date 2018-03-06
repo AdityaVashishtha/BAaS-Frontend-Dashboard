@@ -1,4 +1,4 @@
-import {Input, Component, OnInit } from '@angular/core';
+import { Output, Input, Component, OnInit, EventEmitter } from '@angular/core';
 import { InputField } from "../../../../aasModels/InputField";
 import {PanelInputFieldComponent} from "../panel-input-field/panel-input-field.component"
 @Component({
@@ -9,13 +9,17 @@ import {PanelInputFieldComponent} from "../panel-input-field/panel-input-field.c
 export class PanelSubsectionComponent implements OnInit {
   @Input() subsectionContents:any;
   @Input() attributesList:any;
+  @Output() expectationEvent = new EventEmitter<any>();
   
   private inputItems:InputField[]=[];
   private forEachAttributes=[];
+
+  private aasReply={};
+ 
   constructor() { }
 
   ngOnInit() {
-    console.log("logging subsecion contents");
+    console.log("logging subsecion contents from panel-subsection");
     console.log(this.subsectionContents);
     console.log(this.attributesList);
     this.prepareInputFields();
@@ -27,11 +31,14 @@ export class PanelSubsectionComponent implements OnInit {
       /**
        * if not required for all attributes of data,just use default name and create input items with it.
        */
+      console.log(`From panel-subsection ${this.subsectionContents.inputSource||''}`)
       this.inputItems.push(new InputField(
         this.subsectionContents.defaultDisplayName,
         this.subsectionContents.inputType,
         this.subsectionContents.inputValues,
         this.subsectionContents.htmlAttributes,
+        this.subsectionContents.inputSource||'',
+        this.subsectionContents.expectation||{},
         this.subsectionContents.hint
       ));
     
@@ -42,7 +49,6 @@ export class PanelSubsectionComponent implements OnInit {
        * and send them individually to the Inout Field
        */
       let requiredAttributes=[];
-      console.log("logging started");
       let values=Object.values(this.attributesList);
       Object.keys(this.attributesList).forEach((element,index) => {
         //console.log(values[index]);
@@ -52,12 +58,21 @@ export class PanelSubsectionComponent implements OnInit {
           this.subsectionContents.inputType,
           this.subsectionContents.inputValues,
           this.subsectionContents.htmlAttributes,
+          this.subsectionContents.inputSource||null,
+          this.subsectionContents.expectations||{},
           this.subsectionContents.hint
         ));
       });
       //TODO this part
       console.log(this.forEachAttributes); 
     }
+  }
+  receiveExpectation(event) {
+    console.log(event);
+    console.log("Receiving expectations from panel-subsection");
+    this.aasReply[event.identifier] = event.content;
+    console.log(this.aasReply);
+    this.expectationEvent.emit(this.aasReply);
   }
 
 }

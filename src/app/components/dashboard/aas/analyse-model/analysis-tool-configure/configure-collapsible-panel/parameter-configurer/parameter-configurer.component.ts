@@ -36,7 +36,14 @@ export class ParameterConfigurerComponent implements OnInit {
     this.parameters=[];;
     for(let item of this.parameterItem.params){
       this.parameters.push(
-        new InputField(item.name,item.inputType,item.inpuValues,item.htmlAttributes,item.hint)
+        new InputField(
+          item.name,
+          item.inputType,
+          item.inpuValues,
+          item.htmlAttributes,
+          item.inputSource||null,
+          item.expectations||{},
+          item.hint)
       )
     }
       

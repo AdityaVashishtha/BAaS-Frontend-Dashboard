@@ -1,29 +1,50 @@
-<button type="button" class="btn btn-success btn-block" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" style="border-radius:0.175">
+<div class="btn-group btn-group-full-width" role="group">
+  <button type="button" class="btn btn-success btn-block" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample">
     {{panelContents.name}}
   </button>
 
-<div id="collapseExample" [ngbCollapse]="isCollapsed" style="border:2px solid rgba(0, 0, 0, 0.250)" >
-  <div class="card">
-    <div class="card-body" *ngFor="let section of panelContents.subsections">
-      <app-panel-subsection [subsectionContents]='section'  [attributesList]='attributesList'></app-panel-subsection>
-    </div>
-  </div>
 </div>
-<!-- <ngb-panel>
-  <ng-template ngbPanelTitle>
-    <div class="row">
-      <div class="col-md-12">
-          <button type="button" class="btn btn-info btn-block">
-              Preprocessing
-          </button>
-        
-      </div>
-    </div>
-  </ng-template>
-  <ng-template ngbPanelContent>
-   Something goes here
-    <hr>
 
-  </ng-template>
-</ngb-panel> -->
+
+<div id="collapseExample" [ngbCollapse]="isCollapsed" >
+    <nb-card style="border:2px solid rgba(0, 0, 0, 0.250)" >
+        <nb-card-header *ngIf="panelContents.hasDefaults">
+            <div class="setting-choice-box">
+                <div class="option-body row">
+                    <div class="title col-md-8">Use defaults?</div>
+              
+                    <div class="option-value col-md-4">
+                      <label class="row">
+                        <div class="col-md-4 text-hint" *ngIf="!useDefaults">Enable</div>
+                        <div class="col-md-4 text-hint" *ngIf="useDefaults">Disable</div>
+                        <div class="col-md-4">
+                          <div class="switch">
+                            <input type="checkbox" name="usedefaults" [(ngModel)]="useDefaults" [checked]="useDefaults">
+                            <span class="slider" [class.slider-disable]="!useDefaults"></span>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body *ngIf="!useDefaults">
+            <div class="card" >
+                <div class="card-body" *ngFor="let section of panelContents.subsections">
+                  <app-panel-subsection [subsectionContents]='section' [attributesList]='attributesList' (expectationEvent)="receiveExpectation($event)"></app-panel-subsection>
+                </div>
+              </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button class="btn btn-sm btn-primary pull-right" (click)="generateExpectation()">Save</button>
+        </nb-card-footer>
+      </nb-card>
+
+ 
+ 
+  
+ 
+
+ 
+</div>

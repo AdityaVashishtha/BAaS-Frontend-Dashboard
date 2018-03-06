@@ -1,17 +1,75 @@
 <nb-card>
   <nb-card-header>
-    <div class="option-body row">
-      <div class="col-md-8 col-sm-6">{{inputItem.name}}</div>
-      <div class="option-value col-md-4 col-sm-6">
-        <input *ngIf="inputBox" name="item" type="{{inputItem.htmlAttributes.type}}" required="{{inputItem.htmlAttributes.type}}" class="form-control form-control-info">
-        <select class="form-control" *ngIf="selectBox" name="item" [(ngModel)]="selectBoxValue" (ngModelChange)="onChange($event)">
-          <option class="select-option" *ngFor="let v of inputItem.inputValues" [ngValue]="v">{{v.name}}</option>
-        </select>
+    <div *ngIf="inputBox||selectBox">
+      <div class="option-body row">
+        <div class="col-md-8 col-sm-6">{{inputItem.name}}</div>
+        <div class="option-value col-md-4 col-sm-6">
+          <input *ngIf="inputBox" name="item" type="{{inputItem.htmlAttributes.type}}" required="{{inputItem.htmlAttributes.type}}"
+            class="form-control form-control-info">
+          <select class="form-control" *ngIf="selectBox" name="item" [(ngModel)]="selectBoxValue" (ngModelChange)="onChange($event)">
+            <option class="select-option" *ngFor="let v of inputItem.inputValues" [ngValue]="v">{{v.name}}</option>
+          </select>
+        </div>
       </div>
+
     </div>
+
+
+    <ul class="option-list" *ngIf="listBox">
+      <!--output attributes start-->
+      <li class="option">
+        <div class="option-body row">
+          <div class="option-title col-sm-12">{{inputItem.name}}</div>
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-md-8 row">
+                <div class="p-3 item" *ngFor="let i of selectedList">
+                  {{i.name}}
+                  <button type="button" class="ml-1 close" aria-label="Close" (click)="removeFromList(i)">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div> 
+               
+              </div>
+              <div class="col-md-4">
+                <div class="container">
+                  <div class="row">
+                    <div class="form-group col-md-8">
+                     
+                      <div class="dropdown" ngbDropdown>
+                        <button class="btn btn-outline-info" type="button" ngbDropdownToggle>
+                          {{selectedItem.name||''}}
+                        </button>
+                        <ul ngbDropdownMenu class="dropdown-menu">
+                          <li class="dropdown-item" (click)="selectedItem=item" *ngFor="let item of attributesList">
+                           {{item.name}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                       <button class="form-element btn btn btn-outline-info" (click)="addToList();">Add</button> 
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </li>
+      <!--output attributes end-->
+    </ul>
+
+
   </nb-card-header>
-      <nb-card-body *ngIf="parameterBoxDisplay">
-        <app-parameter-configurer  *ngIf="parameterBoxDisplay" [parameterItem]='parameterItem'></app-parameter-configurer>
+  <nb-card-body *ngIf="parameterBoxDisplay">
+    <app-parameter-configurer *ngIf="parameterBoxDisplay" [parameterItem]='parameterItem'></app-parameter-configurer>
     <!-- <ul class="option-list">
 
       <li class="option" *ngFor="let item of parametersItems">
@@ -21,6 +79,11 @@
     </ul> -->
   </nb-card-body>
   <nb-card-footer>
-    <div class=" col-md-8 col-sm-6 option-summary text-hint font-w-light">{{inputItem.hint}}</div>
+    <div class="row">
+      <div class=" col-md-8 col-sm-6 option-summary text-hint font-w-light">{{inputItem.hint}}</div>
+      <div class="col-md-4 col-sm-6">
+          <button class="btn btn-sm btn-primary pull-right" (click)="generateExpectation()">Save</button>
+      </div>
+    </div>
   </nb-card-footer>
 </nb-card>

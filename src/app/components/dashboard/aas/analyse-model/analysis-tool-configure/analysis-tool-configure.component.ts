@@ -8,8 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../../services/util/toast.service';
-import {ConfigureRenderComponent} from "./configure-render/configure-render.component";
-import {ConfigureCollapsiblePanelComponent} from "./configure-collapsible-panel/configure-collapsible-panel.component"
+import { ConfigureRenderComponent } from "./configure-render/configure-render.component";
+import { ConfigureCollapsiblePanelComponent } from "./configure-collapsible-panel/configure-collapsible-panel.component"
 
 
 
@@ -19,25 +19,30 @@ import {ConfigureCollapsiblePanelComponent} from "./configure-collapsible-panel/
   styleUrls: ['./analysis-tool-configure.component.scss']
 })
 export class AnalysisToolConfigureComponent implements OnInit {
-  
+
   tableTitle: String;
-  private modelMainConfig:any;
-  private editEnabled=false;
+  private modelMainConfig: any;
+  private editEnabled = false;
   structure: any;
   private sub: any;
   private schemas: string[];
-  private myModels=[];
+  private myModels = [];
   private isLoaded = false;
-  private isCollapsed=false; 
+  private isCollapsed = false;
+  private attributeList;
   source: LocalDataSource = new LocalDataSource();
   private settings = {
   };
-  private aasJSON:any;
-  
+  private aasJSON: any;
+  private aasReply = {
+    name: "",
+    data: {},
+    settings: {}
+  };
 
-  
+
   constructor(
-    private analyticsService:AnalyticsService,
+    private analyticsService: AnalyticsService,
     private route: ActivatedRoute,
     private schemaService: SchemaService,
     private modalService: NgbModal,
@@ -47,65 +52,77 @@ export class AnalysisToolConfigureComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-  
-    this.analyticsService.getModels().subscribe(res=>{
-      this.myModels=res.schemas;
+
+
+    this.analyticsService.getModels().subscribe(res => {
+      this.myModels = res.schemas;
       console.log(this.myModels);
-      this.isLoaded=true;
+      this.isLoaded = true;
       this.settings = {
-       
-        
-        columns:{
-          name:{
-            title:"Model Name",
-            editable:false
-            
+
+
+        columns: {
+          name: {
+            title: "Model Name",
+            editable: false
+
           },
-          schema:{
-            title:"Schema Name",
-            editable:false
-                 
+          schema: {
+            title: "Schema Name",
+            editable: false
+
           },
-          configure:{
-            title:"Configure",
-            editable:false,
-            type:"custom",
-            renderComponent:ConfigureRenderComponent
-            
+          configure: {
+            title: "Configure",
+            editable: false,
+            type: "custom",
+            renderComponent: ConfigureRenderComponent
+
           }
         },
-        noDataMessage:"No models created",
-        actions:false
+        noDataMessage: "No models created",
+        actions: false
       };
-     let data=this.myModels.map(item=>{return { id:item._id,name: item.name,schema:item.data.collectionName,configure:item}})
-     this.source.load(data);
+      let data = this.myModels.map(item => { return { id: item._id, name: item.name, schema: item.data.collectionName, configure: item } })
+      this.source.load(data);
     })
 
     //Fetching the aasJSON object from the node backend
-    this.analyticsService.getAasJSON().subscribe(res=>{
-      
-      this.aasJSON=res;
-      
+    this.analyticsService.getAasJSON().subscribe(res => {
+
+      this.aasJSON = res;
+
     });
   }
 
-  
-  
-  onUserRowSelect(event){
-    this.modelMainConfig=event.data;
+
+
+  onUserRowSelect(event) {
+    this.modelMainConfig = event.data;
     console.log(this.modelMainConfig);
-    this.editEnabled=true;
+    this.editEnabled = true;
+    console.log("Loggin aasReply")
+    this.aasReply.name = this.modelMainConfig.configure.name;
+    this.aasReply.data = this.modelMainConfig.configure.data;
+    console.log(this.aasReply);
+    this.attributeList=Object.keys(this.modelMainConfig.configure.data.collectionAttributes).map(item=>{return {'name':item,'type':this.modelMainConfig.configure.data.collectionAttributes[item]}})
   }
 
-  processAasJSON(){
-  this.aasJSON.array.forEach(element => {
-    //create accordion panel
-    // get its configuration items
-    //generate parameters table
-  });
+  processAasJSON() {
+    this.aasJSON.array.forEach(element => {
+      //create accordion panel
+      // get its configuration items
+      //generate parameters table
+    });
   }
 
-  
+  receiveExpectation(event) {
+    console.log(event);
+    console.log("Receiving expectations from analysis-tool-configure");
+    this.aasReply.settings[event.identifier] = event.content;
+    console.log(this.aasReply);
+  }
+
+
 
 }

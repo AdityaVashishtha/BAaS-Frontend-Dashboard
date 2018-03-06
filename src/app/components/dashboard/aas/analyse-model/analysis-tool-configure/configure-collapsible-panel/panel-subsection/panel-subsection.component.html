@@ -1,4 +1,5 @@
-<nb-card>
+
+<nb-card >
   <nb-card-header>
       <div class="title">{{subsectionContents.name}}</div>
   </nb-card-header>
@@ -6,13 +7,13 @@
       <ul class="option-list">
 
           <li class="option" *ngFor="let item of inputItems">
-              <app-panel-input-field [inputItem]='item'></app-panel-input-field>
+              <app-panel-input-field [inputItem]='item' [attributesList]="attributesList" (expectationEvent)="receiveExpectation($event)"></app-panel-input-field>
           </li>
             
         </ul>
 
   </nb-card-body>
-  <nb-card-footer>
+  <!-- <nb-card-footer>
       <div class="option-summary text-hint">{{subsectionContents.hint}}</div>
-  </nb-card-footer>
+  </nb-card-footer> -->
 </nb-card>

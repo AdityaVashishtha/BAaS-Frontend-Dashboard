@@ -109,7 +109,7 @@
             Add Model Configurations
           </nb-card-header>
           <nb-card-body  *ngFor="let item of aasJSON;let in=index">
-            <app-configure-collapsible-panel [panelContents]='item' [attributesList]='modelMainConfig.configure.data.collectionAttributes'>  </app-configure-collapsible-panel>
+            <app-configure-collapsible-panel (expectationEvent)="receiveExpectation($event)"[panelContents]='item' [attributesList]='attributeList'>  </app-configure-collapsible-panel>
           
           </nb-card-body>
           <nb-card-footer>
