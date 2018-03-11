@@ -22,6 +22,7 @@ import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/anal
 import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
 import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
 import { StorageServiceComponent } from '../../components/dashboard/storage-service/storage-service.component';
+import { VisualizationComponent } from '../../components/dashboard/aas/visualization/visualization.component';
 
 const routes : Routes = [{
     path: '',
@@ -110,6 +111,10 @@ const routes : Routes = [{
     {
         path: 'storage-configuration',
         component: StorageServiceComponent
+    },
+    {
+        path: 'analytics/visualize',
+        component: VisualizationComponent
     }
     ]
 }]

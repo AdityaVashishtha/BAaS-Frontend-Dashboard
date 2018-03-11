@@ -109,6 +109,10 @@ export class DashboardComponent implements OnInit {
               link: '/dashboard/analytics-home-configure',
             }
           ]
+        },
+        {
+          title: 'Visulisation',
+          link: '/dashboard/analytics/visualize'
         }
       ]
       },

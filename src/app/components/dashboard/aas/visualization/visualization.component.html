@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        Visualize schema attribute
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="col-lg-12 p-2">              
+              <select (change)="getAttributes()" [(ngModel)]="schemaName" class="form-control form-control-info" name="schemaName">
+                <option value="">Select Schema</option>                                
+                <option value="{{item.name}}" *ngFor="let item of schemas">{{item.name}}</option>
+              </select>
+            </div>
+            <div class="col-lg-12 p-2">              
+              <select [(ngModel)]="xAttribute" class="form-control form-control-info" name="xAttribute">
+                <option value="">Select X Attribute</option>                                
+                <option value="{{item}}" *ngFor="let item of attributeList">{{item}}</option>
+              </select>
+            </div>
+            <div class="col-lg-12 p-2">              
+              <select [(ngModel)]="yAttribute" class="form-control form-control-info" name="yAttribute">
+                <option value="">Select Y Attribute</option>                                
+                <option value="{{item}}" *ngFor="let item of attributeList">{{item}}</option>
+              </select>
+            </div>
+            <div class="col-lg-12 p-2">              
+              <select [(ngModel)]="graphType" class="form-control form-control-info" name="graphType">
+                <option value="">Select Graph</option>                                
+                <option value="{{item}}" *ngFor="let item of graphTypes">{{item}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-10">
+            <div class="img-box">
+              <img class="img-fluid" src="http://localhost:5000/analytics/visualize/{{graphType}}/{{schemaName}}/{{xAttribute}}/{{yAttribute}}" alt="">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>    
+</div>

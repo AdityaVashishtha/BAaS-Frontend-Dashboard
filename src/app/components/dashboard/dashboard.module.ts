@@ -37,6 +37,7 @@ import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component'
 import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
 import { ParameterConfigurerComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/parameter-configurer/parameter-configurer.component';
 import { StorageServiceComponent } from './storage-service/storage-service.component';
+import { VisualizationComponent } from './aas/visualization/visualization.component';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -82,7 +83,8 @@ const PAGES_COMPONENTS = [
     EditSchemaComponent,
     AttributeConfigComponent,
     ParameterConfigurerComponent,
-    StorageServiceComponent,    
+    StorageServiceComponent,
+    VisualizationComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
