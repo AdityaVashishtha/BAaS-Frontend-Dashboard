@@ -22,8 +22,8 @@ export class AasComponent implements OnInit {
     name: '',
     schema:'',
     attributes:[],
-    
   }
+
   constructor(
     private analyticsService: AnalyticsService,
     private schemaService: SchemaService,
