@@ -15,6 +15,14 @@ import { ApplicationLogsComponent } from '../../components/dashboard/application
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
 import { ExportDataComponent } from '../../components/dashboard/export-data/export-data.component';
+import { ConfigureModelComponent } from '../../components/dashboard/aas/configure-model/configure-model.component';
+import { BuildModelConfigureComponent } from '../../components/dashboard/aas/build-models/build-model-configure/build-model-configure.component';
+import { BuildModelCreateComponent } from '../../components/dashboard/aas/build-models/build-model-create/build-model-create.component';
+import { AnalysisToolConfigureComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-configure/analysis-tool-configure.component';
+import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
+import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
+import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
+import { StorageServiceComponent } from '../../components/dashboard/storage-service/storage-service.component';
 
 const routes : Routes = [{
     path: '',
@@ -60,6 +68,10 @@ const routes : Routes = [{
         component: TableComponent        
     },
     {
+        path: 'edit-schema/:schemaName',
+        component: EditSchemaComponent
+    },
+    {
         path: 'api-access',
         component: RouteHandlersComponent
     },
@@ -71,6 +83,19 @@ const routes : Routes = [{
         path: 'api-access/:schemaName/add-route',
         component: AddRouteModalComponent
     },
+   
+    {
+        path: 'analytics-tool',
+        component: AnalyseModelComponent
+    },
+    {
+        path: 'analytics-tool-create',
+        component: AnalysisToolCreateComponent
+    },
+    {
+        path: 'analytics-tool-configure',
+        component: AnalysisToolConfigureComponent
+    },
     {
         path: 'analytics-home',
         component: AasComponent
@@ -78,7 +103,20 @@ const routes : Routes = [{
     {
         path: 'export-data',
         component: ExportDataComponent
-    }]
+    },
+    {
+        path: 'analytics-home-create',
+        component: BuildModelCreateComponent
+    },
+    {
+        path: 'analytics-home-configure',
+        component: BuildModelConfigureComponent
+    },
+    {
+        path: 'storage-configuration',
+        component: StorageServiceComponent
+    }
+    ]
 }]
 
 @NgModule({

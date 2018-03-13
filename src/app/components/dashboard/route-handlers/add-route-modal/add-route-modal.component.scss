@@ -15,6 +15,13 @@
         box-shadow: 0px 0px 10px 1px black;
         transform: scale(1.05) translateZ(100);
     } */
+    select {
+        -webkit-appearance: none;
+        appearance: none;
+        -moz-appearance: none;
+        -ms-progress-appearance: none;        
+    }        
+
     .setting-choice-box {        
         padding: nb-theme(padding);
         .title{            

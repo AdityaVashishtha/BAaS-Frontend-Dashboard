@@ -1,0 +1,54 @@
+@import "../../../../../@theme/styles/themes";
+@include nb-install-component() {
+  .item {
+    background-color: nb-theme(color-bg-active);
+    border-radius: 5px;
+    margin: 2px;    
+    max-height: 2.5rem;
+  }
+  .element {
+    box-sizing: border-box;
+    border-bottom: 1px solid nb-theme(color-bg-active);
+    margin-bottom: 1.5rem;
+    .attribute-name {
+      padding: 0.5rem;
+      border: 0px;
+      border-bottom: 1px solid nb-theme(color-bg-active);
+      font-size: 1.25em;
+      //width: 100%;
+      //background: transparent;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 50px;
+      width: 50px;
+      height: 50px;
+      border-left: 3px dashed nb-theme(color-bg-active);
+      border-bottom: 3px dashed nb-theme(color-bg-active);
+    }
+    .delete-btn {
+      position: absolute;
+      top: 0em;
+      right: 5em;
+      font-size: 1.25em;
+      color: nb-theme(color-bg-active);
+    }
+    .delete-btn:hover {
+      color: nb-theme(color-danger);
+    }
+    select.form-control {
+      padding: 0rem 2rem 0rem 1rem;
+      padding-left: 1rem;
+      max-height: 2.5rem;
+    }
+    .col-md-3 input[type="text"] {
+      max-height: 2.5rem;
+      padding-bottom: 0.50em;
+    }
+    .btn {
+        max-height: 2.5rem;
+      }
+  }
+}

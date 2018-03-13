@@ -1,0 +1,48 @@
+@import '../../../../../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+@include nb-install-component() {    
+
+    .item {
+        background-color: nb-theme(color-bg-active);
+        border-radius: 5px;
+        margin: 2px;
+    }
+    // Work on it
+   /*  .item-expand{
+        padding: 1rem;
+        box-shadow: 0px 0px 10px 1px black;
+        transform: scale(1.05) translateZ(100);
+    } */
+    .option-list{
+        list-style: none;
+        padding: 0;
+        .option {
+            border-bottom: 1px solid nb-theme(layout-bg);                
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.50rem;
+            .option-body{                                                
+                font-size: 1.15em;                       
+            }
+            .option-summary{                
+                font-size: 0.85em;
+            }
+        }
+    
+    }
+    
+    
+   
+    @include media-breakpoint-down(is) {
+        .light,
+        .cosmic {
+            display: none;
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        align-items: flex-end;
+        padding: 0;
+    }
+}

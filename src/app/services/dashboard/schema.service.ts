@@ -4,8 +4,7 @@ import { Headers } from '@angular/http';
 
 @Injectable()
 export class SchemaService {
-  authToken: string;
-
+  authToken: string;    
   constructor(
     private http: Http    
   ) { }
@@ -63,6 +62,22 @@ export class SchemaService {
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
     return this.http.post('http://localhost:4000/dashboard/schema/addAttribute',attribute,{headers: headers}).map(res => res.json());
+  }
+
+  removeAttribute(attribute) {
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');    
+    return this.http.post('http://localhost:4000/dashboard/schema/removeAttribute',attribute,{headers: headers}).map(res => res.json());
+  }
+
+  editSchemaStructure(schemaStructure) {    
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:4000/dashboard/schema/editSchemaStructure',schemaStructure,{headers: headers}).map(res => res.json());
   }
 
   insertData(row) {

@@ -29,6 +29,7 @@ export class ExportDataComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("I came here ");
     this.schemaService.getSchemas().subscribe(res => {
       this.schemas = res.schemas.map((item)=>{return item.name});
       this.exportConf.schema=this.schemas[0]; 
@@ -64,20 +65,22 @@ export class ExportDataComponent implements OnInit {
       return;
     }
     console.log(model);
-    for(let i in this.exportConf.attributes){
-        let attrb=this.exportConf.attributes[i];
+    // for(let i in this.exportConf.attributes){
+    //     let attrb=this.exportConf.attributes[i];
         
-      model.data.collectionAttributes[attrb]=this.schemaStructure[attrb].type;
-    }
-    console.log(model);
+    //   model.data.collectionAttributes[attrb]=this.schemaStructure[attrb].type;
+    // }
+    //console.log(model);
+    model.data["collectionAttributes"] = this.exportConf.attributes;
     this.exportDataService.exportData(model).subscribe(res => {
+      console.log(res);
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);                                                  
         this.resetForm();
       } else {
-        this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
-        
+        this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);   
       }
+
     }); 
   }
 

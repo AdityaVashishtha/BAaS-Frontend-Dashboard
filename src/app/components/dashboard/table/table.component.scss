@@ -1,3 +1,13 @@
-nb-card {
-    transform: translate3d(0, 0, 0);
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+    nb-card {
+        transform: translate3d(0, 0, 0);
+        max-width: 1450px;
+    }
+    .smart-table-container {
+        overflow-x: scroll;
+        /deep/ .ng2-smart-action:nth-child(1) {            
+            border: 0px;
+        }
+    }
 }

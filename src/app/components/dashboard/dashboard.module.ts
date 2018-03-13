@@ -22,7 +22,22 @@ import { ApplicationLogsComponent } from './application-logs/application-logs.co
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AasComponent } from './aas/aas.component';
 import { ExportDataComponent } from './export-data/export-data.component';
-
+import { ConfigureModelComponent } from './aas/configure-model/configure-model.component';
+import { AnalyseModelComponent } from './aas/analyse-model/analyse-model.component';
+import { CreateModelComponent } from './aas/create-model/create-model.component';
+import { AnalysisToolCreateComponent } from './aas/analyse-model/analysis-tool-create/analysis-tool-create.component';
+import { AnalysisToolConfigureComponent } from './aas/analyse-model/analysis-tool-configure/analysis-tool-configure.component';
+import { BuildModelsComponent } from './aas/build-models/build-models.component';
+import { BuildModelConfigureComponent } from './aas/build-models/build-model-configure/build-model-configure.component';
+import { BuildModelCreateComponent } from './aas/build-models/build-model-create/build-model-create.component';
+import { ConfigureRenderComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-render.component';
+import { ConfigureCollapsiblePanelComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/configure-collapsible-panel.component';
+import { PanelInputFieldComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-input-field/panel-input-field.component';
+import { PanelSubsectionComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/panel-subsection/panel-subsection.component';
+import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component';
+import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
+import { ParameterConfigurerComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/parameter-configurer/parameter-configurer.component';
+import { StorageServiceComponent } from './storage-service/storage-service.component';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -54,10 +69,28 @@ const PAGES_COMPONENTS = [
     UserProfileComponent,
     AasComponent,
     ExportDataComponent,    
+    ConfigureModelComponent,
+    AnalyseModelComponent,
+    CreateModelComponent,
+    AnalysisToolCreateComponent,
+    AnalysisToolConfigureComponent,
+    BuildModelsComponent,
+    BuildModelConfigureComponent,
+    BuildModelCreateComponent,
+    ConfigureRenderComponent,
+    ConfigureCollapsiblePanelComponent,
+    PanelInputFieldComponent,
+    PanelSubsectionComponent,    
+    EditSchemaComponent,
+    AttributeConfigComponent,
+    ParameterConfigurerComponent,
+    StorageServiceComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    
     AddAttributeModalComponent,
+    ConfigureRenderComponent,    
+    
     //AddRouteModalComponent
   ]
 })

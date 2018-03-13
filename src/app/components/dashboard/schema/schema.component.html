@@ -13,9 +13,10 @@
     <nb-card>
       <nb-card-header>{{schema.name}}</nb-card-header>
       <nb-card-body>
-        <div class="schema-options">
-          <button (click)="editSchema(schema.name)" type="button" class="btn btn-round btn-primary btn-block">Edit Schema</button>
+        <div class="schema-options">            
+          <button (click)="viewSchema(schema.name)" type="button" class="btn btn-round btn-primary btn-block">View Schema</button>          
           <button (click)="apiAccess(schema.name)" type="button" class="btn btn-round btn-info btn-block">API Access</button>
+          <button (click)="editSchema(schema.name)" type="button" class="btn btn-round btn-warning btn-block">Edit Schema</button>
           <button (click)="deleteSchema(schema.name,$event)" type="button" class="btn btn-round btn-danger btn-block">Delete Schema</button>
         </div>
       </nb-card-body>

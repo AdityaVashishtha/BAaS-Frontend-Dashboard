@@ -43,9 +43,9 @@ export class AasComponent implements OnInit {
   
   onSchemaSelect(schemaname){
     this.schemaService.getSchemaStructure(schemaname).subscribe(res=>{
-      console.log(res.data.structure);
+      //console.log(res.data.structure);
       this.schemaStructure=res.data.structure;
-      console.log(this.schemaStructure);
+      //console.log(this.schemaStructure);
       this.attributes=Object.keys(res.data.structure);
       //remove id,insertedAt and modifiedAt attributes
       this.attributes.splice(this.attributes.indexOf("_id"),1);
@@ -69,15 +69,15 @@ export class AasComponent implements OnInit {
       this.toastService.showToast(this.toastService.typeNum.error,"Oops!!,You have not added any attributes","");
       return;
     }
-    console.log(model);
+    //console.log(model);
     for(let i in this.aasSettings.attributes){
         let attrb=this.aasSettings.attributes[i];
         
-        //console.log(item);
+        ////console.log(item);
 
       model.data.collectionAttributes[attrb]=this.schemaStructure[attrb].type;
     }
-    console.log(model);
+    //console.log(model);
     this.analyticsService.createModel(model).subscribe(res => {
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);                                                  
@@ -100,9 +100,12 @@ export class AasComponent implements OnInit {
   addAttribute(){
     if(this.aasSettings.attributes.indexOf(this.selectedAttribute)<0)
       this.aasSettings.attributes.push(this.selectedAttribute);
+    if(this.selectedAttribute=''){
+        return;
+    }
     this.attributes.splice(this.attributes.indexOf(this.selectedAttribute),1);
     this.selectedAttribute=this.attributes[0];
-    //console.log(this.outputAttributes);
+    ////console.log(this.outputAttributes);
   }
   resetForm(){
     this.aasSettings = {

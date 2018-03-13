@@ -18,21 +18,40 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     requestBody: [],
     constraint: [],
     accessControl: 'public',
+    userBasedSession: {},
+    select: {
+      isEnable: false,
+      attributes: []
+    },
+    limit: {
+      isEnable: false,
+      value: 100
+    },
+    sort: {
+      isEnable: false,
+      attributes: []
+    }
   };
   private operations = [ 'insert', 'find', 'update', 'delete', 'findById' ];
-  private accessTypes = ['public','session','admin','custom'];
-  private constraints = ['equal','greater-than','less-than','regex','like'];
+  private accessTypes = ['public','session','admin'];
+  private constraints = ['equal', 'not-equal','greater-than','greater-than-equal','less-than','less-than-equal','in-array', 'not-in-array','regex'];
+  private postOperations = ['limit','sort','max','select'];
+  private isUserBasedSession: boolean;  
   private hasRequestBody: boolean;
   private schemaStructure: string;
   private requestBodyAttributeList: string[];
   private hasMatchingConstraint: boolean;
   private matchingConstraintList: any[];
   private schemaAttributeList: string[];
+  private userBasedSessionList: string[];
+  private userAttributeList: string[];
+
 
   // temp variables 
   private requestBodyAttribute: string ;
   private constraintCondition: string = this.constraints[0];
   private schemaAttribute: string ;
+
 
   /* Constructor here */
   constructor(  
@@ -45,6 +64,7 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     this.hasRequestBody = this.hasMatchingConstraint = false;
     this.requestBodyAttributeList = [];
     this.matchingConstraintList = [];
+    this.userBasedSessionList = [];
    }
 
   /* Life Cycle Hooks */
@@ -55,6 +75,9 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
         this.schemaAttributeList = Object.keys(res.data.structure);
         this.schemaAttribute = this.schemaAttributeList[0];
         this.schemaStructure = JSON.stringify(res.data.structure);
+      });
+      this.schemaService.getSchemaStructure('authuser').subscribe((res)=>{        
+        this.userAttributeList = Object.keys(res.data.structure);        
       });
     });
   }
@@ -69,7 +92,12 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     this.routeModel.requestBody = this.requestBodyAttributeList;    
     this.routeModel.constraint = this.matchingConstraintList.map(item=>{
       return JSON.parse(item);
-    })
+    });
+    this.routeModel.userBasedSession = {
+      isEnable: this.isUserBasedSession,
+      sessionAttribute: this.userBasedSessionList
+    }
+    console.log(this.routeModel);
     this.routeHandlerSevice.addRoute(this.routeModel).subscribe(res=>{
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray !!",res.message);
@@ -98,6 +126,23 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     }
   }
 
+  addInSessionBody(e) {    
+    let isPresent = this.userBasedSessionList.indexOf(e.value);    
+    if(isPresent>=0 || e.value.toString().length === 0 )      
+      alert("Unique values only!!");
+    else {      
+      this.userBasedSessionList.push(e.value);  
+      this.userAttributeList.splice(this.userAttributeList.indexOf(e.value),1);    
+    } 
+  }
+
+  removeInSessionBody(i) {
+    let index = this.userBasedSessionList.indexOf(i);
+    if(index>=0) {
+      this.userBasedSessionList.splice(index,1);
+    }
+  }
+
   addMatchingConstraint() {
     let matchingConstraint = {
       schemaAttribute: this.schemaAttribute,
@@ -120,6 +165,39 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     if(index != -1) {
       this.matchingConstraintList.splice(index,1);
       console.log(this.matchingConstraintList);
+    }
+  }
+
+  addAttributeFromSelectConstraint(e) {
+    let isPresent = this.routeModel.select.attributes.indexOf(e.value);    
+    if(isPresent>=0 || e.value.toString().length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.routeModel.select.attributes.push(e.value);      
+    } 
+  }
+
+  removeAttributeFromSelectConstraint(item) {
+    let index = this.routeModel.select.attributes.indexOf(item);
+    if(index>=0) {
+      this.routeModel.select.attributes.splice(index,1);
+    }
+  }
+
+  addAttributeToSort(sortSchemaAttribute,sortOrder) {
+    let e = [sortSchemaAttribute.value,sortOrder.value];
+    let isPresent = this.routeModel.sort.attributes.indexOf(e);    
+    if(isPresent>=0 || e.length === 0 )      
+      alert("Unique values only!!");
+    else {
+      this.routeModel.sort.attributes.push(e);      
+    } 
+  }
+
+  removeAttributeToSort(item) {
+    let index = this.routeModel.sort.attributes.indexOf(item);
+    if(index>=0) {
+      this.routeModel.sort.attributes.splice(index,1);
     }
   }
 

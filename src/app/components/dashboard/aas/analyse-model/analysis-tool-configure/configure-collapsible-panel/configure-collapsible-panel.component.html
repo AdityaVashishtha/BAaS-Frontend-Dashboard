@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-success btn-block" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" style="border-radius:0.175">
+    {{panelContents.name}}
+  </button>
+
+<div id="collapseExample" [ngbCollapse]="isCollapsed" style="border:2px solid rgba(0, 0, 0, 0.250)" >
+  <div class="card">
+    <div class="card-body" *ngFor="let section of panelContents.subsections">
+      <app-panel-subsection [subsectionContents]='section'  [attributesList]='attributesList'></app-panel-subsection>
+    </div>
+  </div>
+</div>
+<!-- <ngb-panel>
+  <ng-template ngbPanelTitle>
+    <div class="row">
+      <div class="col-md-12">
+          <button type="button" class="btn btn-info btn-block">
+              Preprocessing
+          </button>
+        
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ngbPanelContent>
+   Something goes here
+    <hr>
+
+  </ng-template>
+</ngb-panel> -->

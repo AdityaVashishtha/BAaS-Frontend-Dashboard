@@ -9,11 +9,10 @@ import {
 } from '@nebular/theme';
 
 import { StateService } from '../../../@core/data/state.service';
-import { AppDetailsService } from '../../../@core/data/appDetails.service';
-
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/delay';
+import { ConfigurationService } from '../../../services/dashboard/configuration.service';
 
 // TODO: move layouts into the framework
 @Component({
@@ -31,7 +30,7 @@ import 'rxjs/add/operator/delay';
                    [right]="sidebar.id === 'right'">
         <nb-sidebar-header>
           <button class="btn btn-hero-success main-btn">
-            <i class="ion-cube"></i> <span>{{app.name}}</span>
+            <i class="ion-cube"></i> <span>{{app.appName}}</span>
           </button>
         </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
@@ -63,7 +62,7 @@ import 'rxjs/add/operator/delay';
     </nb-layout>
   `,
 })
-export class SampleLayoutComponent  implements OnDestroy {
+export class SampleLayoutComponent implements OnDestroy {
 
   subMenu: NbMenuItem[] = [
     {
@@ -113,13 +112,14 @@ export class SampleLayoutComponent  implements OnDestroy {
   protected sidebarState$: Subscription;
   protected menuClick$: Subscription;
   private app;
-  
+
   constructor(protected stateService: StateService,
-              protected menuService: NbMenuService,
-              protected themeService: NbThemeService,
-              protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService,
-              protected appDetailsService: AppDetailsService ) {
+    protected menuService: NbMenuService,
+    protected themeService: NbThemeService,
+    protected bpService: NbMediaBreakpointsService,
+    protected sidebarService: NbSidebarService,
+    protected appDetailsService: ConfigurationService) {
+    this.app = {};
     this.layoutState$ = this.stateService.onLayoutState()
       .subscribe((layout: string) => this.layout = layout);
 
@@ -139,8 +139,12 @@ export class SampleLayoutComponent  implements OnDestroy {
         }
       });
 
-      this.app = appDetailsService.getAppDetails();
-  }  
+    this.appDetailsService.getApplicationDetails().subscribe(
+      res => {
+        this.app = res.config;
+      }
+    );
+  }
   ngOnDestroy() {
     this.layoutState$.unsubscribe();
     this.sidebarState$.unsubscribe();
