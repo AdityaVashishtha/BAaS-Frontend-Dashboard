@@ -11,7 +11,7 @@
             <span class="input-group-addon">
               <i class="nb-tables"></i>
             </span>
-            <input name="schemaName" id="schemaName" pattern="[A-Za-z]{2,100}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg"
+            <input name="schemaName" id="schemaName" pattern="[A-Za-z_]{2,100}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg"
               [class.form-control-warning]="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required"
               required #schemaName="ngModel">
           </div>

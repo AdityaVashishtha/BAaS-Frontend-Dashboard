@@ -93,9 +93,10 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     this.routeModel.constraint = this.matchingConstraintList.map(item=>{
       return JSON.parse(item);
     });
+    let userBasedSessionConstraint = this.userBasedSessionList.map(item=> JSON.parse(item));
     this.routeModel.userBasedSession = {
       isEnable: this.isUserBasedSession,
-      sessionAttribute: this.userBasedSessionList
+      sessionAttribute: userBasedSessionConstraint
     }
     console.log(this.routeModel);
     this.routeHandlerSevice.addRoute(this.routeModel).subscribe(res=>{
@@ -126,14 +127,23 @@ export class AddRouteModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  addInSessionBody(e) {    
-    let isPresent = this.userBasedSessionList.indexOf(e.value);    
-    if(isPresent>=0 || e.value.toString().length === 0 )      
-      alert("Unique values only!!");
-    else {      
-      this.userBasedSessionList.push(e.value);  
-      this.userAttributeList.splice(this.userAttributeList.indexOf(e.value),1);    
-    } 
+  addInSessionBody(e,requestKeyTag) { 
+    let correctVariableNamePattern = new RegExp("^[A-z]+$");    
+    if(!correctVariableNamePattern.test(requestKeyTag.value) || requestKeyTag.value.toString().length === 0 ) {
+      alert('Request key required and only contains alphabatest and length < 50');
+    } else {
+      let userSessionConstraint = {
+        replaceKey: requestKeyTag.value,
+        replaceWith: e.value
+      };
+      let isPresent = this.userBasedSessionList.indexOf(JSON.stringify(userSessionConstraint));    
+      if(isPresent>=0 || e.value.toString().length === 0 )      
+        alert("Unique values only!!");
+      else {      
+        this.userBasedSessionList.push(JSON.stringify(userSessionConstraint));  
+        this.userAttributeList.splice(this.userAttributeList.indexOf(e.value),1);    
+      }
+    }         
   }
 
   removeInSessionBody(i) {
