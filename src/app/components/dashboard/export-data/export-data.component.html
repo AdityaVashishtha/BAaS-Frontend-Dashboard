@@ -38,7 +38,6 @@
                   </div>
                   <div class="option-summary text-hint font-w-light">Choose schema on which model is to be created</div>
                 </li>
-
                 <li class="option">
                   <div class="option-body row">
                     <div class="option-title col-sm-12">Select Attributes</div>
@@ -67,19 +66,13 @@
                                           </ul>
                                         </div>
                                   </div> 
-                                  
                                   <div class="form-group col-md-4">
                                       <button class="form-element btn btn btn-outline-info" (click)="addAttribute();">Add</button>
-                                  </div>
-                                             
+                                  </div>                                           
                                 </div>
-                                
                               </div>
                           </div>
-
                       </div>
-                        
-                        
                     </div>
                   </div>
                   <div class="option-summary text-hint font-w-light">Choose required attributes</div>
@@ -89,9 +82,8 @@
                     <div class="option-title col-md-8 col-sm-6">Select Data Format</div>
                     <div class="option-value col-md-4 col-sm-6">
                         <select name="format" class="form-control form-control-info" [(ngModel)]="exportConf.format">
-                            <option value="csv">CSV</option>
-                            <option value="json">JSON</option>
-                          </select>
+                          <option value="csv" default>CSV</option>
+                        </select>
                     </div>
                   </div>
                   <div class="option-summary text-hint font-w-light">Select one data formats</div>
@@ -100,10 +92,17 @@
             </div>
           </div>
         </form>
+        <div class="row" *ngIf="url != null">
+          <div class="col-md-6 offset-md-3">
+            <a href="{{url}}" target="_blank" class="btn btn-block btn-outline-primary">
+              Export Data
+            </a>
+          </div>
+        </div>
       </nb-card-body>
       <nb-card-footer>
         <button (click)="onSubmit()" [disabled]="!form.valid" class="col-md-4 offset-md-8 btn btn-md btn-hero-info" type="submit">
-          Export Data
+          Convert Data to CSV
         </button>
       </nb-card-footer>
     </nb-card>

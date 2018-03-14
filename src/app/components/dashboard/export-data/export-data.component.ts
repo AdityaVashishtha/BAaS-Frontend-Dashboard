@@ -15,12 +15,12 @@ export class ExportDataComponent implements OnInit {
   private attributes=[];
   private schemaStructure;
   private selectedAttribute='';
-  
+  private url=null;
   private schemas:any;
   private exportConf = {
     schema:'',
     attributes:[],
-    format:'',
+    format:'csv',
   }
   constructor(
     private exportDataService: ExportDataService,
@@ -76,6 +76,7 @@ export class ExportDataComponent implements OnInit {
       console.log(res);
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);                                                  
+        this.url = res.data.url;
         this.resetForm();
       } else {
         this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);   
