@@ -14,6 +14,7 @@ import { AuthRoutesComponent } from '../../components/dashboard/authentication/a
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
+import { ExportDataComponent } from '../../components/dashboard/export-data/export-data.component';
 import { ConfigureModelComponent } from '../../components/dashboard/aas/configure-model/configure-model.component';
 import { BuildModelConfigureComponent } from '../../components/dashboard/aas/build-models/build-model-configure/build-model-configure.component';
 import { BuildModelCreateComponent } from '../../components/dashboard/aas/build-models/build-model-create/build-model-create.component';
@@ -99,6 +100,10 @@ const routes : Routes = [{
     {
         path: 'analytics-home',
         component: AasComponent
+    },
+    {
+        path: 'export-data',
+        component: ExportDataComponent
     },
     {
         path: 'analytics-home-create',

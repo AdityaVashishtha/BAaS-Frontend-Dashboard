@@ -21,6 +21,7 @@ import { AuthRoutesComponent } from './authentication/auth-routes/auth-routes.co
 import { ApplicationLogsComponent } from './application-logs/application-logs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AasComponent } from './aas/aas.component';
+import { ExportDataComponent } from './export-data/export-data.component';
 import { ConfigureModelComponent } from './aas/configure-model/configure-model.component';
 import { AnalyseModelComponent } from './aas/analyse-model/analyse-model.component';
 import { CreateModelComponent } from './aas/create-model/create-model.component';
@@ -68,6 +69,7 @@ const PAGES_COMPONENTS = [
     ApplicationLogsComponent,
     UserProfileComponent,
     AasComponent,
+    ExportDataComponent,    
     ConfigureModelComponent,
     AnalyseModelComponent,
     CreateModelComponent,
