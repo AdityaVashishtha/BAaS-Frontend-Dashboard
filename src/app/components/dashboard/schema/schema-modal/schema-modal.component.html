@@ -16,7 +16,7 @@
               required #schemaName="ngModel">
           </div>
           <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required">Schema Name Required!!</small>
-          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only Alphabates with length between 0-12 allowed!!</small>
+          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only alphabate with '_' with length between 2-50 allowed!!</small>
         </div>
       </form>
 </div>

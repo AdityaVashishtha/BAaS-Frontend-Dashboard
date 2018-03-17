@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "public",
+      "outDir": "dashboard-ui",
       "assets": [
         "assets",
         "favicon.ico",

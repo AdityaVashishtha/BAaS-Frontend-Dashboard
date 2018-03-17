@@ -22,7 +22,7 @@ export class AuthRoutesComponent implements OnInit {
       request: `{
         "user" : {
           "username" : "username/email",
-          "password" : "string",
+          "password" : "string"
         }
       }`,
       response: `{        
@@ -34,11 +34,11 @@ export class AuthRoutesComponent implements OnInit {
       request: `{
         "user" : {
           "username" : "username/email",
-          "password" : "string",
+          "password" : "string"
         }
       }` ,
       response: `{        
-          "success": "true/false"
+          "success": "true/false",
           "token": "Bearer token",
           "data" : { "user": "info" }        
       }`
@@ -50,8 +50,22 @@ export class AuthRoutesComponent implements OnInit {
         return response.
       `,
       response: `{
+        "success": "true/false",
+        "token": "Bearer token",
+        "user": "user session object",
+        "data" : { "user": "info" }
+      }`
+    },
+    facebookLogin: {
+      request: `
+        Hit this api link and it will redirect
+        to facebook authentication and
+        return response.
+      `,
+      response: `{
         "success": "true/false"
         "token": "Bearer token",
+        "user": "user session object",
         "data" : { "user": "info" }
       }`
     }
