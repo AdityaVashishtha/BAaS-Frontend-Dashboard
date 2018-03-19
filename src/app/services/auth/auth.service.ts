@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators'
 
 @Injectable()
 export class AuthService {
-
+  private SERVER_ADDRESS = 'http://localhost:4000';//'http://localhost:4000';
   public userChangeEvent: EventEmitter<any> = new EventEmitter();
   authToken: any;
   user: any;
@@ -18,7 +18,7 @@ export class AuthService {
   
   authenticateUser(user){
     let headers= new HttpHeaders();
-    let loginEndPoint = "http://localhost:4000/dashboard/auth/login";
+    let loginEndPoint = this.SERVER_ADDRESS+"dashboard/auth/login";
     headers.set('Content-Type','application/json');
     return this.http.post<any>(loginEndPoint,user,{headers: headers}).map(res => res);
   }
@@ -54,7 +54,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.httpOld.post('http://localhost:4000/dashboard/auth/changePassword',updateQuery,{headers: headers}).map(res => res.json());
+    return this.httpOld.post(this.SERVER_ADDRESS+'dashboard/auth/changePassword',updateQuery,{headers: headers}).map(res => res.json());
   }
 
   updateProfile(updateQuery) {
@@ -70,7 +70,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.httpOld.post('http://localhost:4000/dashboard/auth/updateProfile',updateQuery,{headers: headers}).map(res => res.json());
+    return this.httpOld.post(this.SERVER_ADDRESS+'dashboard/auth/updateProfile',updateQuery,{headers: headers}).map(res => res.json());
   }
 
   logout() {

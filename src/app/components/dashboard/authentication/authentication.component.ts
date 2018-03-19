@@ -33,7 +33,8 @@ export class AuthenticationComponent implements OnInit {
           isEnabled: false,
           clientID: '',
           clientSecrete:'',          
-        }        
+        },
+        redirectUrl: ''        
       },      
     }
     this.configurationService.getAuthenticationConfig().subscribe(res=>{

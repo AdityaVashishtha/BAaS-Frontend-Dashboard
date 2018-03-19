@@ -21,6 +21,7 @@ import { AuthRoutesComponent } from './authentication/auth-routes/auth-routes.co
 import { ApplicationLogsComponent } from './application-logs/application-logs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AasComponent } from './aas/aas.component';
+import { ExportDataComponent } from './export-data/export-data.component';
 import { ConfigureModelComponent } from './aas/configure-model/configure-model.component';
 import { AnalyseModelComponent } from './aas/analyse-model/analyse-model.component';
 import { CreateModelComponent } from './aas/create-model/create-model.component';
@@ -37,6 +38,7 @@ import { EditSchemaComponent } from './schema/edit-schema/edit-schema.component'
 import { AttributeConfigComponent } from './schema/edit-schema/attribute-config/attribute-config.component';
 import { ParameterConfigurerComponent } from './aas/analyse-model/analysis-tool-configure/configure-collapsible-panel/parameter-configurer/parameter-configurer.component';
 import { StorageServiceComponent } from './storage-service/storage-service.component';
+import { VisualizationComponent } from './aas/visualization/visualization.component';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -67,6 +69,7 @@ const PAGES_COMPONENTS = [
     ApplicationLogsComponent,
     UserProfileComponent,
     AasComponent,
+    ExportDataComponent,    
     ConfigureModelComponent,
     AnalyseModelComponent,
     CreateModelComponent,
@@ -82,7 +85,8 @@ const PAGES_COMPONENTS = [
     EditSchemaComponent,
     AttributeConfigComponent,
     ParameterConfigurerComponent,
-    StorageServiceComponent,    
+    StorageServiceComponent,
+    VisualizationComponent,    
   ],
   entryComponents: [
     SchemaModalComponent,    

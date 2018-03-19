@@ -1,51 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from '../../../services/dashboard/analytics.service';
+//import { AnalyticsService } from '../../../services/dashboard/analytics.service';
+import { ExportDataService } from '../../../services/dashboard/export-data.service';
 import { SchemaService } from '../../../services/dashboard/schema.service';
 import { ToastService } from '../../../services/util/toast.service';
 
 
 @Component({
-  selector: 'app-aas',
-  templateUrl: './aas.component.html',
-  styleUrls: ['./aas.component.scss']
+  selector: 'app-export-data',
+  templateUrl: './export-data.component.html',
+  styleUrls: ['./export-data.component.scss']
 })
-export class AasComponent implements OnInit {
-  private classificationAlgorithms=['Logistic Regression','LDA','K-Nearest Neighbours','Naive Byaes','CART','SVM'];
-  private regressionAlgorithms=['Linear','Ridge','LASSO Linear','Elastic Net','KNN','CART','SVM'];
- 
+export class ExportDataComponent implements OnInit {
+
   private attributes=[];
   private schemaStructure;
   private selectedAttribute='';
-  
+  private url=null;
   private schemas:any;
-  private aasSettings = {
-    name: '',
+  private exportConf = {
     schema:'',
     attributes:[],
+    format:'csv',
   }
-
   constructor(
-    private analyticsService: AnalyticsService,
+    private exportDataService: ExportDataService,
     private schemaService: SchemaService,
-    private toastService:ToastService
-    
-    
+    private toastService:ToastService   
   ) { }
 
   ngOnInit() {
+    console.log("I came here ");
     this.schemaService.getSchemas().subscribe(res => {
       this.schemas = res.schemas.map((item)=>{return item.name});
-      this.aasSettings.schema=this.schemas[0]; 
-      this.onSchemaSelect(this.aasSettings.schema);
+      this.exportConf.schema=this.schemas[0]; 
+      this.onSchemaSelect(this.exportConf.schema);
     });
     
   }
   
   onSchemaSelect(schemaname){
     this.schemaService.getSchemaStructure(schemaname).subscribe(res=>{
-      //console.log(res.data.structure);
+      console.log(res.data.structure);
       this.schemaStructure=res.data.structure;
-      //console.log(this.schemaStructure);
+      console.log(this.schemaStructure);
       this.attributes=Object.keys(res.data.structure);
       //remove id,insertedAt and modifiedAt attributes
       this.attributes.splice(this.attributes.indexOf("_id"),1);
@@ -57,64 +54,60 @@ export class AasComponent implements OnInit {
 
   onSubmit() {
     let model={
-      name: this.aasSettings.name,
       data:{
-        collectionName:this.aasSettings.schema,
+        collectionName:this.exportConf.schema,
         collectionAttributes:{
-          
         }
       }
     }
-    if(this.aasSettings.attributes.length==0){
+    if(this.exportConf.attributes.length==0){
       this.toastService.showToast(this.toastService.typeNum.error,"Oops!!,You have not added any attributes","");
       return;
     }
-    //console.log(model);
-    for(let i in this.aasSettings.attributes){
-        let attrb=this.aasSettings.attributes[i];
+    console.log(model);
+    // for(let i in this.exportConf.attributes){
+    //     let attrb=this.exportConf.attributes[i];
         
-        ////console.log(item);
-
-      model.data.collectionAttributes[attrb]=this.schemaStructure[attrb].type;
-    }
+    //   model.data.collectionAttributes[attrb]=this.schemaStructure[attrb].type;
+    // }
     //console.log(model);
-    this.analyticsService.createModel(model).subscribe(res => {
+    model.data["collectionAttributes"] = this.exportConf.attributes;
+    this.exportDataService.exportData(model).subscribe(res => {
+      console.log(res);
       if(res.success) {
         this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!",res.message);                                                  
+        this.url = res.data.url;
         this.resetForm();
       } else {
-        this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);
-        
+        this.toastService.showToast(this.toastService.typeNum.error,"Oops!!",res.message);   
       }
+
     }); 
   }
 
   removeAttribute(i) {
-    let index = this.aasSettings.attributes.indexOf(i);
+    let index = this.exportConf.attributes.indexOf(i);
     if(index>=0) {
-      this.aasSettings.attributes.splice(index,1);
+      this.exportConf.attributes.splice(index,1);
       this.attributes.push(i);
     }
   }
 
   addAttribute(){
-    if(this.aasSettings.attributes.indexOf(this.selectedAttribute)<0)
-      this.aasSettings.attributes.push(this.selectedAttribute);
-    if(this.selectedAttribute=''){
-        return;
-    }
+    if(this.exportConf.attributes.indexOf(this.selectedAttribute)<0)
+      this.exportConf.attributes.push(this.selectedAttribute);
     this.attributes.splice(this.attributes.indexOf(this.selectedAttribute),1);
     this.selectedAttribute=this.attributes[0];
-    ////console.log(this.outputAttributes);
+    //console.log(this.outputAttributes);
   }
   resetForm(){
-    this.aasSettings = {
-      name: '',
+    this.exportConf = {
       schema:'',
       attributes:[],
+      format:'',
       
     }
     this.ngOnInit();
    }
-  
+
 }

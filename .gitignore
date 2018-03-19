@@ -3,6 +3,7 @@
 /tmp
 /out-tsc
 /public
+/dashboard-ui
 
 # dependencies
 /node_modules

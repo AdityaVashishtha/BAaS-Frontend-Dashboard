@@ -4,7 +4,7 @@ import { Headers } from '@angular/http';
 
 @Injectable()
 export class StorageService {
-
+  private SERVER_ADDRESS = 'http://localhost:4000'; // 'http://localhost:4000';
   constructor(
     private http: Http
   ) { }
@@ -14,7 +14,7 @@ export class StorageService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/dashboard/storage-service/addStrorageConfig',storageConfig,{headers: headers}).map(res => res.json());        
+    return this.http.post(this.SERVER_ADDRESS+'dashboard/storage-service/addStrorageConfig',storageConfig,{headers: headers}).map(res => res.json());        
   }
 
   getStorageConfiguration() {
@@ -22,7 +22,7 @@ export class StorageService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:4000/dashboard/storage-service/getStorageConfig',{headers: headers}).map(res => res.json());        
+    return this.http.get(this.SERVER_ADDRESS+'dashboard/storage-service/getStorageConfig',{headers: headers}).map(res => res.json());        
   }
 
 }

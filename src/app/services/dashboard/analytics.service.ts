@@ -4,7 +4,7 @@ import { Http, Headers  } from '@angular/http';
 
 @Injectable()
 export class AnalyticsService {
-
+  private SERVER_ADDRESS = 'http://localhost:4000' ;//http://localhost:4000';
   constructor(
     private http: Http
   ) { }
@@ -14,7 +14,7 @@ export class AnalyticsService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/dashboard/aas/createAnalyticsSchema',model,{headers: headers}).map(res => res.json());
+    return this.http.post(this.SERVER_ADDRESS+'dashboard/aas/createAnalyticsSchema',model,{headers: headers}).map(res => res.json());
   }
 
   getModels(){
@@ -22,14 +22,14 @@ export class AnalyticsService {
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:4000/dashboard/aas/getAnalyticsSchemas',{headers: headers}).map(res => res.json());
+    return this.http.get(this.SERVER_ADDRESS+'dashboard/aas/getAnalyticsSchemas',{headers: headers}).map(res => res.json());
   }
   getAasJSON(){
     let token = localStorage.getItem('id_token');        
     let headers = new Headers();
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:4000/dashboard/aas/getAasJSON',{headers: headers}).map(res => res.json());
+    return this.http.get(this.SERVER_ADDRESS+'dashboard/aas/getAasJSON',{headers: headers}).map(res => res.json());
   }
   
 

@@ -81,23 +81,24 @@
                   <div class="option-summary text-hint font-w-light">Do you want to Enable or Disable unique user based route ?</div>
                   <div class="container p-2" [class.d-md-none]="!isUserBasedSession">
                     <div class="row">
-                      <div class="col-md-8 row">
+                      <div class="col-md-10 row">
+                        <input class="col-md-5 form-control form-control-info" placeholder="Request key" type="text" #requestKey>
+                        <select class="offset-md-1 col-md-5 form-control form-control-info" name="sessionAttrInRequest"  #userAttribute>
+                          <option value="{{item}}" *ngFor="let item of userAttributeList">{{item}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <button (click)="addInSessionBody(userAttribute,requestKey)" class="btn btn-outline-primary" type="button">
+                          Add
+                        </button>
+                      </div>
+                      <div class="col-md-12 row">
                         <div class="p-3 item" *ngFor="let i of userBasedSessionList">
                           {{i}}
                           <button type="button" (click)="removeInSessionBody(i)" class="ml-1 close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                      </div>
-                      <div class=" col-md-3">
-                        <select name="sessionAttrInRequest" class="form-control form-control-info" #userAttribute>
-                          <option value="{{item}}" *ngFor="let item of userAttributeList">{{item}}</option>
-                        </select>
-                      </div>
-                      <div class="col-md-1">
-                        <button (click)="addInSessionBody(userAttribute)" class="btn btn-outline-primary" type="button">
-                          Add
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -153,7 +154,7 @@
                         <div class="col-md-4 text-hint" *ngIf="routeModel.limit.isEnable">Disable</div>
                         <div class="col-md-4">
                           <div class="switch">
-                            <input type="checkbox" name="machingConstraint" [(ngModel)]="routeModel.limit.isEnable" [checked]="routeModel.select.isEnable">
+                            <input type="checkbox" name="machingConstraint" [(ngModel)]="routeModel.limit.isEnable" [checked]="routeModel.limit.isEnable">
                             <span class="slider" [class.slider-disable]="!routeModel.limit.isEnable"></span>
                           </div>
                         </div>

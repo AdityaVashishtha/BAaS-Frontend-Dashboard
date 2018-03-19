@@ -14,6 +14,7 @@ import { AuthRoutesComponent } from '../../components/dashboard/authentication/a
 import { ApplicationLogsComponent } from '../../components/dashboard/application-logs/application-logs.component';
 import { UserProfileComponent } from '../../components/dashboard/user-profile/user-profile.component';
 import { AasComponent } from '../../components/dashboard/aas/aas.component';
+import { ExportDataComponent } from '../../components/dashboard/export-data/export-data.component';
 import { ConfigureModelComponent } from '../../components/dashboard/aas/configure-model/configure-model.component';
 import { BuildModelConfigureComponent } from '../../components/dashboard/aas/build-models/build-model-configure/build-model-configure.component';
 import { BuildModelCreateComponent } from '../../components/dashboard/aas/build-models/build-model-create/build-model-create.component';
@@ -22,6 +23,7 @@ import { AnalysisToolCreateComponent } from '../../components/dashboard/aas/anal
 import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-model/analyse-model.component';
 import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
 import { StorageServiceComponent } from '../../components/dashboard/storage-service/storage-service.component';
+import { VisualizationComponent } from '../../components/dashboard/aas/visualization/visualization.component';
 
 const routes : Routes = [{
     path: '',
@@ -100,6 +102,10 @@ const routes : Routes = [{
         component: AasComponent
     },
     {
+        path: 'export-data',
+        component: ExportDataComponent
+    },
+    {
         path: 'analytics-home-create',
         component: BuildModelCreateComponent
     },
@@ -110,6 +116,10 @@ const routes : Routes = [{
     {
         path: 'storage-configuration',
         component: StorageServiceComponent
+    },
+    {
+        path: 'analytics/visualize',
+        component: VisualizationComponent
     }
     ]
 }]

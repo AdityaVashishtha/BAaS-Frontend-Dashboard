@@ -11,12 +11,12 @@
             <span class="input-group-addon">
               <i class="nb-tables"></i>
             </span>
-            <input name="schemaName" id="schemaName" pattern="[A-Za-z]{2,100}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg"
+            <input name="schemaName" id="schemaName" pattern="[A-Za-z_]{2,100}" [(ngModel)]="name" placeholder="Schema Name" class="form-control input-lg"
               [class.form-control-warning]="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required"
               required #schemaName="ngModel">
           </div>
           <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.required">Schema Name Required!!</small>
-          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only Alphabates with length between 0-12 allowed!!</small>
+          <small class="form-text text-warning" *ngIf="schemaName.errors && (schemaName.dirty || schemaName.touched) && schemaName.errors.pattern">Only alphabate with '_' with length between 2-50 allowed!!</small>
         </div>
       </form>
 </div>
