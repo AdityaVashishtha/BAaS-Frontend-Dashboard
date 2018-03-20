@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div [formGroup]="myForm" (ngSubmit)="submit()">
+        <!-- <div class="panel panel-primary"> -->
+        <nb-card>
+          <nb-card-header>
+            Preprocessing
+          </nb-card-header>
+          <nb-card-body>
+            <app-nominal [attributesList]="attributesList" [formConfig]="myForm"></app-nominal>
+            <app-categorical [attributesList]="attributesList" [formConfig]="myForm"></app-categorical>
+
+          </nb-card-body>
+   
+        </nb-card>
+        <!-- <div class="panel-heading">
+
+        </div>
+        <div class="panel-body">
+        </div>
+      </div> -->
+      </div>
+
+
+    </div>
+   
+
+  </div>
+</div>

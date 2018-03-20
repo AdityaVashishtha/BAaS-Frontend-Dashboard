@@ -41,6 +41,7 @@ export class AnalysisToolConfigureComponent implements OnInit {
   };
 
 
+
   constructor(
     private analyticsService: AnalyticsService,
     private route: ActivatedRoute,
@@ -123,6 +124,17 @@ export class AnalysisToolConfigureComponent implements OnInit {
     console.log(this.aasReply);
   }
 
+  sendConfiguration($event){
+    console.log($event);
+    this.aasReply.settings=$event;
+
+    console.log( `Final AAS Reply`)
+    console.log(this.aasReply);
+    this.analyticsService.sendModelConfiguration(this.aasReply).subscribe(res=>{
+      console.log("Logging reply")
+      console.log(res);
+    })
+  }
 
 
 }

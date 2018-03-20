@@ -101,10 +101,10 @@
   </div>
 </div>
 
-<div class="row" *ngIf="editEnabled">
-  <div class="col-md-8">
+<div *ngIf="editEnabled">
+  <!-- <div class="col-md-12"> -->
      <!--Configure component-->
-        <nb-card>
+        <!-- <nb-card>
           <nb-card-header>
             Add Model Configurations
           </nb-card-header>
@@ -115,11 +115,12 @@
           <nb-card-footer>
           Footer
           </nb-card-footer>
-        </nb-card>
+        </nb-card> -->
+        <app-configure-imported [attributes]="aasReply.data.collectionAttributes" (submitEvent)="sendConfiguration($event)" ></app-configure-imported>
    
      <!--ends-->
-  </div>
-  <div class="col-lg-4">
+  <!-- </div> -->
+  <!-- <div class="col-lg-4">
       <nb-card>
           <nb-card-header>
             Data Statistics
@@ -131,5 +132,5 @@
           Footer
           </nb-card-footer>
         </nb-card>
-  </div>
+  </div> -->
 </div>

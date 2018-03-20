@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators'
 
 @Injectable()
 export class AuthService {
-  private SERVER_ADDRESS = 'http://localhost:4000';//'http://localhost:4000';
+  private SERVER_ADDRESS = 'http://localhost:4000/';//'http://localhost:4000';
   public userChangeEvent: EventEmitter<any> = new EventEmitter();
   authToken: any;
   user: any;
@@ -19,6 +19,7 @@ export class AuthService {
   authenticateUser(user){
     let headers= new HttpHeaders();
     let loginEndPoint = this.SERVER_ADDRESS+"dashboard/auth/login";
+    console.log(loginEndPoint);
     headers.set('Content-Type','application/json');
     return this.http.post<any>(loginEndPoint,user,{headers: headers}).map(res => res);
   }

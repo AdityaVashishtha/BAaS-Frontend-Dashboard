@@ -40,6 +40,17 @@ import { ParameterConfigurerComponent } from './aas/analyse-model/analysis-tool-
 import { StorageServiceComponent } from './storage-service/storage-service.component';
 import { VisualizationComponent } from './aas/visualization/visualization.component';
 
+import { ConfigureImportedComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/configure-imported.component';
+import {DynamicFormModule} from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/dynamic-form/dynamic-form.module';
+import { PreprocessingComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/preprocessing/preprocessing.component';
+import { NominalComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/preprocessing/nominal/nominal.component';
+import { CategoricalComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/preprocessing/categorical/categorical.component';
+import { IovariablesComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/iovariables/iovariables.component';
+import { MltaskComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/mltask.component';
+import { ClassificationAlgorithmComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/classification-algorithm/classification-algorithm.component';
+import { RegressionAlgorithmComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/regression-algorithm/regression-algorithm.component'
+import {OnlyNumber} from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/customValidators/onlyNumberValidator.directive';
+
 const PAGES_COMPONENTS = [
   DashboardComponent,
 ];
@@ -49,7 +60,8 @@ const PAGES_COMPONENTS = [
     DashboardMainRouting,
     ThemeModule,
     Ng2SmartTableModule,
-    AngularEchartsModule
+    AngularEchartsModule,
+    DynamicFormModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -86,7 +98,16 @@ const PAGES_COMPONENTS = [
     AttributeConfigComponent,
     ParameterConfigurerComponent,
     StorageServiceComponent,
-    VisualizationComponent,    
+    VisualizationComponent,
+    ConfigureImportedComponent, 
+    OnlyNumber,
+    PreprocessingComponent,
+    NominalComponent,
+    CategoricalComponent,
+    IovariablesComponent,
+    MltaskComponent,
+    ClassificationAlgorithmComponent,
+    RegressionAlgorithmComponent   
   ],
   entryComponents: [
     SchemaModalComponent,    

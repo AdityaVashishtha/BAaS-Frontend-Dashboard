@@ -4,7 +4,7 @@ import { Headers } from '@angular/http';
 
 @Injectable()
 export class StorageService {
-  private SERVER_ADDRESS = 'http://localhost:4000'; // 'http://localhost:4000';
+  private SERVER_ADDRESS = 'http://localhost:4000/'; // 'http://localhost:4000';
   constructor(
     private http: Http
   ) { }

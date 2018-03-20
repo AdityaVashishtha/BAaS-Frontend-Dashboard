@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-header>
+            Select Output Attributes
+        </nb-card-header>
+        <nb-card-body>
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-8">
+                    <label for="opattrselect" class="col-md-8">Select Output Attributes</label>
+                    
+                  </div>
+                  <div class="col-md-4" [formGroup]="formConfig">
+                    <select name="opattrselect" id="" class="form-control" formControlName="output_variables">
+                     <option value="" >Select Attribute</option>
+                      <option *ngFor="let attr of attributesList">{{attr.displayName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+        </nb-card-body>
+      </nb-card>
+     
+    </div>
+    <!-- <div class="col-md-4">
+        <code>
+            <pre >
+             {{ myForm?.value | json }}
+             {{myForm.status}}
+            </pre>
+        
+         </code> 
+    </div>-->
+  </div>
+</div>

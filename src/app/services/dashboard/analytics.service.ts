@@ -4,7 +4,7 @@ import { Http, Headers  } from '@angular/http';
 
 @Injectable()
 export class AnalyticsService {
-  private SERVER_ADDRESS = 'http://localhost:4000' ;//http://localhost:4000';
+  private SERVER_ADDRESS = 'http://localhost:4000/' ;//http://localhost:4000';
   constructor(
     private http: Http
   ) { }
@@ -30,6 +30,15 @@ export class AnalyticsService {
     headers.append('Authorization',token);
     headers.append('Content-Type','application/json');
     return this.http.get(this.SERVER_ADDRESS+'dashboard/aas/getAasJSON',{headers: headers}).map(res => res.json());
+  }
+
+  sendModelConfiguration(config){
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.post(this.SERVER_ADDRESS+'dashboard/aas/addAnalyticsStructure',config,{headers: headers}).map(res => res.json());
+ 
   }
   
 

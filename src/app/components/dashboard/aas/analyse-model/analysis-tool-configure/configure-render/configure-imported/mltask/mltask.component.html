@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div [formGroup]="myForm">
+
+        <nb-card>
+          <nb-card-header>
+            Add Machine Learning Tasks
+          </nb-card-header>
+          <nb-card-body>
+            <div [formGroup]="formConfig">
+              <dynamic-form [config]="configItem.mlTaskOptions" [formGrp]="myForm"></dynamic-form>
+              <dynamic-form-dispatcher [config]="configItem.evaluationOptions" [formGrp]="evaluationForm"></dynamic-form-dispatcher>
+              <dynamic-form *ngIf="algoType=='Classification'" [config]="configItem.scoringFunctionClassificationOptions" [formGrp]="myForm"></dynamic-form>
+              <dynamic-form *ngIf="algoType=='Regression'" [config]="configItem.scoringFunctionRegressionOptions" [formGrp]="myForm"></dynamic-form>
+              <div class="form-group">
+                <button class="btn btn-outline-info form-control" [disabled]="!algoTypeSelected" (click)="addAlgorithm()">+ Add Algorithm</button>
+              </div>
+            </div>
+            <div *ngIf="algoTypeSelected">
+              <div *ngIf="algoType=='Classification'">
+
+                <div class="container">
+
+                  <div *ngFor="let item of algoConfigItems;let i=index">
+                    <app-classification-algorithm [index]="i" [config]="item" [formGrp]="algos.controls[i]" [arrayLength]="algos.controls.length"
+                      (remove)="removeAlgorithm($event)"></app-classification-algorithm>
+
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="algoType=='Regression'">
+                <div *ngFor="let item of algoConfigItems;let i=index">
+                  <app-regression-algorithm [index]="i" [config]="item" [formGrp]="algos.controls[i]" [arrayLength]="algos.controls.length"
+                    (remove)="removeAlgorithm($event)"></app-regression-algorithm>
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </nb-card-body>
+          <nb-card-footer>
+            Choose classifcation/regression and add algorithm configuration to compare them
+
+          </nb-card-footer>
+        </nb-card>
+
+      </div>
+
+
+    </div>
+    <!-- <div class="col-md-4">
+
+      <code>
+            <pre >
+             {{ myForm?.value | json }}
+             {{myForm.status}}
+            </pre>
+        
+      </code>
+    </div> -->
+
+  </div>
+</div>

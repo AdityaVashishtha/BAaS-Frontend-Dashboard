@@ -1,0 +1,23 @@
+
+<div class="card my-2" *ngIf="numericalAttributes.length>0">
+    <div class="card-header">
+      Fill Missing Values: Numerical Attributes
+    </div>
+    <div class="card-body">
+     <div [formGroup]="formConfig">
+       <dynamic-form-dispatcher *ngFor="let configuration of configItem;let i=index"
+          [config]="configuration"
+          [formGrp]="formGroupList[i]"
+       ></dynamic-form-dispatcher>
+    </div>
+      <!-- <form [formGroup]="catctrl">
+          <dynamic-form 
+          [formGrp]="catctrl"
+          [config]="configItem"
+         >
+        </dynamic-form>
+        <!-- <input type="text" class="form-control" formControlName="categorical">
+        <button type="submit" class="btn btn-primary"[disabled]="!formConfig.valid">Submit</button>  -->
+      <!--</form> -->
+    </div>
+  </div>

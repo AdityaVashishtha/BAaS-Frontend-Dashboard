@@ -1,0 +1,26 @@
+<!-- <div class="container"> -->
+  <form [formGroup]="analyticsForm" (ngSubmit)="submitForm()">
+<nb-card>
+  <nb-card-header>
+    Configure Parameters
+  </nb-card-header>
+  <nb-card-body>
+    <app-preprocessing [formConfig]="analyticsForm" [attributesList]="attributesList"></app-preprocessing>
+    <app-iovariables [formConfig]="analyticsForm" [attributesList]="attributesList"></app-iovariables>
+    <app-mltask [formConfig]="analyticsForm" [attributesList]="attributesList"></app-mltask>
+    <!-- <code>
+        <pre >
+         {{ analyticsForm?.value | json }}
+     
+         {{analyticsForm.status}}
+        </pre>
+    
+     </code> -->
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="btn btn-info pull-right" [disabled]="!analyticsForm.valid" type="submit">Submit</button>
+  </nb-card-footer>
+</nb-card>
+</form>
+<!-- </div> -->
