@@ -1,0 +1,126 @@
+<nb-card>
+  <nb-card-header>
+    Results {{resultObj.task_type}}
+  </nb-card-header>
+  <nb-card-body>
+    <div class="card-group" *ngFor="let result of resultObj.algoParams">
+      <div class="card my-2">
+        <div class="card-header">
+          <h5 class="card-title">{{result.chosenValue}}</h5>
+        </div>
+        <div class="card-body">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Mean</h4>
+                </div>
+                <div class="card-text">
+                  <p class="card-text">{{result.result.mean}}</p>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Standard Deviation</h4>
+                </div>
+                <div class="card-text">
+                  <p class="card-text">{{result.result.std}}</p>
+
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Result Table</h4>
+                </div>
+                <div class="card-text">
+
+                  <p class="card-text" [innerHTML]="result.result.report"></p>
+                  <table class="table">
+                    <thead>
+                      <th>#</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1-Score</th>
+                      <th>Support</th>
+                    </thead>
+                    <tbody *ngFor="let item of result.result.report">
+                      <tr>
+                          <td>{{item}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </nb-card-body>
+
+</nb-card>
+
+<!-- <nb-card>
+  <nb-card-header>
+    
+  </nb-card-header>
+  <nb-card-body>
+    <div class="card-deck" *ngFor="let result of resultObj.algoParams">
+      <div class="card my-2">
+        <div class="card-body">
+          <h5 class="card-title">{{result.chosenValue}}</h5>
+          <p class="card-text">
+            <div class="card-group">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Mean</h5>
+                  <p class="card-text">{{result.result.mean}}</p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Standard Deviation</h5>
+                  <p class="card-text">{{result.result.std}}</p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Confusion Matrix</h5>
+                  <p class="card-text">{{result.result.mean}}</p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </nb-card-body>
+  <nb-card-footer></nb-card-footer>
+</nb-card> -->

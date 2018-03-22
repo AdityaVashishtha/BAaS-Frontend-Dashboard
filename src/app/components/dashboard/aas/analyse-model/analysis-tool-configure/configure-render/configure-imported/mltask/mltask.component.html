@@ -15,7 +15,7 @@
               <dynamic-form *ngIf="algoType=='Classification'" [config]="configItem.scoringFunctionClassificationOptions" [formGrp]="myForm"></dynamic-form>
               <dynamic-form *ngIf="algoType=='Regression'" [config]="configItem.scoringFunctionRegressionOptions" [formGrp]="myForm"></dynamic-form>
               <div class="form-group">
-                <button class="btn btn-outline-info form-control" [disabled]="!algoTypeSelected" (click)="addAlgorithm()">+ Add Algorithm</button>
+                <button class="btn btn-outline-info form-control" [disabled]="!algoTypeSelected" (click)="addAlgorithm()" type="button">+ Add Algorithm</button>
               </div>
             </div>
             <div *ngIf="algoTypeSelected">

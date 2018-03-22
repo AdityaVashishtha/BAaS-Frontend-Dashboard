@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component'
 import { ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { ToasterModule } from 'angular2-toaster';
 
+
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
@@ -35,6 +36,7 @@ import { ToasterModule } from 'angular2-toaster';
     CoreModule.forRoot(),
 
     ComponentBundle.forRoot(),
+    
   ],
   bootstrap: [AppComponent],
   providers: [

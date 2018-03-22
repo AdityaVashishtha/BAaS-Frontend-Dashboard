@@ -115,11 +115,11 @@ export class RegressionAlgoOptions {
                         hasDefaultOption: true,
                         options: [
                             {
-                                name: 'I2',
+                                name: 'l2',
                                 hasParams: false
                             },
                             {
-                                name: 'I1',
+                                name: 'l1',
                                 hasParams: false
                             }
                         ],
@@ -210,7 +210,7 @@ export class RegressionAlgoOptions {
                     {
                         label:"Random State (Optional)",
                         type:"input",
-                        name:"random_state ",
+                        name:"random_state",
                         validators:[OnlyNumber.validateNumber],
                         hasParams:false,
                     },
