@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import {Nl2BrPipeModule} from 'nl2br-pipe';
+
 @Component({
   selector: 'app-display-result',
   templateUrl: './display-result.component.html',

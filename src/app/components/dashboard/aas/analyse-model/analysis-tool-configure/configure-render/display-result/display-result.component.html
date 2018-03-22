@@ -13,10 +13,10 @@
             <div class="card">
               <div class="card-body">
                 <div class="card-title">
-                  <h4>Mean</h4>
+                  <h4>{{resultObj.scoring}}</h4>
                 </div>
                 <div class="card-text">
-                  <p class="card-text">{{result.result.mean}}</p>
+                  <h3 class="card-text">{{result.result.mean}}</h3>
 
                 </div>
               </div>
@@ -29,19 +29,18 @@
                   <h4>Standard Deviation</h4>
                 </div>
                 <div class="card-text">
-                  <p class="card-text">{{result.result.std}}</p>
+                  <h3 class="card-text">{{result.result.std}}</h3>
 
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" *ngIf="result.result.report">
               <div class="card-body">
                 <div class="card-title">
                   <h4>Result Table</h4>
                 </div>
                 <div class="card-text">
 
-                  <p class="card-text" [innerHTML]="result.result.report"></p>
                   <table class="table">
                     <thead>
                       <th>#</th>
@@ -50,12 +49,25 @@
                       <th>F1-Score</th>
                       <th>Support</th>
                     </thead>
-                    <tbody *ngFor="let item of result.result.report">
-                      <tr>
-                          <td>{{item}}</td>
+                    <tbody >
+                      <tr *ngFor="let item of result.result.report.splice(0,1);">
+                          <td *ngFor="let i of item">{{i}}</td>
                       </tr>
                     </tbody>
                   </table>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Confusion Matrix</h4>
+                </div>
+                <div class="card-text">
+
+                 
 
 
                 </div>
