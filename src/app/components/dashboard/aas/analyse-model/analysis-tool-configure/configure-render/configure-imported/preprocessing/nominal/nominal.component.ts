@@ -22,8 +22,8 @@ export class NominalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //console.log("The attribute list is ");
-    //console.log(this.attributesList)
+    //////console.log("The attribute list is ");
+    //////console.log(this.attributesList)
 
     /**
      *Firstly add numerical form group to the parent form group
@@ -34,8 +34,8 @@ export class NominalComponent implements OnInit {
      *Separate numerical items
      */
     this.separateNumericalItems();
-    console.log("Logging numerical attributes")
-    console.log(this.numericalAttributes)
+    ////console.log("Logging numerical attributes")
+    ////console.log(this.numericalAttributes)
 
     //Bind each attribute to their options
     this.configItem = this.numconfig.bindOptions(this.numericalAttributes);
@@ -50,16 +50,16 @@ export class NominalComponent implements OnInit {
       this.formGroupList.push(newfg);
       this.numctrl.addControl(item.iname, newfg);
     })
-    console.log("logging form group list")
-    console.log(this.formGroupList)
+    ////console.log("logging form group list")
+    ////console.log(this.formGroupList)
     // let catctrl=new FormControl('',Validators.required)
     // this.catctrlarr=new FormArray([]);
     // this.formConfig.addControl('categorical',catctrl);
-    //console.log(catctrl.status);
+    //////console.log(catctrl.status);
 
     //Finally add the form group to the parent form group
     this.formConfig.addControl('numerical', this.numctrl)
-    console.log(this.formConfig)
+    ////console.log(this.formConfig)
   }
 
   private separateNumericalItems() {

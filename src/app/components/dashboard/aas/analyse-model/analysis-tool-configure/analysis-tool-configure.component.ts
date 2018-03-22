@@ -34,11 +34,20 @@ export class AnalysisToolConfigureComponent implements OnInit {
   private settings = {
   };
   private aasJSON: any;
+
+  private configurationItem={};
   private aasReply = {
     name: "",
-    data: {},
-    settings: {}
+    data: {
+      collectionName: "",
+      collectionAttributes:{}
+    },
+    structure: {}
   };
+
+private isresultReady:boolean;
+
+private resultObject={};
 
 
 
@@ -53,48 +62,52 @@ export class AnalysisToolConfigureComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
+    this.editEnabled = false;
+    this.isresultReady=false; 
+    this.isLoaded = false;
+  
+    this.isCollapsed = false;
+    
     this.analyticsService.getModels().subscribe(res => {
       this.myModels = res.schemas;
       console.log(this.myModels);
       this.isLoaded = true;
-      this.settings = {
+      // this.settings = {
 
 
-        columns: {
-          name: {
-            title: "Model Name",
-            editable: false
+      //   columns: {
+      //     name: {
+      //       title: "Model Name",
+      //       editable: false
 
-          },
-          schema: {
-            title: "Schema Name",
-            editable: false
+      //     },
+      //     schema: {
+      //       title: "Schema Name",
+      //       editable: false
 
-          },
-          configure: {
-            title: "Configure",
-            editable: false,
-            type: "custom",
-            renderComponent: ConfigureRenderComponent
+      //     },
+      //     configure: {
+      //       title: "Configure",
+      //       editable: false,
+      //       type: "custom",
+      //       renderComponent: ConfigureRenderComponent
 
-          }
-        },
-        noDataMessage: "No models created",
-        actions: false
-      };
-      let data = this.myModels.map(item => { return { id: item._id, name: item.name, schema: item.data.collectionName, configure: item } })
-      this.source.load(data);
+      //     }
+      //   },
+      //   noDataMessage: "No models created",
+      //   actions: false
+      // };
+      // let data = this.myModels.map(item => { return { id: item._id, name: item.name, schema: item.data.collectionName, configure: item } })
+      // this.source.load(data);
     })
 
     //Fetching the aasJSON object from the node backend
-    this.analyticsService.getAasJSON().subscribe(res => {
+    // this.analyticsService.getAasJSON().subscribe(res => {
+    //   this.aasJSON = res;
 
-      this.aasJSON = res;
-
-    });
+    // });
   }
+
 
 
 
@@ -109,32 +122,63 @@ export class AnalysisToolConfigureComponent implements OnInit {
     this.attributeList=Object.keys(this.modelMainConfig.configure.data.collectionAttributes).map(item=>{return {'name':item,'type':this.modelMainConfig.configure.data.collectionAttributes[item]}})
   }
 
-  processAasJSON() {
-    this.aasJSON.array.forEach(element => {
-      //create accordion panel
-      // get its configuration items
-      //generate parameters table
-    });
-  }
+  // processAasJSON() {
+  //   this.aasJSON.array.forEach(element => {
+  //     //create accordion panel
+  //     // get its configuration items
+  //     //generate parameters table
+  //   });
+  // }
 
-  receiveExpectation(event) {
-    console.log(event);
-    console.log("Receiving expectations from analysis-tool-configure");
-    this.aasReply.settings[event.identifier] = event.content;
-    console.log(this.aasReply);
-  }
+  // receiveExpectation(event) {
+  //   console.log(event);
+  //   console.log("Receiving expectations from analysis-tool-configure");
+  //   this.aasReply.settings[event.identifier] = event.content;
+  //   console.log(this.aasReply);
+  // }
 
   sendConfiguration($event){
     console.log($event);
-    this.aasReply.settings=$event;
+    this.aasReply.structure=$event;
 
     console.log( `Final AAS Reply`)
     console.log(this.aasReply);
     this.analyticsService.sendModelConfiguration(this.aasReply).subscribe(res=>{
       console.log("Logging reply")
       console.log(res);
+      if(res.success){
+        this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Configuration saved successfully!")
+        this.ngOnInit();
+      }
+     
+    })
+  }
+  private updateAasReply(item){
+    console.log(item);
+    this.editEnabled = true;
+    this.aasReply.name = item.name;
+    this.aasReply.data = item.data;
+
+  }
+
+  private startTraining(item){
+    console.log(item);
+    let sendItem={
+      'analyticsName':item.name
+    }
+    
+    this.analyticsService.startTraining(sendItem).subscribe(res=>{
+      if(res.success){
+        this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Training started");
+        this.ngOnInit();
+      }
     })
   }
 
-
+  private showResult(item){
+    console.log(item);
+    this.isresultReady=true;
+    this.resultObject=item.structure.mltask;
+    
+  }
 }

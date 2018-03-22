@@ -1,4 +1,4 @@
-import { Component,OnInit, ChangeDetectorRef,Input,Output,EventEmitter } from '@angular/core';
+import { Component,OnInit, ChangeDetectorRef,Input,Output,EventEmitter,OnChanges, SimpleChanges} from '@angular/core';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
   templateUrl: './configure-imported.component.html',
   styleUrls: ['./configure-imported.component.scss']
 })
-export class ConfigureImportedComponent implements OnInit {
+export class ConfigureImportedComponent implements OnInit,OnChanges {
   title = 'app';
   //attributes={"name":"String","class":"Number","Marks":"Number","Father Name":"String"}
   @Input() attributes;
@@ -24,6 +24,13 @@ export class ConfigureImportedComponent implements OnInit {
     this.analyticsForm = this.fb.group({ })
     this.attributesList=this.convertToArray(this.attributes);
   }
+  ngOnChanges(changes:SimpleChanges){
+    console.log("Change detected")
+    this.attributesList=this.convertToArray(changes.attributes);
+  }
+
+
+  ngOnChange
   ngAfterViewChecked()
   {
  // console.log( "Change detected" );

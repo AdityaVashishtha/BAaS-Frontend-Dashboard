@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component'
 
 import { ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { ToasterModule } from 'angular2-toaster';
+import {Nl2BrPipeModule} from 'nl2br-pipe';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -35,6 +36,7 @@ import { ToasterModule } from 'angular2-toaster';
     CoreModule.forRoot(),
 
     ComponentBundle.forRoot(),
+    Nl2BrPipeModule
   ],
   bootstrap: [AppComponent],
   providers: [

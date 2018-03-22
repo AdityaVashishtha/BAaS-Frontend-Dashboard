@@ -50,6 +50,9 @@ import { MltaskComponent } from './aas/analyse-model/analysis-tool-configure/con
 import { ClassificationAlgorithmComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/classification-algorithm/classification-algorithm.component';
 import { RegressionAlgorithmComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/regression-algorithm/regression-algorithm.component'
 import {OnlyNumber} from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/customValidators/onlyNumberValidator.directive';
+import { DisplayResultComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/display-result/display-result.component';
+
+import {Nl2BrPipeModule} from 'nl2br-pipe';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -61,7 +64,8 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     Ng2SmartTableModule,
     AngularEchartsModule,
-    DynamicFormModule
+    DynamicFormModule,
+    Nl2BrPipeModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -107,7 +111,8 @@ const PAGES_COMPONENTS = [
     IovariablesComponent,
     MltaskComponent,
     ClassificationAlgorithmComponent,
-    RegressionAlgorithmComponent   
+    RegressionAlgorithmComponent,
+    DisplayResultComponent   
   ],
   entryComponents: [
     SchemaModalComponent,    

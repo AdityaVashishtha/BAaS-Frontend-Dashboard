@@ -22,15 +22,15 @@ export class CategoricalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //console.log("The attribute list is ");
-    //console.log(this.attributesList)
+    ////console.log("The attribute list is ");
+    ////console.log(this.attributesList)
     //Firstly add a categorical form group to the parent form group
     this.catctrl = new FormGroup({});
 
     //Separate categorical items
     this.separateCategoricalItems();
-    console.log("Loggin categorical attributes")
-    console.log(this.categoricalAttributes)
+    //console.log("Loggin categorical attributes")
+    //console.log(this.categoricalAttributes)
 
     //Bind each attribute to their options
     this.configItem = this.catconfig.bindOptions(this.categoricalAttributes);
@@ -44,16 +44,16 @@ export class CategoricalComponent implements OnInit {
       this.formGroupList.push(newfg);
       this.catctrl.addControl(item.iname, newfg);
     })
-    console.log("logging form group list")
-    console.log(this.formGroupList)
+    //console.log("logging form group list")
+    //console.log(this.formGroupList)
     // let catctrl=new FormControl('',Validators.required)
     // this.catctrlarr=new FormArray([]);
     // this.formConfig.addControl('categorical',catctrl);
-    //console.log(catctrl.status);
+    ////console.log(catctrl.status);
 
     //Finally add the form group to the parent form group
     this.formConfig.addControl('categorical', this.catctrl)
-    console.log(this.formConfig)
+    //console.log(this.formConfig)
   }
 
   private separateCategoricalItems() {

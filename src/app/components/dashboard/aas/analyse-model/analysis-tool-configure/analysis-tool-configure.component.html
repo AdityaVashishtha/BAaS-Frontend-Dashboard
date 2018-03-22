@@ -1,136 +1,47 @@
 <div class="row" *ngIf="isLoaded">
   <div class="col-lg-12">
-    <nb-card  >
+    <nb-card>
       <nb-card-header>
-        Select Model To Configure
+        Select Model to Configure
       </nb-card-header>
       <nb-card-body>
-        <ngb-accordion #acc="ngbAccordion">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Model Name</th>
+              <th scope="col">Schema</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of myModels">
+              <td>{{item.name}}</td>
+              <td>{{item.data.collectionName}}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-info" (click)="updateAasReply(item)" [disabled]="(item.status=='Started')||false">Configure</button>
+                <button class="btn btn-sm btn-outline-primary" (click)="startTraining(item)" [disabled]="!item.structure||false" *ngIf="!(item.status=='Started')"> Train</button>
+                <button class="btn btn-sm btn-outline-primary" (click)="startTraining(item)" [disabled]="true" *ngIf="(item.status=='Started')"> Training</button>
+                <button class="btn btn-sm btn-outline-success" [disabled]="!(item.status=='Completed')" (click)="showResult(item)">View Result</button>
+              </td>
+            </tr>
 
-          <ngb-panel *ngFor="let item of routes">
-            <ng-template ngbPanelTitle>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="btn-group btn-group-full-width" role="group">
-                    <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
-                      <span>{{item.operationType}}</span>
-                    </button>
-                    <button type="button" class="btn btn-{{getClassByOpertaionType(item.operationType)}} btn-fixed">
-                      <span>{{item.accessControl}}</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-{{getClassByOpertaionType(item.operationType)}} btn-block">
-                      {{item.name}}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template ngbPanelContent>
-              <div class="row">
-                <div class="col-md-4">
-                  Usage Info :
-                </div>
-                <div class="offset-md-4 col-md-2">
-                  <button (click)="deleteRoute(item.name)" type="button" class="btn btn-outline-danger btn-block">
-                    Delete Route
-                  </button>
-                </div>
-              </div>
-              <hr>
-              <div class="row" [class.d-md-none]="item.operationType != 'insert'">
-                <div class="col-md-8">
-                  Schema Structure of Insert
-                  <pre [innerHTML]="syntaxHighlight(schemaStructure)">
-                  </pre>
-                </div>
-                <div class="col-md-4">
-                  <strong>Usage Guide</strong>
-                  <ol>
-                    <li>API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
-                    <li> Method of Request : {{item.requestMethod}}</li>
-                    <li> Request Content-Type: application/json</li>                    
-                  </ol>
-                  To Learn More Click
-                  <a href="#">HERE(TODO)</a>
-                </div>
-              </div>
-              <div class="row" [class.d-md-none]="item.requestByJSON">                
-                <div class="col-md-12">
-                  <strong>Usage Guide</strong>
-                  <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
-                    <li> Method of Request : {{item.requestMethod}}</li>
-                    <li> Request Content-Type: Simple Get Request</li>                    
-                  </ol>
-                </div>
-              </div>
-              <div class="row" [class.d-md-none]="item.operationType == 'insert' || !item.requestByJSON">
-                <div class="col-md-4">
-                  Request Body
-                  <pre [innerHTML]="syntaxHighlight(item.requestBody)">
-                  </pre>
-                </div>
-                <div class="col-md-4">
-                  Constraints:
-                  <pre [innerHTML]="syntaxHighlight(item.constraints)">
-                    </pre>
-                </div>
-                <div class="col-md-4">
-                  <strong>Usage Guide:</strong>
-                  <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
-                    <li> Method of Request : {{item.requestMethod}}</li>
-                    <li> Request Content-Type: application/json</li>            
-                  </ol>
-                  To Learn More Click
-                  <a href="#">HERE(TODO)</a>
-                </div>
-              </div>
-            </ng-template>
-          </ngb-panel>
-
-        </ngb-accordion>
-
-        <ng2-smart-table class='form-control-success' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-          (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)" (userRowSelect)="onUserRowSelect($event)"></ng2-smart-table>
+          </tbody>
+        </table>
       </nb-card-body>
     </nb-card>
 
 
-    
+
   </div>
 </div>
 
 <div *ngIf="editEnabled">
-  <!-- <div class="col-md-12"> -->
-     <!--Configure component-->
-        <!-- <nb-card>
-          <nb-card-header>
-            Add Model Configurations
-          </nb-card-header>
-          <nb-card-body  *ngFor="let item of aasJSON;let in=index">
-            <app-configure-collapsible-panel (expectationEvent)="receiveExpectation($event)"[panelContents]='item' [attributesList]='attributeList'>  </app-configure-collapsible-panel>
-          
-          </nb-card-body>
-          <nb-card-footer>
-          Footer
-          </nb-card-footer>
-        </nb-card> -->
-        <app-configure-imported [attributes]="aasReply.data.collectionAttributes" (submitEvent)="sendConfiguration($event)" ></app-configure-imported>
-   
-     <!--ends-->
-  <!-- </div> -->
-  <!-- <div class="col-lg-4">
-      <nb-card>
-          <nb-card-header>
-            Data Statistics
-          </nb-card-header>
-          <nb-card-body>
-           
-          </nb-card-body>
-          <nb-card-footer>
-          Footer
-          </nb-card-footer>
-        </nb-card>
-  </div> -->
+
+  <app-configure-imported [attributes]="aasReply.data.collectionAttributes" (submitEvent)="sendConfiguration($event)"></app-configure-imported>
+
+
+</div>
+
+<div *ngIf="isresultReady">
+  <app-display-result [resultObj]="resultObject"></app-display-result>
 </div>

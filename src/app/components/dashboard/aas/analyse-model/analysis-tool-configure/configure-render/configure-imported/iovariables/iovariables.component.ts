@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input,OnChanges, SimpleChange, SimpleChanges  } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms'
 
 @Component({
@@ -6,7 +6,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ValidationE
   templateUrl: './iovariables.component.html',
   styleUrls: ['./iovariables.component.css']
 })
-export class IovariablesComponent implements OnInit {
+export class IovariablesComponent implements OnInit,OnChanges {
   @Input() attributesList;
   @Input() formConfig: FormGroup;
 
@@ -20,23 +20,25 @@ export class IovariablesComponent implements OnInit {
   ) {
     
    }
-
+   ngOnChanges(change:SimpleChanges){
+     
+   }
   ngOnInit() {
     this.myForm = new FormControl('',Validators.required);
     this.formConfig.addControl("output_variables", this.myForm)
     this.selectedAttribute = this.attributesList[0];
-    console.log("IO caariables trarted");
-    console.log("Logging attribute list from iovariables")
-    console.log(this.attributesList);
+    //console.log("IO caariables trarted");
+    ////console.log("Logging attribute list from iovariables")
+    //console.log(this.attributesList);
     this.attributesList.forEach(element => {
-      console.log(element);
+      //console.log(element);
       element['displayName']=Object.keys(element)[0];
     });
-    console.log("Logging attribute list from iovariables 2")
-    console.log(this.attributesList);
+    //console.log("Logging attribute list from iovariables 2")
+    //console.log(this.attributesList);
 
     this.myForm.valueChanges.subscribe(item=>{
-      console.log(item);
+      //console.log(item);
     })
     
   }
@@ -53,8 +55,8 @@ export class IovariablesComponent implements OnInit {
    } */
 
   addOutputAttribute() {
-    console.log("Logging selcted attrbiutye");
-    console.log(this.selectedAttribute)
+    //console.log("Logging selcted attrbiutye");
+    //console.log(this.selectedAttribute)
     if (!this.selectedAttribute) {
       console.error("Invalid");
       return;
@@ -67,9 +69,9 @@ export class IovariablesComponent implements OnInit {
      }
     this.attributesList.splice(this.attributesList.indexOf(this.selectedAttribute), 1);
     this.selectedAttribute = this.attributesList[0];
-    console.log("logging my form from iovars")
-    console.log(this.myForm.value)
-    console.log(this.outputAttributesList);
+    //console.log("logging my form from iovars")
+    //console.log(this.myForm.value)
+    //console.log(this.outputAttributesList);
   }
 }
 
