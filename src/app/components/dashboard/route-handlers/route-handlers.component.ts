@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SchemaService } from '../../../services/dashboard/schema.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../services/util/toast.service';
+import { ConfigurationService } from '../../../services/dashboard/configuration.service';
 
 @Component({
   selector: 'app-route-handlers',
@@ -17,12 +18,14 @@ export class RouteHandlersComponent implements OnInit {
   private routes: any[];
   private schemaStructure: {};
   private schemaList: any[];
+  private appConfig: {};
   constructor(
     private activatedRoutes: ActivatedRoute,
     private routeHandlerService: RouteHandlerService,
     private schemaService: SchemaService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private configurationService: ConfigurationService
   ) { }
 
   ngOnInit() {
@@ -36,6 +39,10 @@ export class RouteHandlersComponent implements OnInit {
           this.routeHandlerService.getRoutesOfSchema({ schemaName: this.schemaName })
           .subscribe(res => {
             console.log(res);
+            this.configurationService.getApplicationDetails().subscribe(conf=>{
+              console.log(conf)
+              this.appConfig = conf.config;
+            });
             this.routes = res.data;
             this.schemaService.getSchemaStructure(this.schemaName).subscribe(resp=>{
               this.schemaStructure = resp.data.structure;

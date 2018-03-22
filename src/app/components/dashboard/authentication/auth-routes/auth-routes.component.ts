@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SchemaService } from '../../../../services/dashboard/schema.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../services/util/toast.service';
+import { ConfigurationService } from '../../../../services/dashboard/configuration.service';
 
 @Component({
   selector: 'app-auth-routes',
@@ -16,6 +17,7 @@ export class AuthRoutesComponent implements OnInit {
   private schemaName: string;
   private routes: any[];
   private schemaStructure: {};
+  private appConfig = {};
 
   private exampleRequest = {
     register: {
@@ -76,7 +78,8 @@ export class AuthRoutesComponent implements OnInit {
     private routeHandlerService: RouteHandlerService,
     private schemaService: SchemaService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private configurationService: ConfigurationService
   ) { }
 
   ngOnInit() {
@@ -87,6 +90,9 @@ export class AuthRoutesComponent implements OnInit {
       })
         .subscribe(res => {
           console.log(res);
+          this.configurationService.getApplicationDetails().subscribe(conf=>{
+            this.appConfig = conf.config;
+          });
           this.routes = res.data;
           this.schemaService.getSchemaStructure(this.schemaName).subscribe(resp => {
             this.schemaStructure = resp.data.structure;

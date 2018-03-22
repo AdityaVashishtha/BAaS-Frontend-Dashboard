@@ -63,19 +63,19 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}">http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</a></li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: application/json</li>                    
                   </ol>
-                  To Learn More Click
-                  <a href="#">HERE(TODO)</a>
+                  To Learn More Click:
+                  <a href="https://menkudle.gitbooks.io/baas-doc/content/" target="blank">Learn More</a>
                 </div>
               </div>
               <div class="row" [class.d-md-none]="item.requestByJSON">                
                 <div class="col-md-12">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
+                    <li> API End Point : http://{{appConfig.hostname}}:{{appConfig.port}}/api/find/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: Simple Get Request</li>                    
                   </ol>
@@ -95,12 +95,12 @@
                 <div class="col-md-4">
                   <strong>Usage Guide:</strong>
                   <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}">http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</a></li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: application/json</li>            
                   </ol>
                   To Learn More Click
-                  <a href="#">HERE(TODO)</a>
+                  <a href="https://menkudle.gitbooks.io/baas-doc/content/" target="_blank">Learn More</a>
                 </div>
               </div>
             </ng-template>

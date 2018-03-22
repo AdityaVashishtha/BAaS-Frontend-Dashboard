@@ -51,7 +51,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : <a href="http://localhost:4000/api/register">http://localhost:4000/api/register</a></li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/register">http://{{appConfig.hostname}}:{{appConfig.port}}/api/register</a></li>
                     <li> Method of Request : POST </li>
                     <li> Request Content-Type: application/json</li>
                   </ol>
@@ -72,7 +72,7 @@
                       <span>Public</span>
                     </button>
                     <button type="button" class="btn btn-secondary btn-block">
-                      /api/auth
+                      /api/auth/login
                     </button>
                   </div>
                 </div>
@@ -99,7 +99,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : <a href="http://localhost:4000/api/auth">http://localhost:4000/api/auth</a></li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/login">http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/login</a></li>
                     <li> Method of Request : POST </li>
                     <li> Request Content-Type: application/json</li>
                   </ol>
@@ -146,7 +146,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : <a href="http://localhost:4000/api/auth/google">http://localhost:4000/api/auth/google</a></li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/google">http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/google</a></li>
                     <li> Method of Request : GET </li>
                     <li> Request Content-Type: usage as link</li>
                   </ol>
@@ -191,7 +191,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : <a href="http://localhost:4000/api/auth/facebook">http://localhost:4000/api/auth/facebook</a></li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/facebook">http://{{appConfig.hostname}}:{{appConfig.port}}/api/auth/facebook</a></li>
                     <li> Method of Request : GET </li>
                     <li> Request Content-Type: usage as link</li>
                   </ol>
@@ -247,7 +247,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li>API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li>API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}">http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</a></li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: application/json</li>
                   </ol>
@@ -259,7 +259,7 @@
                 <div class="col-md-12">
                   <strong>Usage Guide</strong>
                   <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.name}}/{{item.schemaName}}/object_id_here</li>
+                    <li> API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}">http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</a></li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: Simple Get Request</li>
                   </ol>
@@ -279,7 +279,7 @@
                 <div class="col-md-4">
                   <strong>Usage Guide:</strong>
                   <ol>
-                    <li> API End Point : http://localhost:4000/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</li>
+                    <li> API End Point : <a href="http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}">http://{{appConfig.hostname}}:{{appConfig.port}}/api/{{item.operationType}}/{{item.schemaName}}/{{item.name}}</a></li>
                     <li> Method of Request : {{item.requestMethod}}</li>
                     <li> Request Content-Type: application/json</li>
                   </ol>
