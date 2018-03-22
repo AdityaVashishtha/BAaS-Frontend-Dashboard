@@ -52,7 +52,6 @@ import { RegressionAlgorithmComponent } from './aas/analyse-model/analysis-tool-
 import {OnlyNumber} from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/customValidators/onlyNumberValidator.directive';
 import { DisplayResultComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/display-result/display-result.component';
 
-import {Nl2BrPipeModule} from 'nl2br-pipe';
 
 const PAGES_COMPONENTS = [
   DashboardComponent,
@@ -65,7 +64,7 @@ const PAGES_COMPONENTS = [
     Ng2SmartTableModule,
     AngularEchartsModule,
     DynamicFormModule,
-    Nl2BrPipeModule
+    
   ],
   declarations: [
     ...PAGES_COMPONENTS,
