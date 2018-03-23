@@ -16,4 +16,12 @@ export class ExportDataService {
       return this.http.post('http://localhost:4000/dashboard/utils/exportToCSV',model,{headers: headers}).map(res => res.json());
     }  
 
+    uploadCSV(formData,schemaName) {
+      let token = localStorage.getItem('id_token');        
+      let headers = new Headers();
+      headers.append('Authorization',token);
+      //headers.append('Content-Type','application/json');
+      return this.http.post('http://localhost:4000/dashboard/utils/importFromCSV/'+schemaName,formData,{headers: headers}).map(res => res.json());
+    }
+
 }

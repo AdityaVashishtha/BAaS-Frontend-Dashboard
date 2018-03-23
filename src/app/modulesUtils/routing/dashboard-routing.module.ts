@@ -24,6 +24,7 @@ import { AnalyseModelComponent } from '../../components/dashboard/aas/analyse-mo
 import { EditSchemaComponent } from '../../components/dashboard/schema/edit-schema/edit-schema.component';
 import { StorageServiceComponent } from '../../components/dashboard/storage-service/storage-service.component';
 import { VisualizationComponent } from '../../components/dashboard/aas/visualization/visualization.component';
+import { ImportDataComponent } from '../../components/dashboard/import-data/import-data.component';
 
 const routes : Routes = [{
     path: '',
@@ -104,6 +105,10 @@ const routes : Routes = [{
     {
         path: 'export-data',
         component: ExportDataComponent
+    },
+    {
+        path: 'import-data',
+        component: ImportDataComponent
     },
     {
         path: 'analytics-home-create',

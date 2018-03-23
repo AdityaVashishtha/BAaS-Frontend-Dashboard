@@ -143,8 +143,13 @@ export class DashboardComponent implements OnInit {
       },
       {
         title: 'Export Data',
-        icon: 'ion-ios-download-outline',
+        icon: 'ion-ios-upload-outline',
         link: '/dashboard/export-data',
+      },
+      {
+        title: 'Import Data',
+        icon: 'ion-ios-download-outline',
+        link: '/dashboard/import-data',
       }
     ];
 

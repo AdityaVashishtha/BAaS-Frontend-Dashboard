@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>
+        Import Data
+      </nb-card-header>
+      <nb-card-body>
+        <div class="col-md-6 offset-md-3">
+          <input class="form-control mb-4" [(ngModel)]="schemaName" name="schemaName" type="text" placeholder="Schema Name" />
+          <input class="form-control" id="importCSV" name="importCSV" type="file" (change)="fileSelected($event)" placeholder="Upload a csv file..." />
+          <hr>
+          <button type="button" class="btn btn-outline-primary btn-s" (click)="uploadCSV()">
+            <i class="fa fa-upload"></i> Upload
+          </button>
+        </div>        
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

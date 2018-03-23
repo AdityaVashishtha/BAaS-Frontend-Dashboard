@@ -3,7 +3,7 @@
      [class.right]="position === 'inverse'">
   <div class="logo-containter">
     <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
-    <div class="logo" (click)="goToHome()"> <i class="fa fa-cogs"></i><span>{{app.appName}}</span></div>
+    <div class="logo" (click)="goToHome()"> <i class="fa fa-tasks"></i><span> {{app.appName}}</span></div>
   </div>
   <ngx-theme-switcher></ngx-theme-switcher>
 </div>
@@ -17,6 +17,6 @@
   <nb-action>
     <nb-user [menu]="userMenu" [name]="user.displayName" [picture]="user.avatar" (menuClick)="onMenuClick($event)"></nb-user>
   </nb-action>
-  <nb-action class="control-item" icon="nb-notifications">    
-  </nb-action>
+  <!-- <nb-action class="control-item" icon="nb-notifications">    
+  </nb-action> -->
 </nb-actions>

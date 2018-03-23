@@ -51,6 +51,7 @@ import { ClassificationAlgorithmComponent } from './aas/analyse-model/analysis-t
 import { RegressionAlgorithmComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/mltask/regression-algorithm/regression-algorithm.component'
 import {OnlyNumber} from './aas/analyse-model/analysis-tool-configure/configure-render/configure-imported/customValidators/onlyNumberValidator.directive';
 import { DisplayResultComponent } from './aas/analyse-model/analysis-tool-configure/configure-render/display-result/display-result.component';
+import { ImportDataComponent } from './import-data/import-data.component';
 
 
 const PAGES_COMPONENTS = [
@@ -111,7 +112,8 @@ const PAGES_COMPONENTS = [
     MltaskComponent,
     ClassificationAlgorithmComponent,
     RegressionAlgorithmComponent,
-    DisplayResultComponent   
+    DisplayResultComponent,
+    ImportDataComponent   
   ],
   entryComponents: [
     SchemaModalComponent,    

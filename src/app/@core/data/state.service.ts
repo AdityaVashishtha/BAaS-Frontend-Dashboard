@@ -14,11 +14,11 @@ export class StateService {
       id: 'one-column',
       selected: true,
     },
-    {
-      name: 'Two Column',
-      icon: 'nb-layout-two-column',
-      id: 'two-column',
-    },
+    // {
+    //   name: 'Two Column',
+    //   icon: 'nb-layout-two-column',
+    //   id: 'two-column',
+    // },
     {
       name: 'Center Column',
       icon: 'nb-layout-centre',
