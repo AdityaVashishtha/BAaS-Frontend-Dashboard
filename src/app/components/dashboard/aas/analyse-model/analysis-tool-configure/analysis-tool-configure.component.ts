@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../../../../services/util/toast.service';
 import { ConfigureRenderComponent } from "./configure-render/configure-render.component";
 import { ConfigureCollapsiblePanelComponent } from "./configure-collapsible-panel/configure-collapsible-panel.component"
+import { send } from 'q';
 
 
 
@@ -31,6 +32,8 @@ export class AnalysisToolConfigureComponent implements OnInit {
   private isCollapsed = false;
   private attributeList;
   source: LocalDataSource = new LocalDataSource();
+
+  private selectedObject;
   private settings = {
   };
   private aasJSON: any;
@@ -169,7 +172,7 @@ private resultObject={};
     
     this.analyticsService.startTraining(sendItem).subscribe(res=>{
       if(res.success){
-        this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Training started");
+        this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Training started.Check back after sometime to see the result");
         this.ngOnInit();
       }
     })
@@ -177,8 +180,41 @@ private resultObject={};
 
   private showResult(item){
     console.log(item);
+    this.selectedObject=item;
     this.isresultReady=true;
     this.resultObject=item.structure.mltask;
+    
+  }
+
+  private sendForFinalTrain(event){
+    console.log(event);
+    console.log("Logging final model");
+    event['final']=true;
+    this.selectedObject.structure.mltask.algoParams.push(event);
+    this.analyticsService.sendModelConfiguration(this.selectedObject).subscribe(res=>{
+      console.log("LOGGING FINAL MODEL REPLY");
+      console.log(res);
+      let sendItem={
+        'analyticsName':this.selectedObject.name
+      }
+      this.analyticsService.startFinalTraining(sendItem).subscribe(res=>{
+        console.log("LOGGING AFTER STARTING FINAL TRAINING ")
+        console.log(res);
+        if(res.success){
+          this.toastService.showToast(this.toastService.typeNum.success,"Hurray!!","Final Training on the model has started.Check back after sometime to see the result");
+          this.ngOnInit();
+        }
+        else{
+          this.toastService.showToast(this.toastService.typeNum.error,"ERROR!!",res.message);
+          this.ngOnInit();
+        }
+      })
+    })
+    console.log(this.selectedObject)
+  }
+
+  showError(item){
+    this.toastService.showToast(this.toastService.typeNum.error,"ERROR",item.error);
     
   }
 }

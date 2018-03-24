@@ -92,24 +92,24 @@ export class DashboardComponent implements OnInit {
               link: '/dashboard/analytics-tool-create',
             },
             {
-              title: 'Configure Pipeline',
+              title: 'Configure Model',
               link: '/dashboard/analytics-tool-configure',
             }
           ]
         },
-        {
-          title: 'Build Models',         
-          children:[
-            {
-              title: 'Create Model',
-              link: '/dashboard/analytics-home-create',
-            },
-            {
-              title: 'Configure Model',
-              link: '/dashboard/analytics-home-configure',
-            }
-          ]
-        },
+        // {
+        //   title: 'Build Models',         
+        //   children:[
+        //     {
+        //       title: 'Create Model',
+        //       link: '/dashboard/analytics-home-create',
+        //     },
+        //     {
+        //       title: 'Configure Model',
+        //       link: '/dashboard/analytics-home-configure',
+        //     }
+        //   ]
+        // },
         {
           title: 'Visulisation',
           link: '/dashboard/analytics/visualize'

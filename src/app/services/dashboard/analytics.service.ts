@@ -50,4 +50,13 @@ export class AnalyticsService {
  
   }
 
+  startFinalTraining(config){
+    let token = localStorage.getItem('id_token');        
+    let headers = new Headers();
+    headers.append('Authorization',token);
+    headers.append('Content-Type','application/json');
+    return this.http.post(this.SERVER_ADDRESS+'dashboard/aas/analytics/finalTrain',config,{headers: headers}).map(res => res.json());
+ 
+  }
+
 }
