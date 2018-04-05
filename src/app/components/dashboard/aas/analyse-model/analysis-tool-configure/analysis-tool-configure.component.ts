@@ -11,7 +11,7 @@ import { ToastService } from '../../../../../services/util/toast.service';
 import { ConfigureRenderComponent } from "./configure-render/configure-render.component";
 import { ConfigureCollapsiblePanelComponent } from "./configure-collapsible-panel/configure-collapsible-panel.component"
 import { send } from 'q';
-
+import { ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -32,6 +32,27 @@ export class AnalysisToolConfigureComponent implements OnInit {
   private isCollapsed = false;
   private attributeList;
   source: LocalDataSource = new LocalDataSource();
+  private requestObject=`
+  {
+    "analyticsName": "balanceDataset",
+    "test": {
+      "inputs": [
+        {
+          "LeftWeight": "3",
+          "LeftDistance": "2",
+          "RightWeight": "1",
+          "RightDistance": "1"
+        },
+        {
+          "LeftWeight": "1",
+          "LeftDistance": "1",
+          "RightWeight": "2",
+          "RightDistance": "3"
+        }
+        ]
+    }
+  }`;
+  closeResult: string;
 
   private selectedObject;
   private settings = {
@@ -52,15 +73,13 @@ private isresultReady:boolean;
 
 private resultObject={};
 
-
-
   constructor(
     private analyticsService: AnalyticsService,
     private route: ActivatedRoute,
     private schemaService: SchemaService,
     private modalService: NgbModal,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,    
   ) {
   }
 
@@ -214,7 +233,48 @@ private resultObject={};
   }
 
   showError(item){
-    this.toastService.showToast(this.toastService.typeNum.error,"ERROR",item.error);
-    
+    this.toastService.showToast(this.toastService.typeNum.error,"ERROR",item.error); 
   }
+
+  //Route details modal
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  syntaxHighlight(json) {
+    if (typeof json != 'string') {
+         json = JSON.stringify(json, undefined, 2);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'text-warning';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'text-primary';
+            } else {
+                cls = 'text-warning';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'text-info';
+        } else if (/null/.test(match)) {
+            cls = 'text-danger';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+  }
+
 }

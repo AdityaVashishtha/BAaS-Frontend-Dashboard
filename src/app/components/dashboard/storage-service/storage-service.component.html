@@ -130,4 +130,39 @@
       </nb-card-footer>
     </nb-card>
   </div>
+  <div class="col-lg-4">
+    <nb-card *ngIf="appConfig">
+      <nb-card-header>
+        Help
+      </nb-card-header>
+      <nb-card-body>
+        <ul>
+          <li>
+              <p>To store a file,send the file with header <code>file</code> to the endpoint:</p>
+              <code>http://{{appConfig.hostname}}:{{appConfig.port}}/api/storage/upload</code>
+              <p>You will get a <code>fileId</code>,which can be used for further references to the file.The developer needs to save the fileId</p>
+
+
+          </li>
+          <li>
+              <p>To GET a file hit the endpoint:</p>
+              <code>http://{{appConfig.hostname}}:{{appConfig.port}}/api/storage/file/<b>fileId</b></code>
+          </li>
+
+          <li>
+              <p>To get file details, hit the endpoint:</p>
+            
+                <code>http://{{appConfig.hostname}}:{{appConfig.port}}/api/storage/fileDetails/<b>fileId</b></code>
+                
+              
+          </li>
+          <li>
+              <p>To delete a file, hit the endpoint:</p>
+              <code>http://{{appConfig.hostname}}:{{appConfig.port}}/api/storage/remove/<b>fileId</b></code>
+          </li>
+        </ul>
+        
+      </nb-card-body>
+    </nb-card>    
+  </div>
 </div>

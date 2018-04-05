@@ -3,6 +3,7 @@
     <nb-card>
       <nb-card-header>
         Select Model to Configure
+        <button class="btn btn-primary pull-right ml-xl-2" (click)="open(content)"><i class="fa fa-question"></i></button>
         <button class="btn btn-success pull-right" (click)="ngOnInit()"><i class="fa fa-refresh"></i></button>
       </nb-card-header>
       <nb-card-body>
@@ -35,8 +36,8 @@
               <td>
                 <button class="btn btn-sm btn-outline-primary" [disabled]="true" *ngIf="(item.status=='Final training started')"> Training</button>
                 <div *ngIf="(item.status=='Final training completed')">
-                  <p>The test end point is now open at :</p>
-                  <code>http://localhost:5000/analytics/test/</code>
+                  <p>Training Completed</p>
+                  
                 </div>
               </td>
             </tr>
@@ -61,3 +62,23 @@
 <div *ngIf="isresultReady">
   <app-display-result [resultObj]="resultObject" (finalEvent)="sendForFinalTrain($event)"></app-display-result>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">To test/predict</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Hit the endpooint <br> <code>http://addr:port/dashboard/aas/analytics/test</code> <br>with the struture similar as</p>
+      <pre>
+        <code [innerHTML]="syntaxHighlight(requestObject)">
+        </code>
+      </pre>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>  

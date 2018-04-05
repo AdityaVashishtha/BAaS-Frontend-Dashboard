@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../../services/dashboard/storage.service';
 import { ToastService } from '../../../services/util/toast.service';
+import { ConfigurationService } from '../../../services/dashboard/configuration.service';
 
 
 @Component({
@@ -18,16 +19,20 @@ export class StorageServiceComponent implements OnInit {
     maxFileSizeLimit: 1,
     enableUpload: true
   };
-
+  private appConfig: any;
   constructor(
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private appDetailsService: ConfigurationService
   ) { }
  
   ngOnInit() {
     this.storageService.getStorageConfiguration()
       .subscribe(res=>{
-        console.log(res);
+        // console.log(res);
+        this.appDetailsService.getApplicationDetails().subscribe(config=>{
+          this.appConfig = config.config;
+        });
         this.storageConfiguration = res.data;
       });
   }
